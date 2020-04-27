@@ -1,0 +1,22 @@
+<h1>Here are all the players in the database!</h1>
+
+<input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for name..." style="width: 55%">
+
+<table id="myTable" style="width:55%">
+  <tr class="header">
+    <th onclick="sortTable(0)">Name</th>
+    <th onclick="sortTable(1)">Height</th>
+    <th onclick="sortTable(2)">Position</th>
+    <th onclick="sortTable(3)">Grade</th>
+    <th onclick="sortTable(4)">School</th>
+  </tr> 
+  <% @players.each do |player| %>
+    <tr>
+      <td><%= player.name %></td>
+      <td><%= player.height %></td>
+      <td><%= player.position %></td>
+      <td><%= player.grade %></td>
+      <td><%= player.school %></td>
+    </tr>
+  <% end %>
+  </table>
