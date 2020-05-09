@@ -1,14 +1,12 @@
-<h1>Here are all the players in the database!</h1>
-
-<input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for name..." style="width: 55%">
+<h1>Database for 2019-2020 Season</h1>
 
 <table id="myTable" style="width:55%">
-  <tr class="header">
-    <th onclick="sortTable(0)">Name</th>
-    <th onclick="sortTable(1)">Height</th>
-    <th onclick="sortTable(2)">Position</th>
-    <th onclick="sortTable(3)">Grade</th>
-    <th onclick="sortTable(4)">School</th>
+  <tr class="header" id="filterButtons">
+    <th><button id="nameButton">Name</button></th>
+    <th><button id="heightButton">Height</button></th>
+    <th><button id="positionButton">Position</button></th>
+    <th><button id="gradeButton">Grade</button></th>
+    <th><button id="schoolButton">School</button></th>
   </tr> 
   <% @players.each do |player| %>
     <tr>
