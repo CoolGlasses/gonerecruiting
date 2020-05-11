@@ -1,11 +1,25 @@
 class PlayersController < ApplicationController
 
+    skip_before_action :verify_authenticity_token
+
     def index
-        @players = Player.find_by_sql(<<-SQL)
-        SELECT 
-            players.name, players.position, players.height, players.grade, schools.name AS School
-        FROM
-            players
+        # @players = Player.find_by_sql(<<-SQL)
+        # SELECT 
+        #     players.name, players.position, players.height, players.grade, schools.name AS School
+        # FROM
+        #     players
+        # JOIN
+        #     teams
+        # ON
+        #     players.team_id = teams.osaa_team_id
+        # JOIN
+        #     schools
+        # ON
+        #     teams.osaa_school_id = schools.osaa_school_id
+        # SQL
+        # @players = curate_height(players)
+
+        @players = Player.select('players.name, players.height, players.position, players.grade, schools.name AS School').joins(<<-SQL)
         JOIN
             teams
         ON
@@ -15,10 +29,36 @@ class PlayersController < ApplicationController
         ON
             teams.osaa_school_id = schools.osaa_school_id
         SQL
-        # @players = curate_height(players)
         render :index
     end
+    
+    def filter
+        name = ""
+        height = ""
+        position = ""
+        grade = ""
+        school = ""
 
+        params[filter].each do |k, v|
+            case k
+            when :name
+                name = v
+            when :height
+                height = v
+            when :position
+                position = v
+            when :grade
+                grade = v
+            when :school
+                school = v
+            end
+        end
+
+
+
+        render json: params
+    end
+    
     def show
         render json: Player.find(params[:id])
     end

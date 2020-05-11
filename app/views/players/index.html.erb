@@ -1,12 +1,16 @@
 <h1>Database for 2019-2020 Season</h1>
 
+
+<form id="filterBar" action="/players/filter" method="post">
+</form>
+
 <table id="myTable" style="width:55%">
-  <tr class="header" id="filterButtons">
-    <th><button id="nameButton">Name</button></th>
-    <th><button id="heightButton">Height</button></th>
-    <th><button id="positionButton">Position</button></th>
-    <th><button id="gradeButton">Grade</button></th>
-    <th><button id="schoolButton">School</button></th>
+  <tr class="header">
+    <th>Name</th>
+    <th>Height</th>
+    <th>Position</th>
+    <th>Grade</th>
+    <th>School</th>
   </tr> 
   <% @players.each do |player| %>
     <tr>
@@ -18,3 +22,4 @@
     </tr>
   <% end %>
   </table>
+

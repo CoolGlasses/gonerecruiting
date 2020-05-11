@@ -4,145 +4,111 @@ const heightArray = [
   "6ft 0in", "6ft 1in", "6ft 2in", "6ft 3in", "6ft 4in", ">6ft 4in"];
 const positionArray = ["PG", "G", "G/W", "W", "W/F", "F", "F/P", "P", "C"];
 const gradeArray = ["12", "11", "10", "9"];
-var filterBarOpen = false;
 
-
-function openFilterBar() {
-  const playerTable = document.querySelector('#myTable');
-  var filterBar = playerTable.insertRow(1);
-  var submitBar = playerTable.insertRow(2);
-  filterBar.id = "filterBar";
-  submitBar.id = "submitBar";
-
-  var i;
-  for (i = 0; i < 5; i++) {
-    var filterCell = filterBar.insertCell(i);
-    var submitCell = submitBar.insertCell(i);
-    filterCell.id = "filterCell" + i;
-    submitCell.id = "submitCell" + i;
-  }
-
-  addSubmitButton();
-  filterBarOpen = true;
-}
 
 function addSubmitButton() {
-  var cell = document.getElementById('submitCell2')
-  cell.innerHTML = "<button id='submitButton'>Submit</button>";
+  var bar = document.getElementById('filterBar')
+  var submitButton = document.createElement("input");
+  submitButton.setAttribute("type", "submit");
+  submitButton.setAttribute("value", "Filter");
+  submitButton.setAttribute("id", "submitButton");
+  bar.appendChild(submitButton);
 }
 
-function openNameSearchBar() {
-  if (filterBarOpen == false) {
-    openFilterBar();
-  }
-
-  createNameSearch();
+function addNameSearch() {
+  var bar = document.getElementById('filterBar')
+  var nameSearch = document.createElement("input");
+  nameSearch.setAttribute("type", "text");
+  nameSearch.setAttribute("placeholder", "Enter name here...");
+  nameSearch.setAttribute("id", "nameSearch");
+  nameSearch.setAttribute("name", "filter[name]");
+  bar.appendChild(nameSearch);
 }
 
-function createNameSearch() {
-  var cell = document.getElementById('filterCell0')
-  cell.innerHTML = "<input type='text' id='nameSearch' placeholder='Search for name...'>";
+function addSchoolSearch() {
+  var bar = document.getElementById('filterBar')
+  var schoolSearch = document.createElement("input");
+  schoolSearch.setAttribute("type", "text");
+  schoolSearch.setAttribute("placeholder", "Enter school here...");
+  schoolSearch.setAttribute("id", "schoolSearch");
+  schoolSearch.setAttribute("name", "filter[school]");
+  bar.appendChild(schoolSearch);
 }
 
-function openHeightFilterBar() {
-  if (filterBarOpen == false) {
-    openFilterBar();
-  }
-  createHeightSelector();
-  addHeightOptions();
+function addHeightSelector() {
+  var bar = document.getElementById('filterBar')
+  var heightSelector = document.createElement("select");
+  heightSelector.setAttribute("id", "heightSelector");
+  heightSelector.setAttribute("name", "filter[height]");
+  bar.appendChild(heightSelector);
 }
 
-function createHeightSelector() {
-  var cell = document.getElementById('filterCell1')
-  cell.innerHTML = "<select id = 'heights'></select>";
+function addPositionSelector() {
+  var bar = document.getElementById('filterBar')
+  var positionSelector = document.createElement("select");
+  positionSelector.setAttribute("id", "positionSelector");
+  positionSelector.setAttribute("name", "filter[position]");
+  bar.appendChild(positionSelector);
 }
 
+function addGradeSelector() {
+  var bar = document.getElementById('filterBar')
+  var gradeSelector = document.createElement("select");
+  gradeSelector.setAttribute("id", "gradeSelector");
+  gradeSelector.setAttribute("name", "filter[grade]");
+  bar.appendChild(gradeSelector);
+}
 
 function addHeightOptions() {
   var i;
   for (i = 0; i < heightArray.length; i++) {
-    var heights = document.getElementById("heights");
+    var heights = document.getElementById("heightSelector");
     var option1 = document.createElement('option');
     option1.setAttribute("value", heightArray[i]);
     var nod1 = document.createTextNode(heightArray[i]);
     option1.appendChild(nod1);
     heights.appendChild(option1);
-    //need to add an "onchange" eventlistener to push selected value back to ruby
   }
-}
-
-function openPositionFilterBar() {
-  if (filterBarOpen == false) {
-    openFilterBar();
-  }
-
-  createPositionSelector();
-  addPositionOptions();
-}
-
-function createPositionSelector() {
-  var cell = document.getElementById('filterCell2')
-  cell.innerHTML = "<select id = 'positions'></select>";
 }
 
 function addPositionOptions() {
   var i;
   for (i = 0; i < positionArray.length; i++) {
-    var positions = document.getElementById("positions");
+    var positions = document.getElementById("positionSelector");
     var option1 = document.createElement('option');
     option1.setAttribute("value", positionArray[i]);
     var nod1 = document.createTextNode(positionArray[i]);
     option1.appendChild(nod1);
     positions.appendChild(option1);
-    //need to add an "onchange" eventlistener to push selected value back to ruby
   }
-}
-
-function openGradeFilterBar() {
-  if (filterBarOpen == false) {
-    openFilterBar();
-  }
-  createGradeSelector();
-  addGradeOptions();
-
-}
-
-function createGradeSelector() {
-  var cell = document.getElementById('filterCell3')
-  cell.innerHTML = "<select id = 'grades'></select>";
 }
 
 function addGradeOptions() {
   var i;
   for (i = 0; i < gradeArray.length; i++) {
-    var heights = document.getElementById("grades");
+    var heights = document.getElementById("gradeSelector");
     var option1 = document.createElement('option');
     option1.setAttribute("value", gradeArray[i]);
     var nod1 = document.createTextNode(gradeArray[i]);
     option1.appendChild(nod1);
     heights.appendChild(option1);
-    //need to add an "onchange" eventlistener to push selected value back to ruby
   }
 }
 
 
-function openSchoolSearchBar() {
-  if (filterBarOpen == false) {
-    openFilterBar();
-  }
-
-  createSchoolSearch();
-}
-
-function createSchoolSearch() {
-  var cell = document.getElementById('filterCell4')
-  cell.innerHTML = "<input type='text' id='schoolSearch' placeholder='Search for school...'>";
+function fire() {
+  addNameSearch();
+  addHeightSelector();
+  addPositionSelector();
+  addGradeSelector();
+  addSchoolSearch();
+  addHeightOptions();
+  addPositionOptions();
+  addGradeOptions();
+  addSubmitButton();
 }
 
 window.onload = function() {
-  document.getElementById("nameButton").addEventListener("click", openNameSearchBar);
-  document.getElementById("heightButton").addEventListener("click", openHeightFilterBar);
-  document.getElementById("positionButton").addEventListener("click", openPositionFilterBar);
-  document.getElementById("gradeButton").addEventListener("click", openGradeFilterBar);
-  document.getElementById("schoolButton").addEventListener("click", openSchoolSearchBar);
+  fire();
 }
+

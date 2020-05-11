@@ -2,9 +2,8 @@ class Player < ApplicationRecord
     # validates :name, presence: true
     # validates :team_id, presence: true
 
-    # belongs_to :team,
-    #     primary_key: :id,
-    #     foreign_key: :team_id,
-    #     class_name: :Team
+    belongs_to :team, foreign_key: "id"
+    has_one :school, through: :team 
+
     
 end
