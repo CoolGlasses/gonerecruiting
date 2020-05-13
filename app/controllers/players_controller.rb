@@ -17,6 +17,7 @@ class PlayersController < ApplicationController
         ON
             teams.osaa_school_id = schools.osaa_school_id
         SQL
+        
         @players.to_a
         render :index
     end
