@@ -14,11 +14,11 @@
   </tr> 
   <% @players.each do |player| %>
     <tr>
-      <td><%= player.name %></td>
-      <td><%= player.height %></td>
-      <td><%= player.position %></td>
-      <td><%= player.grade %></td>
-      <td><%= player.school %></td>
+      <td><%= player["name"] %></td>
+      <td><%= player["height"] %></td>
+      <td><%= player["position"] %></td>
+      <td><%= player["grade"] %></td>
+      <td><%= player["school"] %></td>
     </tr>
   <% end %>
   </table>

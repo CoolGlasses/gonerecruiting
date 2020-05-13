@@ -3,23 +3,11 @@ class PlayersController < ApplicationController
     skip_before_action :verify_authenticity_token
 
     def index
-        # @players = Player.find_by_sql(<<-SQL)
-        # SELECT 
-        #     players.name, players.position, players.height, players.grade, schools.name AS School
-        # FROM
-        #     players
-        # JOIN
-        #     teams
-        # ON
-        #     players.team_id = teams.osaa_team_id
-        # JOIN
-        #     schools
-        # ON
-        #     teams.osaa_school_id = schools.osaa_school_id
-        # SQL
-        # @players = curate_height(players)
-
-        @players = Player.select('players.name, players.height, players.position, players.grade, schools.name AS School').joins(<<-SQL)
+        @players = ActiveRecord::Base.connection.execute(<<-SQL)
+        SELECT 
+            players.name, players.position, players.height, players.grade, schools.name AS School
+        FROM
+            players
         JOIN
             teams
         ON
@@ -29,6 +17,7 @@ class PlayersController < ApplicationController
         ON
             teams.osaa_school_id = schools.osaa_school_id
         SQL
+        @players.to_a
         render :index
     end
     
