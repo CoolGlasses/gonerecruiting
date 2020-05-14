@@ -17,36 +17,22 @@ class PlayersController < ApplicationController
         ON
             teams.osaa_school_id = schools.osaa_school_id
         SQL
-        
+
         @players.to_a
         render :index
     end
     
     def filter
-        name = ""
-        height = ""
-        position = ""
-        grade = ""
-        school = ""
-
-        params[filter].each do |k, v|
-            case k
-            when :name
-                name = v
-            when :height
-                height = v
-            when :position
-                position = v
-            when :grade
-                grade = v
-            when :school
-                school = v
-            end
-        end
+        name = params["filter"]["name"]
+        height = params["filter"]["height"]
+        position = params["filter"]["position"]
+        school = params["filter"]["school"]
 
 
+        
 
-        render json: params
+        @players.to_a
+        render :index
     end
     
     def show
@@ -145,5 +131,48 @@ class PlayersController < ApplicationController
     #     end
     #     return players
     # end
+
+    def grade_filter(grade)
+        players = ActiveRecord::Base.connection.execute(<<-SQL)
+        SELECT 
+            players.name, players.position, players.height, players.grade, schools.name AS School
+        FROM
+            players
+        JOIN
+            teams
+        ON
+            players.team_id = teams.osaa_team_id
+        JOIN
+            schools
+        ON
+            teams.osaa_school_id = schools.osaa_school_id
+        WHERE
+            players.grade='#{grade}';
+        SQL
+
+        return players
+    end
+
+    def position_filter(position)
+        players = ActiveRecord::Base.connection.execute(<<-SQL)
+        SELECT 
+            players.name, players.position, players.height, players.grade, schools.name AS School
+        FROM
+            players
+        JOIN
+            teams
+        ON
+            players.team_id = teams.osaa_team_id
+        JOIN
+            schools
+        ON
+            teams.osaa_school_id = schools.osaa_school_id
+        WHERE
+            players.position='#{position}';
+        SQL
+
+        return players
+    end
+
 
 end
