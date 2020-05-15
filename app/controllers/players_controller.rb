@@ -83,7 +83,6 @@ class PlayersController < ApplicationController
     end
 
     def position_filter(position)
-        #need to account for variance... utilize LIKE in SQL
         players = ActiveRecord::Base.connection.execute(<<-SQL)
         SELECT 
             players.name, players.position, players.height, players.grade, schools.name AS School
@@ -105,7 +104,6 @@ class PlayersController < ApplicationController
     end
 
     def name_filter(name)
-        #capitalization matters!  Need to account for that with an OR in the WHERE clause
         lower_case_name = name.downcase
         capitalized = lower_case_name[0].upcase + lower_case_name[1..-1]
         
@@ -132,7 +130,6 @@ class PlayersController < ApplicationController
     end
 
     def school_filter(school)
-        #capitalization matters!  Need to account for that with an OR in the WHERE clause
         first_school = school.downcase
         second_school = first_school[0].upcase + first_school[1..-1]
         
