@@ -19,7 +19,7 @@ function addNameSearch() {
   var bar = document.getElementById('filterBar')
   var nameSearch = document.createElement("input");
   nameSearch.setAttribute("type", "text");
-  nameSearch.setAttribute("placeholder", "Enter name here...");
+  nameSearch.setAttribute("placeholder", "Search by Name...");
   nameSearch.setAttribute("id", "nameSearch");
   nameSearch.setAttribute("name", "filter[name]");
   bar.appendChild(nameSearch);
@@ -29,7 +29,7 @@ function addSchoolSearch() {
   var bar = document.getElementById('filterBar')
   var schoolSearch = document.createElement("input");
   schoolSearch.setAttribute("type", "text");
-  schoolSearch.setAttribute("placeholder", "Enter school here...");
+  schoolSearch.setAttribute("placeholder", "Search by School...");
   schoolSearch.setAttribute("id", "schoolSearch");
   schoolSearch.setAttribute("name", "filter[school]");
   bar.appendChild(schoolSearch);

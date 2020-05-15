@@ -28,8 +28,15 @@ class PlayersController < ApplicationController
         position = params["filter"]["position"]
         school = params["filter"]["school"]
 
-
-        
+        if name != ""
+            @players = name_filter(name)
+        elsif height != ""
+            @players = height_filter(height)
+        elsif position != ""
+            @players = position_filter(position)
+        elsif school != ""
+            @players = school_filter(school)
+        end
 
         @players.to_a
         render :index
@@ -142,6 +149,7 @@ class PlayersController < ApplicationController
     end
 
     def height_filter(height)
+        #need to care for the format that the height is coming in as better...  6ft 0in 
         clean_height = curate_height(height)
 
         if clean_height.length == 2
