@@ -30,9 +30,9 @@ class PlayersController < ApplicationController
 
         if name != ""
             @players = name_filter(name)
-        elsif height != ""
+        elsif !height.nil?
             @players = height_filter(height)
-        elsif position != ""
+        elsif !position.nil?
             @players = position_filter(position)
         elsif school != ""
             @players = school_filter(school)
@@ -106,6 +106,9 @@ class PlayersController < ApplicationController
 
     def name_filter(name)
         #capitalization matters!  Need to account for that with an OR in the WHERE clause
+        lower_case_name = name.downcase
+        capitalized = lower_case_name[0].upcase + lower_case_name[1..-1]
+        
         players = ActiveRecord::Base.connection.execute(<<-SQL)
         SELECT 
             players.name, players.position, players.height, players.grade, schools.name AS School
@@ -120,7 +123,9 @@ class PlayersController < ApplicationController
         ON
             teams.osaa_school_id = schools.osaa_school_id
         WHERE
-            players.name LIKE '%#{name}%';
+            players.name LIKE '%#{lower_case_name}%'
+        OR
+            players.name LIKE '%#{capitalized}%';
         SQL
 
         return players
@@ -128,6 +133,9 @@ class PlayersController < ApplicationController
 
     def school_filter(school)
         #capitalization matters!  Need to account for that with an OR in the WHERE clause
+        first_school = school.downcase
+        second_school = first_school[0].upcase + first_school[1..-1]
+        
         players = ActiveRecord::Base.connection.execute(<<-SQL)
         SELECT 
             players.name, players.position, players.height, players.grade, schools.name AS School
@@ -142,7 +150,9 @@ class PlayersController < ApplicationController
         ON
             teams.osaa_school_id = schools.osaa_school_id
         WHERE
-            players.name LIKE '%#{school}%';
+            schools.name LIKE '%#{first_school}%'
+        OR
+            schools.name LIKE '%#{second_school}%';
         SQL
 
         return players

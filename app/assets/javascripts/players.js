@@ -2,7 +2,7 @@ const heightArray = [
   "<5ft 3in", "5ft 3in", "5ft 4in", "5ft 5in", "5ft 5in",
   "5ft 6in", "5ft 7in", "5ft 8in", "5ft 9in", "5ft 10in", "5ft 11in",
   "6ft 0in", "6ft 1in", "6ft 2in", "6ft 3in", "6ft 4in", ">6ft 4in"];
-const positionArray = ["PG", "G", "G/W", "W", "W/F", "F", "F/P", "P", "C"];
+const positionArray = ["G", "W", "F", "P", "C"];
 const gradeArray = ["12", "11", "10", "9"];
 
 
