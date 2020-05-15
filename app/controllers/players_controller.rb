@@ -76,6 +76,7 @@ class PlayersController < ApplicationController
     end
 
     def position_filter(position)
+        #need to account for variance... utilize LIKE in SQL
         players = ActiveRecord::Base.connection.execute(<<-SQL)
         SELECT 
             players.name, players.position, players.height, players.grade, schools.name AS School

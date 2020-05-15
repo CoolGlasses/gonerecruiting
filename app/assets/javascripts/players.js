@@ -60,6 +60,14 @@ function addGradeSelector() {
 }
 
 function addHeightOptions() {
+  var heights = document.getElementById("heightSelector");
+  var option1 = document.createElement('option');
+  option1.disabled=true;
+  option1.selected=true;
+  var nod1 = document.createTextNode("--by Height--");
+  option1.appendChild(nod1);
+  heights.appendChild(option1);
+
   var i;
   for (i = 0; i < heightArray.length; i++) {
     var heights = document.getElementById("heightSelector");
@@ -72,6 +80,14 @@ function addHeightOptions() {
 }
 
 function addPositionOptions() {
+  var positions = document.getElementById("positionSelector");
+  var option1 = document.createElement('option');
+  option1.disabled = true;
+  option1.selected = true;
+  var nod1 = document.createTextNode("--by Position--");
+  option1.appendChild(nod1);
+  positions.appendChild(option1);
+
   var i;
   for (i = 0; i < positionArray.length; i++) {
     var positions = document.getElementById("positionSelector");
@@ -84,6 +100,14 @@ function addPositionOptions() {
 }
 
 function addGradeOptions() {
+  var heights = document.getElementById("gradeSelector");
+  var option1 = document.createElement('option');
+  option1.disabled = true;
+  option1.selected = true;
+  var nod1 = document.createTextNode("--by Grade--");
+  option1.appendChild(nod1);
+  heights.appendChild(option1);
+
   var i;
   for (i = 0; i < gradeArray.length; i++) {
     var heights = document.getElementById("gradeSelector");
