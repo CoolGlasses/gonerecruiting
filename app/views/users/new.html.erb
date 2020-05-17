@@ -1,9 +1,3 @@
-<h1>This will be the signup page</h1>
-<h1>...but for now, just click the button to get to the database...</h1>
-
-<form id="goToDatabase" action="/players" method="get">
-    <input type="submit" value="Go to Database">
-</form>
 
 <!-- 
 removed code from AppAcademy Tutorial on Rails Auth
@@ -12,35 +6,3 @@ removed code from AppAcademy Tutorial on Rails Auth
 <h1>Create User</h1>
 
 <%= render "form", user: @user %>
-
-<!-- app/views/users/_form.html.erb -->
-<% action = (user.persisted? ? user_url(user) : users_url) %>
-<% method = (user.persisted? ? "patch" : "post") %>
-<% message = (user.persisted? ? "Update user" : "Create user") %>
-
-<form action="<%= action %>" method="post">
-  <input
-     name="_method"
-     type="hidden"
-     value="<%= method %>">
-  <input
-     name="authenticity_token"
-     type="hidden"
-     value="<%= form_authenticity_token %>">
-
-  <label for="user_username">Username</label>
-  <input
-     id="user_username"
-     name="user[username]"
-     type="text">
-  <br>
-
-  <label for="user_password">Password</label>
-  <input
-     id="user_password"
-     name="user[password]"
-     type="password">
-  <br>
-
-  <input type="submit" value="<%= message %>">
-</form>

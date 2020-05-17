@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     def index
-        render :new
+        render :home
     end
 
     def create
