@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   root to: 'users#index'
   
   resources :players
-  resources :users
+  resource :session, only: [:create, :destroy, :new]
+  resource :user, only: [:create, :new, :show] do
+    resource :counter, only: [:update]
+  end
 
   post 'players/filter', to: 'players#filter'
 end

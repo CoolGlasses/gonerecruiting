@@ -1,21 +1,22 @@
 class ApplicationController < ActionController::Base
-    def create
-        @user = User.new(user_params)
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  protect_from_forgery with: :exception
 
-        if @user.save
-            render json: @user
-        else
-            render json: @user.errors.full_messages
-        end
-    end
+  def current_user
+    # fetches the user we've logged in as
+    return nil if self.session[:session_token].nil?
+    @user ||= User.find_by(session_token: self.session[:session_token])
+  end
 
-    def new
-        @user = User.new
-    end
+  def log_in!(user)
+    # force other clients to log out by regenerating token
+    user.reset_session_token!
+    # log this client in
+    self.session[:session_token] = user.session_token
+  end
 
-    private
-
-    def user_params
-        params.require(:user).permit(:username, :password)
-    end
+  def log_out!
+    self.session[:session_token] = nil
+  end
 end
