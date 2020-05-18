@@ -27,6 +27,7 @@ class PlayersController < ApplicationController
         height = params["filter"]["height"]
         position = params["filter"]["position"]
         school = params["filter"]["school"]
+        grade = params["filter"]["grade"]
 
         if name != ""
             @players = name_filter(name)
@@ -36,6 +37,8 @@ class PlayersController < ApplicationController
             @players = position_filter(position)
         elsif school != ""
             @players = school_filter(school)
+        elsif grade != ""
+            @players = grade_filter(grade)
         end
 
         @players.to_a
