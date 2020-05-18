@@ -46,21 +46,6 @@ class PlayersController < ApplicationController
         render json: Player.find(params[:id])
     end
 
-    def new
-    end
-
-    def create
-    end
-
-    def update
-    end
-
-    def edit
-    end
-
-    def destroy
-    end
-
     def grade_filter(grade)
         players = ActiveRecord::Base.connection.execute(<<-SQL)
         SELECT 

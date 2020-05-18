@@ -11,14 +11,14 @@ class SessionsController < ApplicationController
       render json: 'Credentials were wrong'
     else
       # sign the user in
-      log_in!(@user)
-      redirect_to "users#show"
+      login!(@user)
+      redirect_to user_url(user)
     end
   end
 
   def destroy
     # sign a user out
-    log_out!
+    logout!
     redirect_to new_session_url
   end
 

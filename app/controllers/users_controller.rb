@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
-    def index
-        render :home
-    end
+  before_action :require_current_user!, except: [:create, :new, :index]
+
+  ##Need to change where the root route goes!!
+  def index
+      render :home
+  end
 
   def create
     # sign up the user
@@ -9,10 +12,9 @@ class UsersController < ApplicationController
     if @user.save
       # redirect them to the new user's show page
       log_in!(@user)
-      redirect_to :show
+      redirect_to user_url(@user)
     else
-      # input didn't pass validation; re-render sign up form.
-      render :new
+      render json: @user.errors.full_messages
     end
   end
 
