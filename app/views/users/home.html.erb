@@ -1,6 +1,14 @@
-<h1>This will be the signup page</h1>
-<h1>...but for now, just click the button to get to the database...</h1>
+<h1>This is the homepage</h1>
+<h1>...you may skip the user authentication for now...</h1>
 
 <form id="goToDatabase" action="/players" method="get">
     <input type="submit" value="Go to Database">
+</form>
+
+<form id="login" action="/session/new" method="get">
+    <input type="submit" value="Login">
+</form>
+
+<form id="signup" action="/user/new" method="get">
+    <input type="submit" value="Signup">
 </form>
