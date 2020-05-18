@@ -8,11 +8,11 @@ class SessionsController < ApplicationController
 
     if @user.nil?
       # no user with the given name!
-      render :new
+      render json: 'Credentials were wrong'
     else
       # sign the user in
       log_in!(@user)
-      redirect_to user_url
+      redirect_to "users#show"
     end
   end
 
