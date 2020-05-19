@@ -11,7 +11,24 @@
   </head>
 
   <body>
-  <header>
+  <header id="headerBar">
+    <h1 id="headerTitle"><a href="<%= user_url %>">Gone Recruiting</a></h1>
+    <div id="headerLinksBox">
+    <% if current_user.nil? %>
+      <a href="<%= new_session_url %>" id="signin1">Sign in</a>
+      <a href="<%= new_user_url %>" id="signup1">Sign up</a>
+    <% else %>
+      <%= current_user.username %>
+      <form action="<%= session_url %>" method="post">
+        <input
+          type="hidden"
+          name="authenticity_token"
+          value="<%= form_authenticity_token %>">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Logout">
+      </form>
+    <% end %>
+    </div>
   </header>
     <% if !current_user.nil? %>
       <ul>
