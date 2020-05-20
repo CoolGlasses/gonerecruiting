@@ -1,26 +1,28 @@
 <h1>Database for 2019-2020 Season</h1>
 
-<h3>Filter Options</h3>
-<form id="filterBar" action="/players/filter" method="post">
-</form>
-<h3>---------------</h3>
+<div id="tableContainer">
+  <h3>Filter Options</h3>
 
-<table id="myTable" style="width:55%">
-  <tr class="header">
-    <th>Name</th>
-    <th>Height</th>
-    <th>Position</th>
-    <th>Grade</th>
-    <th>School</th>
-  </tr> 
-  <% @players.each do |player| %>
-    <tr>
-      <td><%= player["name"] %></td>
-      <td><%= player["height"] %></td>
-      <td><%= player["position"] %></td>
-      <td><%= player["grade"] %></td>
-      <td><%= player["school"] %></td>
-    </tr>
-  <% end %>
+  <form id="filterBar" action="/players/filter" method="post">
+  </form>
+  <h3>---------------</h3>
+  <table id="myTable">
+    <tr class="header">
+      <th>Name</th>
+      <th>Height</th>
+      <th>Position</th>
+      <th>Grade</th>
+      <th>School</th>
+    </tr> 
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= player["name"] %></td>
+        <td><%= player["height"] %></td>
+        <td><%= player["position"] %></td>
+        <td><%= player["grade"] %></td>
+        <td><%= player["school"] %></td>
+      </tr>
+    <% end %>
   </table>
-
+  <h3>---------------</h3>
+</div>
