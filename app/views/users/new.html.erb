@@ -6,23 +6,28 @@
   <% end %>
 </ul>
 
-<form action="/user" method="POST">
-  <input
-    type="hidden"
-    name="authenticity_token"
-    value="<%= form_authenticity_token %>">
-  
-  <label for="user_username">Username</label>
-  <input
-    type="text"
-    name="user[username]"
-    id="user_username"
-    value="<%= @user.username %>">
-  <br>
 
-  <label for="user_password">Password</label>
-  <input type="password" name="user[password]" id="user_password">
-  <br>
+<div id="loginContainer">
+  <div id="loginBox">
+    <form action="/user" method="POST">
+        <input
+          type="hidden"
+          name="authenticity_token"
+          value="<%= form_authenticity_token %>">
+        
+        <label for="user_username">Username</label>
+        <input
+          type="text"
+          name="user[username]"
+          id="user_username"
+          value="<%= @user.username %>">
+        <br>
 
-  <input type="submit" value="Create User!">
-</form>
+        <label for="user_password">Password</label>
+        <input type="password" name="user[password]" id="user_password">
+        <br>
+
+        <input type="submit" value="Create User!">
+    </form>
+  </div>
+</div>     
