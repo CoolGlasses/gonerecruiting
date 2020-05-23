@@ -8,6 +8,7 @@
 require 'faraday'
 require 'byebug'
 require 'json'
+require_relative 'convert_height'
 
 # x-api-key = DG8rhd7LDJ6MqwTvw8OUQQWWpjc75Tqe
 
@@ -77,6 +78,7 @@ def write_player_to_db(player, osaa_team_id)
         position = player["position"]
         grade = player["grade"]
         height = player["height"]
+        height_inches = convert_height(height)
 
         Player.create!(
             name: "#{name}",
@@ -85,7 +87,8 @@ def write_player_to_db(player, osaa_team_id)
             position: "#{position}",
             grade: "#{grade}",
             height: "#{height}",
-            team_id: "#{osaa_team_id}"
+            team_id: "#{osaa_team_id}",
+            height_inches: "#{height_inches}"
         )
 end
 
