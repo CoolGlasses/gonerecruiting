@@ -1,3 +1,5 @@
+require '/home/robin/gone_recruiting/db/convert_height.rb'
+
 class PlayersController < ApplicationController
 
     skip_before_action :verify_authenticity_token
@@ -145,44 +147,44 @@ class PlayersController < ApplicationController
 
     def height_filter(height)
         #need to care for the format that the height is coming in as better...  6ft 0in 
-        clean_height = curate_height(height)
+        converted_height = convert_height(height)
 
-        if clean_height.length == 2
-            clean_height_1 = clean_height[0]
-            clean_height_2 = clean_height[1]
+        if converted_height != 62
+            players = ActiveRecord::Base.connection.execute(<<-SQL)
+            SELECT 
+                players.name, players.position, players.height, players.grade, schools.name AS School
+            FROM
+                players
+            JOIN
+                teams
+            ON
+                players.team_id = teams.osaa_team_id
+            JOIN
+                schools
+            ON
+                teams.osaa_school_id = schools.osaa_school_id
+            WHERE
+                players.height_inches >='#{converted_height}';
+            SQL
+            return players
         else
-            clean_height_1 = clean_height
-            clean_height_2 = clean_height
-        end
-
-        players = ActiveRecord::Base.connection.execute(<<-SQL)
-        SELECT 
-            players.name, players.position, players.height, players.grade, schools.name AS School
-        FROM
-            players
-        JOIN
-            teams
-        ON
-            players.team_id = teams.osaa_team_id
-        JOIN
-            schools
-        ON
-            teams.osaa_school_id = schools.osaa_school_id
-        WHERE
-            players.height='#{clean_height_1}' 
-        OR
-            players.height='#{clean_height_2}';
-        SQL
-
-        return players
-    end
-
-    def curate_height(height)
-        if height.empty?
-            return height
-        elsif height.length == 3
-            curated_height = height.gsub("-", "-0")
-            return [height, curated_height]
+            players = ActiveRecord::Base.connection.execute(<<-SQL)
+            SELECT 
+                players.name, players.position, players.height, players.grade, schools.name AS School
+            FROM
+                players
+            JOIN
+                teams
+            ON
+                players.team_id = teams.osaa_team_id
+            JOIN
+                schools
+            ON
+                teams.osaa_school_id = schools.osaa_school_id
+            WHERE
+                players.height_inches <='#{converted_height}';
+            SQL
+            return players
         end
     end
 end
