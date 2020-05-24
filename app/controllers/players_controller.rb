@@ -31,18 +31,33 @@ class PlayersController < ApplicationController
         school = params["filter"]["school"]
         grade = params["filter"]["grade"]
 
-        if !height.nil?
-            @players = height_filter(height)
-        elsif grade != ""
-            @players = grade_filter(grade)
-        elsif !position.nil?
-            @players = position_filter(position)
-        elsif school != ""
-            @players = school_filter(school)
-        elsif name != ""
-            @players = name_filter(name)
+        filter_array = [height, grade, position, school, name]
+        remaining_filters = []
+
+        filter_array.each do |param|
+            if !param.nil? && param != ""
+                remaining_filters << param
+            end
         end
 
+        if !height.nil?
+            @players = height_filter(height)
+            remaining_filters.delete(height)
+        elsif grade != ""
+            @players = grade_filter(grade)
+            remaining_filters.delete(grade)
+        elsif !position.nil?
+            @players = position_filter(position)
+            remaining_filters.delete(position)
+        elsif school != ""
+            @players = school_filter(school)
+            remaining_filters.delete(school)
+        elsif name != ""
+            @players = name_filter(name)
+            remaining_filters.delete(name)
+        end
+
+        session[:remaining_filters] = filter_array
         @players.to_a
         render :index
     end
