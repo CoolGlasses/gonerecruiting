@@ -15,6 +15,14 @@ function addSubmitButton() {
   bar.appendChild(submitButton);
 }
 
+function checkForPreviousFiltering() {
+
+}
+
+function performAdditionalFiltering() {
+
+}
+
 function addNameSearch() {
   var bar = document.getElementById('filterBar')
   var nameSearch = document.createElement("input");
