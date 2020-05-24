@@ -31,16 +31,16 @@ class PlayersController < ApplicationController
         school = params["filter"]["school"]
         grade = params["filter"]["grade"]
 
-        if name != ""
-            @players = name_filter(name)
-        elsif !height.nil?
+        if !height.nil?
             @players = height_filter(height)
+        elsif grade != ""
+            @players = grade_filter(grade)
         elsif !position.nil?
             @players = position_filter(position)
         elsif school != ""
             @players = school_filter(school)
-        elsif grade != ""
-            @players = grade_filter(grade)
+        elsif name != ""
+            @players = name_filter(name)
         end
 
         @players.to_a
@@ -146,7 +146,6 @@ class PlayersController < ApplicationController
     end
 
     def height_filter(height)
-        #need to care for the format that the height is coming in as better...  6ft 0in 
         converted_height = convert_height(height)
 
         if converted_height != 62
