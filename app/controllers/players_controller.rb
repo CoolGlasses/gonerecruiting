@@ -20,6 +20,7 @@ class PlayersController < ApplicationController
             teams.osaa_school_id = schools.osaa_school_id
         SQL
 
+        gon.watch.filtered = false
         @players.to_a
         render :index
     end

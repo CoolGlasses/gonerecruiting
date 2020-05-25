@@ -4,6 +4,7 @@ const heightArray = [
   "6ft 0in", "6ft 1in", "6ft 2in", "6ft 3in", "6ft 4in", ">6ft 4in"];
 const positionArray = ["G", "W", "F", "P", "C"];
 const gradeArray = ["12", "11", "10", "9"];
+var filtered = gon.filtered;
 
 
 function addSubmitButton() {
@@ -11,15 +12,22 @@ function addSubmitButton() {
   var submitButton = document.createElement("input");
   submitButton.setAttribute("type", "submit");
   submitButton.setAttribute("value", "Filter");
+  submitButton.setAttribute("onclick", 'checkForPreviousFilter();')
+  submitButton.onclick = function () {checkForPreviousFiltering();};
   submitButton.setAttribute("id", "submitButton");
   bar.appendChild(submitButton);
 }
 
 function checkForPreviousFiltering() {
-
+  if (filtered == false) {
+    return true;
+  } else {
+    performAdditionalFiltering();
+  }
 }
 
 function performAdditionalFiltering() {
+
 
 }
 
