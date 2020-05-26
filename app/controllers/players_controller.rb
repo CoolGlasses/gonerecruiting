@@ -32,28 +32,34 @@ class PlayersController < ApplicationController
         school = params["filter"]["school"]
         grade = params["filter"]["grade"]
 
-        filter_array = [height, grade, position, school, player_name]
-        remaining_filters = []
+        filter_hash = {:height => height, :grade => grade, :position => position, 
+                        :school => school, :player_name => player_name}
 
-        filter_array.each do |param|
-            if !param.nil? && param != ""
-                remaining_filters << param
+        filter_hash.each do |key, value|
+            if value.nil? || value == ""
+                filter_hash.except!(key)
             end
         end
 
         if !height.nil?
             @players = height_filter(height)
+            filter_hash.except!(:height)
         elsif grade != "" && !grade.nil?
             @players = grade_filter(grade)
+            filter_hash.except!(:grade)
         elsif !position.nil?
             @players = position_filter(position)
+            filter_hash.except!(:position)
         elsif school != ""
             @players = school_filter(school)
+            filter_hash.except!(:school)
         elsif player_name != "" && !player_name.nil?
             @players = name_filter(player_name)
+            filter_hash.except!(:player_name)
         end
 
-        session[:remaining_filters] = filter_array
+        gon.watch.filtered = true
+        gon.watch.remaining_filters = filter_hash
         @players.to_a
         render :index
     end
