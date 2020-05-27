@@ -1,0 +1,23 @@
+<%= Gon::Base.render_data %>
+<h1><%= player.name%></h1>
+<h3>---------------</h3>
+
+<table>
+    <th>
+        <td>Name</td>
+        <td>Height</td>
+        <td>Position</td>
+        <td>Grade</td>
+        <td>School</td>
+    </th>
+    <tr>
+        <td><%= player["name"] %></td>
+        <td><%= player["height"] %></td>
+        <td><%= player["position"] %></td>
+        <td><%= player["grade"] %></td>
+        <td><%= player["school"] %></td>
+    </tr>
+</table>
+
+  
+
