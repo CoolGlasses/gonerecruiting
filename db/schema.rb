@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_23_205600) do
+ActiveRecord::Schema.define(version: 2020_05_30_005018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,7 +61,14 @@ ActiveRecord::Schema.define(version: 2020_05_23_205600) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "height_inches"
+    t.string "school_name"
+    t.string "classification"
+    t.string "mascot"
+    t.string "color_1"
+    t.string "color_2"
+    t.string "league"
     t.index ["height_inches"], name: "index_players_on_height_inches"
+    t.index ["school_name"], name: "index_players_on_school_name"
     t.index ["team_id"], name: "index_players_on_team_id"
   end
 

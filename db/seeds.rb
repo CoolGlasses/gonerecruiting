@@ -63,11 +63,11 @@ def write_team_to_db(parsed_team)
             team_photo_url: "#{team_photo_url}"
         )
 
-        if !roster.nil?
-            roster.each do |player|
-                write_player_to_db(player, osaa_team_id)
-            end
-        end
+        # if !roster.nil?
+        #     roster.each do |player|
+        #         write_player_to_db(player, osaa_team_id)
+        #     end
+        # end
     end
 end
 
@@ -122,9 +122,66 @@ def write_school_to_db(parsed_school)
     end
 end
 
+
+def write_full_players_to_db(parsed_team, parsed_school)
+    parsed_team.each do |team|
+        school_name = ""
+        classification = ""
+        mascot = ""
+        color_1 = ""
+        color_2 = ""
+        league = ""
+        parsed_school.each do |school|
+            if team["school"] == school["id"]
+                school_name = school["name"]
+                classification = school["classification"]
+                mascot = school["mascot"]["main"]
+                color_1 = school["colors"][0]["name"]
+                color_2 = school["colors"][1]["name"]
+                league = school["league_full_name"]
+                break
+            end
+        end
+        
+        osaa_team_id = team["id"]
+        roster = team["roster"]
+
+        if !roster.nil?
+            roster.each do |player|
+                name = player["name"]
+                home_number = player["home_number"]
+                away_number = player["away_number"]
+                position = player["position"]
+                grade = player["grade"]
+                height = player["height"]
+                height_inches = convert_height(height)
+
+                Player.create!(
+                    name: "#{name}",
+                    home_number: "#{home_number}",
+                    away_number: "#{away_number}",
+                    position: "#{position}",
+                    grade: "#{grade}",
+                    height: "#{height}",
+                    team_id: "#{osaa_team_id}",
+                    height_inches: "#{height_inches}",
+                    school_name: "#{school_name}",
+                    classification: "#{classification}",
+                    mascot: "#{mascot}",
+                    color_1: "#{color_1}",
+                    color_2: "#{color_2}",
+                    league: "#{league}"
+                )
+            end
+        end
+    end
+end
+
+
 parsed_team = get_team_table()
 parsed_school = get_school_table()
 write_school_to_db(parsed_school)
 write_team_to_db(parsed_team)
+write_full_players_to_db(parsed_team, parsed_school)
 
 
