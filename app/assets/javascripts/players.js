@@ -4,7 +4,6 @@ const heightArray = [
   "6ft 0in", "6ft 1in", "6ft 2in", "6ft 3in", "6ft 4in", ">6ft 4in"];
 const positionArray = ["G", "W", "F", "P", "C"];
 const gradeArray = ["12", "11", "10", "9"];
-var filtered = gon.watch.filtered;
 
 
 function addSubmitButton() {
@@ -12,37 +11,10 @@ function addSubmitButton() {
   var submitButton = document.createElement("input");
   submitButton.setAttribute("type", "submit");
   submitButton.setAttribute("value", "Filter");
-  submitButton.setAttribute("onclick", 'checkForPreviousFilter();')
-  submitButton.onclick = function () {checkForPreviousFiltering();};
   submitButton.setAttribute("id", "submitButton");
   bar.appendChild(submitButton);
 }
 
-function checkForPreviousFiltering() {
-  if (filtered == false) {
-    return true;
-  } else {
-    performAdditionalFiltering();
-    return false;
-  }
-}
-
-function performAdditionalFiltering() {
-  var filters = JSON.parse(gon.remaining_filters);
-  for (let [key, value] of Object.entries(filters)) {
-    if (key == 'player_name') {
-      nameFilter();
-    } else if (key == 'school') {
-      schoolFilter();
-    } else if (key == 'position') {
-      positionFilter();
-    } else if (key == 'grade') {
-      gradeFilter();
-    } else if (key == 'height') {
-      heightFilter();
-    }
-  }
-}
 
 function nameFilter() {
   // Declare variables

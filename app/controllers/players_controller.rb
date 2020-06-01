@@ -1,28 +1,15 @@
-require '/home/robin/gonerecruiting/db/convert_height.rb'
+require '/home/robin/gone_recruiting/db/convert_height.rb'
 
 class PlayersController < ApplicationController
 
     skip_before_action :verify_authenticity_token
 
     def index
-        @players = ActiveRecord::Base.connection.execute(<<-SQL)
-        SELECT 
-            players.name, players.position, players.height, players.grade, schools.name AS School
-        FROM
-            players
-        JOIN
-            teams
-        ON
-            players.team_id = teams.osaa_team_id
-        JOIN
-            schools
-        ON
-            teams.osaa_school_id = schools.osaa_school_id
-        SQL
-
-        gon.watch.filtered = false
-        @players.to_a
-        render :index
+        @players = Player.all
+        @heightArray = [
+            "<5ft 3in", "5ft 3in", "5ft 4in", "5ft 5in", "5ft 5in",
+            "5ft 6in", "5ft 7in", "5ft 8in", "5ft 9in", "5ft 10in", "5ft 11in",
+            "6ft 0in", "6ft 1in", "6ft 2in", "6ft 3in", "6ft 4in", ">6ft 4in"]
     end
     
     def filter
