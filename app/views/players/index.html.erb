@@ -2,14 +2,10 @@
 
 <div id="tableContainer">
   <h3>Filter Options</h3>
+  <form id="filterBar" action="/players/filter" method="post">
+  </form>
 
-  <%= form_for @players do |player|%>
-  <%= form.search_field :name %>
-  <%= form.select :height, options_for_select(@heightArray, selected = "--By Height--") %>
-  <%= form.select :position, options_for_select(@positionsArray, selected = "--By Position--") %>
-  <%= form.select :grade, options_for_select(@gradeArray, selected = "--By Grade--") %>
-  <%= form.search_field :school_name %>
-  <% end  %>
+
   <h3>---------------</h3>
   <table id="myTable">
     <tr class="header">
