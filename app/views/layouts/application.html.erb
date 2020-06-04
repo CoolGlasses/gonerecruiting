@@ -17,7 +17,7 @@
       <a href="<%= new_session_url %>" id="signin1">Sign in</a>
       <a href="<%= new_user_url %>" id="signup1">Sign up</a>
     <% else %>
-      <div id="headerUsername"><%= current_user.username %></div>
+      <div id="headerUsername">Hello, <%= current_user.username %></div>
       <form action="<%= session_url %>" method="post">
         <input
           type="hidden"

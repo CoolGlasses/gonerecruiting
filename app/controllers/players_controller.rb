@@ -68,6 +68,7 @@ class PlayersController < ApplicationController
     end
     
     def show
-        render json: Player.find(params[:id])
+        @player = Player.find(params[:id])
+        render :show
     end
 end
