@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       # redirect them to the new user's show page
-      log_in!(@user)
+      login!(@user)
       redirect_to user_url(@user)
     else
       render json: @user.errors.full_messages

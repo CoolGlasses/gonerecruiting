@@ -4,7 +4,6 @@
     <title>GoneRecruiting</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= Gon::Base.render_data %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= render partial: 'layouts/errors' %>
@@ -18,14 +17,14 @@
       <a href="<%= new_session_url %>" id="signin1">Sign in</a>
       <a href="<%= new_user_url %>" id="signup1">Sign up</a>
     <% else %>
-      <%= current_user.username %>
+      <div id="headerUsername"><%= current_user.username %></div>
       <form action="<%= session_url %>" method="post">
         <input
           type="hidden"
           name="authenticity_token"
           value="<%= form_authenticity_token %>">
         <input type="hidden" name="_method" value="delete">
-        <input type="submit" value="Logout">
+        <input type="submit" value="Logout" id="headerLogout">
       </form>
     <% end %>
     </div>
