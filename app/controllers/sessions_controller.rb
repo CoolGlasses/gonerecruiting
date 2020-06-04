@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     else
       # sign the user in
       login!(@user)
-      redirect_to user_url(user)
+      redirect_to user_url(@user)
     end
   end
 

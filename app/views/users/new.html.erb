@@ -9,11 +9,19 @@
 
 <div id="loginContainer">
   <div id="loginBox">
-    <form action="/user" method="POST">
+    <form action="/user" method="POST" id="signupForm">
         <input
           type="hidden"
           name="authenticity_token"
           value="<%= form_authenticity_token %>">
+
+        <label for="user_email">Email</label>
+        <input
+          type="text"
+          name="user[email]"
+          id="user_email"
+          value="<%= @user.email %>">
+        <br>
         
         <label for="user_username">Username</label>
         <input
