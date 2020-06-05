@@ -32,6 +32,7 @@ class UsersController < ApplicationController
       return
     end
 
+
     @user = current_user
     render :show
   end

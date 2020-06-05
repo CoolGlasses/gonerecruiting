@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_03_151500) do
+ActiveRecord::Schema.define(version: 2020_06_05_023212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -71,6 +71,15 @@ ActiveRecord::Schema.define(version: 2020_06_03_151500) do
     t.index ["height_inches"], name: "index_players_on_height_inches"
     t.index ["school_name"], name: "index_players_on_school_name"
     t.index ["team_id"], name: "index_players_on_team_id"
+  end
+
+  create_table "recruits", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "player_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_recruits_on_player_id"
+    t.index ["user_id"], name: "index_recruits_on_user_id"
   end
 
   create_table "schools", force: :cascade do |t|
