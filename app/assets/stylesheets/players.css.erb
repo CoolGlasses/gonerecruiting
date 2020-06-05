@@ -6,6 +6,7 @@ h1 {
 h3 {
     text-align: center;
     color: whitesmoke;
+    grid-column: 2 / 3;
 }
 
 #tableContainer {
@@ -17,10 +18,56 @@ h3 {
         0 -12.5px 12px gray,
         0 2.8px 2.2px gray,
         0 6.7px 6.3px gray,
-        0 12.5px 12px gray; 
+        0 12.5px 12px gray;
     width: 90%;
     justify-self: center;
     border-radius: 12px;
+    grid-template-columns: 10% 80% 10%;
+}
+
+#myTable {
+    margin-right: auto;
+    margin-left: auto;
+    border-collapse: separate;
+    border-spacing: 0px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    /* Add a grey border */
+    font-size: 18px;
+    /* Increase font-size */
+    background-color: lightgray;
+    box-shadow:
+        0 -2.8px 2.2px black, 
+        0 -6.7px 6.3px black, 
+        0 -12.5px 12px black, 
+        0 2.8px 2.2px black, 
+        0 6.7px 6.3px black, 
+        0 12.5px 12px black;
+    grid-row-gap: 15px;
+    display: grid;
+    align-content: start;
+    justify-self: center;
+    color: black;
+    grid-column: 2 / 3;
+}
+
+#myTable th,
+#myTable td {
+    text-align: center;
+    /* Left-align text */
+    padding: 12px;
+    /* Add padding */
+}
+
+#myTable tr {
+    /* Add a bottom border to all table rows */
+    border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header,
+#myTable tr:hover {
+    /* Add a grey background color to the table header and on hover */
+    background-color: #f1f1f1;
 }
 
 #myInput {
@@ -47,7 +94,6 @@ h3 {
     grid-gap: 16px;
     grid-template-columns: auto auto auto auto auto;
     grid-template-rows: 40px 40px;
-    max-width: 70%;
     text-align: center;
     margin-right: auto;
     margin-left: auto;
@@ -61,73 +107,37 @@ h3 {
         0 6.7px 6.3px black,
         0 12.5px 12px black;
     border-radius: 4px;
+    grid-column: 2 / 3;
 }
+
+select {
+    display: grid;
+    width: 100%;
+}
+
 
 #nameSearch {
     overflow: hidden;
 }
 
 #schoolSearch {
-   overflow: hidden;
+    overflow: hidden;
 }
 
 #gradeSelector {
-   overflow: hidden;
+    overflow: hidden;
 }
 
 #positionSelector {
-   overflow: hidden;
+    overflow: hidden;
 }
 
 #heightSelector {
-   overflow: hidden;
+    overflow: hidden;
 }
 
 
 #submitButton {
     grid-column: 3 / 4;
     overflow: hidden;
-}
-
-#myTable {
-    margin-right: auto;
-    margin-left: auto;
-    border-collapse: separate;
-    border-spacing: 0px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    /* Add a grey border */
-    font-size: 18px;
-    /* Increase font-size */
-    background-color: lightgray;
-    box-shadow:
-        0 -2.8px 2.2px black, 0 -6.7px 6.3px black, 0 -12.5px 12px black, 0 2.8px 2.2px black, 0 6.7px 6.3px black, 0 12.5px 12px black;
-    grid-row-gap: 15px;
-    display: grid;
-    align-content: start;
-    justify-self: center;
-}
-
-#myTable th,
-#myTable td {
-    text-align: center;
-    /* Left-align text */
-    padding: 12px;
-    /* Add padding */
-}
-
-#myTable tr {
-    /* Add a bottom border to all table rows */
-    border-bottom: 1px solid #ddd;
-}
-
-#myTable tr.header,
-#myTable tr:hover {
-    /* Add a grey background color to the table header and on hover */
-    background-color: #f1f1f1;
-}
-
-select {
-    display: grid;
-    width: 100%;
 }
