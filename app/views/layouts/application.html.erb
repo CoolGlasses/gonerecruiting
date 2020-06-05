@@ -18,7 +18,7 @@
       <a href="<%= new_user_url %>" id="signup1">Sign up</a>
     <% else %>
       <div id="headerUsername">Hello, <%= current_user.username %></div>
-      <form action="<%= session_url %>" method="post">
+      <form id="logoutButtonForm" action="<%= session_url %>" method="post">
         <input
           type="hidden"
           name="authenticity_token"

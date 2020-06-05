@@ -1,20 +1,36 @@
-<h1><%= @player.name %></h1>
-<h3>---------------</h3>
 
-<table>
-    <tr>
+<form id="toDatabase" action="/players" method="get">
+    <button type="submit">Database</button>
+</form>
+
+
+<div id="playerNameHeader"><%= @player.name %></div>
+<div id="dashSpacer">---------------</div>
+
+<table id="playerTable">
+    <tr id="playerTableHeaderRow">
         <th>Height</th>
         <th>Position</th>
         <th>Grade</th>
         <th>School</th>
+        <th>Recruiting?</th>
     </tr>
     <tr>
         <td><%= @player.height %></td>
         <td><%= @player.position %></td>
         <td><%= @player.grade %></td>
         <td><%= @player.school_name %></td>
+        <td><button id="watchButton">Add to Recruits</button></td>
     </tr>
 </table>
+
+<div id="cardsContainer">
+    <div id="contactInfoCard">Add contact info here</div>
+    <div id="socialMediaCard">Add Social Media Accounts here to generate feed</div>
+    <div id="notesCard">User Generated Notes Here</div>
+    <div id="scheduleCard">Player Schedule Here (HS or club?)</div>
+    <div id="filmCard">Add film on player here</div>
+</div>
 
   
 

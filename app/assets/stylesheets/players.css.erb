@@ -136,8 +136,130 @@ select {
     overflow: hidden;
 }
 
-
 #submitButton {
     grid-column: 3 / 4;
     overflow: hidden;
+}
+
+#toDatabase {
+    display: grid;
+    width: 10%;
+    align-content: center;
+    justify-self: center;
+    padding: 35px;
+}
+
+#dashSpacer {
+    display: grid;
+    justify-self: center;
+    font-size: 35px;
+}
+
+#playerNameHeader {
+    display: grid;
+    justify-self: center;
+    font-size: 35px;
+}
+
+#playerTable {
+    margin-right: auto;
+    margin-left: auto;
+    border-collapse: separate;
+    border-spacing: 0px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    /* Add a grey border */
+    font-size: 18px;
+    /* Increase font-size */
+    background-color: lightgray;
+    box-shadow:
+        0 -2.8px 2.2px black, 
+        0 -6.7px 6.3px black, 
+        0 -12.5px 12px black, 
+        0 2.8px 2.2px black, 
+        0 6.7px 6.3px black, 
+        0 12.5px 12px black;
+    grid-row-gap: 15px;
+    display: grid;
+    align-content: start;
+    justify-self: center;
+    color: black;
+}
+
+#playerTable th {
+    background-color: #f1f1f1;
+    color: black;
+}
+
+#playerTable th,
+#playerTable td {
+    text-align: center;
+    /* Left-align text */
+    padding: 12px;
+    /* Add padding */
+}
+
+#playerTable tr {
+    /* Add a bottom border to all table rows */
+    border-bottom: 1px solid #ddd;
+    background-color: black;
+    color: whitesmoke;
+}
+
+#playerTable tr.header {
+    /* Add a grey background color to the table header and on hover */
+    background-color: #f1f1f1;
+}
+
+#cardsContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-gap: 25px;
+    padding: 50px;
+}
+
+#contactInfoCard {
+    display: grid;
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+    background-color: darkgray;
+    color: black;
+    border-radius: 8px;
+}
+
+#socialMediaCard {
+    display: grid;
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+    background-color: darkgray;
+    border-radius: 8px;
+    color: black;
+}
+
+#notesCard {
+    display: grid;
+    grid-column: 1 / 2;
+    grid-row: 3 / 5;
+    background-color: darkgray;
+    border-radius: 8px;
+    color: black;
+}
+
+#scheduleCard {
+    display: grid;
+    grid-column: 2 / 3;
+    grid-row: 3 / 5;
+    background-color: darkgray;
+    border-radius: 8px;
+    color: black;
+}
+
+#filmCard {
+    display: grid;
+    grid-column: 3 / 4;
+    grid-row: 1 / 3;
+    background-color: darkgray;
+    border-radius: 8px;
+    color: black;
 }
