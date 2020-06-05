@@ -14,6 +14,7 @@
       <th>Position</th>
       <th>Grade</th>
       <th>School</th>
+      <th>Recruiting?</th>
     </tr> 
     <% @players.each do |player| %>
       <tr>
@@ -22,6 +23,7 @@
         <td><%= player["position"] %></td>
         <td><%= player["grade"] %></td>
         <td><%= player["school_name"] %></td>
+        <td><button id="watchButton">Add to Recruits</button></td>
       </tr>
     <% end %>
   </table>
