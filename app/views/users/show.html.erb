@@ -4,6 +4,34 @@
     <button type="submit">Database</button>
   </form>
 
+<div id="tableContainer">
+  <h2>Recruits</h2>
+  <h3>Filter Options</h3>
+  <form id="filterBar" action="/players/filter" method="post">
+  </form>
+
+
+  <h3>---------------</h3>
+  <table id="myTable">
+    <tr class="header">
+      <th>Name</th>
+      <th>Height</th>
+      <th>Position</th>
+      <th>Grade</th>
+      <th>School</th>
+    </tr> 
+    <% @recruits.each do |recruit| %>
+      <tr>
+        <td><%=link_to recruit["name"], player_path(recruit.id) %></td>
+        <td><%= recruit["height"] %></td>
+        <td><%= recruit["position"] %></td>
+        <td><%= recruit["grade"] %></td>
+        <td><%= recruit["school_name"] %></td>
+      </tr>
+    <% end %>
+  </table>
+  <h3>---------------</h3>
+</div>
 
 <!-- What do we want to include in this view?
 

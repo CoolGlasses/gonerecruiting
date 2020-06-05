@@ -32,6 +32,7 @@ class UsersController < ApplicationController
       return
     end
 
+    @recruits = Recruit.where("user_id = ?", current_user.id)
 
     @user = current_user
     render :show
