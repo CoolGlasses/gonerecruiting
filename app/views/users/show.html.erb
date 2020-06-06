@@ -14,6 +14,7 @@
   <h3>---------------</h3>
   <table id="myTable">
     <tr class="header">
+      <th>Number</th>
       <th>Name</th>
       <th>Height</th>
       <th>Position</th>
@@ -22,6 +23,7 @@
     </tr> 
     <% @recruits.each do |recruit| %>
       <tr>
+        <td><%= recruit["home_number" %></td>
         <td><%=link_to recruit["name"], player_path(recruit.id) %></td>
         <td><%= recruit["height"] %></td>
         <td><%= recruit["position"] %></td>
