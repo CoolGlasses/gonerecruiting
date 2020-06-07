@@ -32,13 +32,7 @@ class UsersController < ApplicationController
       return
     end
 
-    @recruits = Recruit.where("user_id = ?", current_user.id)
-
-    @players = @recruits.map do |recruit|
-      Player.where("id = ?", recruit.player_id)
-    end
-
-    @players = @players.flatten.uniq
+    @players = get_recruits(current_user)
     @user = current_user
     render :show
   end
@@ -47,5 +41,15 @@ class UsersController < ApplicationController
   def user_params
     self.params.require(:user).permit(:username, :password)
   end
-    
+
+  def get_recruits(current_user)
+    recruits = Recruit.where("user_id = ?", current_user.id)
+
+    players = recruits.map do |recruit|
+      Player.where("id = ?", recruit.player_id)
+    end
+
+    players = players.flatten.uniq
+    return players
+  end
 end

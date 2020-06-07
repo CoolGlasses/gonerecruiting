@@ -1,4 +1,4 @@
-class NotesController < ApplicationCcontroller
+class NotesController < ApplicationController
     def create
         @note = Note.new(note_params)
 

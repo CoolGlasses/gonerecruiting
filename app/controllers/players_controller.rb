@@ -69,6 +69,15 @@ class PlayersController < ApplicationController
     
     def show
         @player = Player.find(params[:id])
+        @notes = get_notes(current_user, @player)
         render :show
+    end
+
+    protected
+    def get_notes(current_user, player)
+        notes = Note.where("user_id = ?", current_user.id)
+        notes = notes.where("player_id = ?", player.id)
+        notes = notes.to_a
+        return notes
     end
 end

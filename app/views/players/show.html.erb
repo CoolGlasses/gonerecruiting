@@ -29,7 +29,17 @@
 <div id="cardsContainer">
     <div id="contactInfoCard">Contact Info -- Coming Soon</div>
     <div id="socialMediaCard">Social Media Feeds -- Coming Soon</div>
-    <div id="notesCard">Recruiting Notes -- Coming Soon</div>
+
+    <div id="notesCard">
+        <% if current_user.nil? %>
+            <a href="<%= new_session_url %>" id="signin1">Sign in</a>
+        <% else  %>
+            <% @notes.each do |note| %>
+            <div id="note"><%= note %></div>
+            <% end %>
+        <% end  %>
+    </div>
+
     <div id="scheduleCard">Schedule -- Coming Soon</div>
     <div id="filmCard">Film Card -- Coming Soon</div>
 </div>
