@@ -25,8 +25,9 @@
         <td><%= player["position"] %></td>
         <td><%= player["grade"] %></td>
         <td><%= player["school_name"] %></td>
-        <td><button id="watchButton">Add to Recruits</button></td>
-      </tr>
+        <td>
+          <%= button_to "Recruit", recruits_url, params: {:recruit => { :user_id => current_user.id, :player_id => player.id }} %>
+        </td>
     <% end %>
   </table>
   <h3>---------------</h3>

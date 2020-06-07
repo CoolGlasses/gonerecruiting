@@ -34,6 +34,11 @@ class UsersController < ApplicationController
 
     @recruits = Recruit.where("user_id = ?", current_user.id)
 
+    @players = @recruits.map do |recruit|
+      Player.where("id = ?", recruit.player_id)
+    end
+
+    @players = @players.flatten.uniq
     @user = current_user
     render :show
   end

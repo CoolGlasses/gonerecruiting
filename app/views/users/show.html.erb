@@ -21,14 +21,14 @@
       <th>Grade</th>
       <th>School</th>
     </tr> 
-    <% @recruits.each do |recruit| %>
+    <% @players.each do |player| %>
       <tr>
-        <td><%= recruit["home_number" %></td>
-        <td><%=link_to recruit["name"], player_path(recruit.id) %></td>
-        <td><%= recruit["height"] %></td>
-        <td><%= recruit["position"] %></td>
-        <td><%= recruit["grade"] %></td>
-        <td><%= recruit["school_name"] %></td>
+        <td><%= player["home_number"] %></td>
+        <td><%=link_to player["name"], player_path(player.id) %></td>
+        <td><%= player["height"] %></td>
+        <td><%= player["position"] %></td>
+        <td><%= player["grade"] %></td>
+        <td><%= player["school_name"] %></td>
       </tr>
     <% end %>
   </table>
