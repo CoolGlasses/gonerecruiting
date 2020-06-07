@@ -69,7 +69,11 @@ class PlayersController < ApplicationController
     
     def show
         @player = Player.find(params[:id])
-        @notes = get_notes(current_user, @player)
+        if !current_user.nil?
+            @notes = get_notes(current_user, @player)
+        else
+            @notes = nil
+        end
         render :show
     end
 

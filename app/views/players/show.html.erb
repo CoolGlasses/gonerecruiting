@@ -33,7 +33,9 @@
     <div id="notesCard">
         <% if current_user.nil? %>
             <a href="<%= new_session_url %>" id="signin1">Sign in</a>
-        <% else  %>
+        <% elsif  @notes.length == 0 %>
+            <button type="button" id="addNote">Add Note</button>
+        <% else %>
             <% @notes.each do |note| %>
             <div id="note"><%= note %></div>
             <% end %>
