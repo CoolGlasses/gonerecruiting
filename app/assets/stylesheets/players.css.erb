@@ -214,7 +214,7 @@ select {
 #cardsContainer {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
     grid-gap: 25px;
     padding: 50px;
 }
@@ -235,6 +235,8 @@ select {
     background-color: darkgray;
     border-radius: 8px;
     color: black;
+    max-height: 450px;
+    min-height: 200px;
 }
 
 #notesCard {
