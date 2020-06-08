@@ -72,7 +72,7 @@ class PlayersController < ApplicationController
         if !current_user.nil?
             @notes = get_notes(current_user, @player)
         else
-            @notes = nil
+            @notes = false 
         end
         render :show
     end

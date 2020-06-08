@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require_tree .
 //= require players
+//= require player_show
 
