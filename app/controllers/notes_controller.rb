@@ -5,6 +5,7 @@ class NotesController < ApplicationController
         @note = Note.new(note_params)
 
         @note.save!
+        redirect_back fallback_location: "/players/#{note_params['player_id']}"
     end
 
     protected
