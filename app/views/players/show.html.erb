@@ -31,19 +31,23 @@
     <div id="socialMediaCard">Social Media Feeds -- Coming Soon</div>
 
     <div id="notesCard">
-        Notes
+        <div id="notesHeader">Notes</div>
         <% if current_user.nil? %>
             <a href="<%= new_session_url %>" id="signin1">Sign in</a>     
         <% else %>
-            <% @notes.each do |note| %>
-            <div id="note"><%= note.created_at %> : <%= note.note %></div>
+            <% @notes.each_with_index do |note, i| %>
+                <% if i % 2 == 0 %>
+                    <div id="note2"><%= note.created_at %> : <%= note.note %></div>
+                <% else %>
+                    <div id="note1"><%= note.created_at %> : <%= note.note %></div>    
+                <% end %>
             <% end %>
-            <form action="/notes" method="post" data-remote: "false">
-                <input type="textarea" id="noteTextArea" name="note[note]">
+            <form action="/notes" method="post" id="notesForm" remote: "false">
+                <textarea id="noteTextArea" name="note[note]"></textarea>
                 <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
                 <input type="hidden" id="noteUserID" name="note[user_id]" value= <%= current_user.id %> >
                 <input type="hidden" id="notePlayerID" name="note[player_id]" value= <%= @player.id %> >
-                <input type="submit" value="Submit">
+                <input type="submit" value="Add Note" id="noteSubmitButton">
             </form>
         <% end  %>
     </div>
