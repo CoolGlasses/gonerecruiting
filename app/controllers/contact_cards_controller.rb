@@ -5,9 +5,9 @@ class ContactCardsController < ApplicationController
     end
 
     def create
-        @contact_info = ContactCard.new(contact_card_params)
+        @contact_card = ContactCard.new(contact_card_params)
 
-        @contact_info.save!
+        @contact_card.save!
         redirect fallback_location: "/players/#{contact_card_params['player_id']}"
     end
 

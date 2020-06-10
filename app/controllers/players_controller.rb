@@ -91,6 +91,13 @@ class PlayersController < ApplicationController
         contact_card = ContactCard.where("user_id = ?", current_user.id)
         contact_card = contact_card.where("player_id = ?", player.id)
         contact_card = contact_card.to_a
+
+        if contact_card == []
+            contact_card = ["player_id" => player.id, "user_id" => current_user.id,
+                            "street" => "", "email" => "", "city" => "", "state" => "",
+                            "zip" => "", "cell" => "", "phone" => ""]
+        end
+
         return contact_card
     end
 end
