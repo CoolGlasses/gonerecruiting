@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resource :session, only: [:create, :destroy, :new]
   resources :recruits
   resources :notes
+  resources :contact_info
   resource :user, only: [:create, :new, :show] do
     resource :counter, only: [:update]
   end

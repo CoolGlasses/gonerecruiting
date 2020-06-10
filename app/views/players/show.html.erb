@@ -31,8 +31,12 @@
         <div id="contactInfoHeader">
             Contact Info
         </div>
+         <% if current_user.nil? %>
+            <a href="<%= new_session_url %>" id="signin1">Sign in</a>     
+        <% else %>
         <div id="contactInfoBody">
-         -- Coming Soon --
+            <!-- use readonly attribute on form fields paired with javascript function tied to an 'edit' button that removes the readonly attribute and replaces the edit button with a submit button to post the form to the database -->
+            
         </div>
     </div>
     <div id="socialMediaCard">
