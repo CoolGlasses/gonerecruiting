@@ -1,0 +1,2 @@
+class ContactCard < ApplicationRecord
+end

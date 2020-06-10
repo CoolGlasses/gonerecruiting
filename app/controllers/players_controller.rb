@@ -71,8 +71,10 @@ class PlayersController < ApplicationController
         @player = Player.find(params[:id])
         if !current_user.nil?
             @notes = get_notes(current_user, @player)
+            @contact_card = get_contact_card(current_user, @player)
         else
             @notes = false 
+            @contact_card = false
         end
         render :show
     end
@@ -83,5 +85,12 @@ class PlayersController < ApplicationController
         notes = notes.where("player_id = ?", player.id)
         notes = notes.to_a
         return notes
+    end
+
+    def get_contact_card(current_user, player)
+        contact_card = ContactCard.where("user_id = ?", current_user.id)
+        contact_card = contact_card.where("player_id = ?", player.id)
+        contact_card = contact_card.to_a
+        return contact_card
     end
 end
