@@ -29,32 +29,30 @@
 <div id="cardsContainer">
     <div id="contactCardCard">
         <div id="contactCardHeader">
-            Contact card
+            Contact Card
         </div>
-         <% if current_user.nil? %>
+        <% if current_user.nil? %>
             <a href="<%= new_session_url %>" id="signin1">Sign in</a>     
         <% else %>
-        <div id="contactCardBody">
             <!-- use readonly attribute on form fields paired with javascript function tied to an 'edit' button that removes the readonly attribute and replaces the edit button with a submit button to post the form to the database -->
             <form action="/contact_cards" method="post" id="contactCardForm" remote: true>
-                <label for="cellPhone">Cell</label>
-                <input type="text" id="cellPhone" name="contact_card[cell]" value=<%= @contact_card['cell'] %> readonly >
-                <label for="email">Email</label>
-                <input type="email" id="email" name="contact_card[email]" value=<%= @contact_card['email'] %> readonly>
-                <label for="homePhone">Home</label>
-                <input type="text" id="homePhone" name="contact_card[phone]" value=<%= @contact_card['phone'] %> readonly>
-                <label for="street">Street</label>
-                <input type="text" id="street" name="contact_card[street]" value=<%= @contact_card['street'] %> readonly>
-                <label for="ctiy">City</label>
-                <input type="text" id="city" name="contact_card[city]" value=<%= @contact_card['city'] %> readonly>
-                <label for="state">State</label>
-                <input type="text" id="state" name="contact_card[state]" value=<%= @contact_card['state'] %> readonly>
-                <label for="zip">Zip</label>
-                <input type="number" id="zip" name="contact_card[zip]" value=<%= @contact_card['zip'] %> readonly>
-                <input type="hidden" id="submitContactCard" value="Submit">
+                <label for="cellPhone" id="cellLabel">Cell:</label>
+                <input type="text" id="cellPhone" name="contact_card[cell]" readonly value=<%= @contact_card['cell'] %>  ><br>
+                <label for="email" id="emailLabel">Email:</label>
+                <input type="email" id="email" name="contact_card[email]" readonly value=<%= @contact_card['email'] %> ><br>
+                <label for="homePhone" id="homePhoneLabel">Home:</label>
+                <input type="text" id="homePhone" name="contact_card[phone]" readonly value=<%= @contact_card['phone'] %> ><br>
+                <label for="street" id="streetLabel">Street:</label>
+                <input type="text" id="street" name="contact_card[street]" readonly value=<%= @contact_card['street'] %> ><br>
+                <label for="ctiy" id="cityLabel">City:</label>
+                <input type="text" id="city" name="contact_card[city]" readonly value=<%= @contact_card['city'] %> ><br>
+                <label for="state" id="stateLabel">State:</label>
+                <input type="text" id="state" name="contact_card[state]" readonly value=<%= @contact_card['state'] %> ><br>
+                <label for="zip" id="zipLabel">Zip:</label>
+                <input type="number" id="zip" name="contact_card[zip]" readonly value=<%= @contact_card['zip'] %> ><br>
+                <input type="hidden" id="submitContactCard" value="Submit"><br>
             </form>
-            <button type="button">Edit</button>
-        </div>
+            <button type="button" id="contactCardEditButton">Edit</button>
         <% end %>
     </div>
     <div id="socialMediaCard">
