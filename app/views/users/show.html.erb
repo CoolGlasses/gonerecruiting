@@ -8,9 +8,44 @@
   <h2>Recruits</h2>
   <h3>Filter Options</h3>
   <form id="filterBar" action="/players/filter" method="post">
+   <input type="text" placeholder="Filter by Name..." id="nameSearch" name="filter[name]">
+    <select id="heightSelector" name="filter[height]">
+      <option disabled selected>--by Height--</option>
+      <option value="<5ft 3in">&lt;5ft 3in</option>
+      <option value="5ft 3in">5ft 3in</option>
+      <option value="5ft 4in">5ft 4in</option>
+      <option value="5ft 5in">5ft 5in</option>
+      <option value="5ft 6in">5ft 6in</option>
+      <option value="5ft 7in">5ft 7in</option>
+      <option value="5ft 8in">5ft 8in</option>
+      <option value="5ft 9in">5ft 9in</option>
+      <option value="5ft 10in">5ft 10in</option>
+      <option value="5ft 11in">5ft 11in</option>
+      <option value="6ft 0in">6ft 0in</option>
+      <option value="6ft 1in">6ft 1in</option>
+      <option value="6ft 2in">6ft 2in</option>
+      <option value="6ft 3in">6ft 3in</option>
+      <option value="6ft 4in">6ft 4in</option>
+      <option value=">6ft 4in">&gt;6ft 4in</option>
+    </select>
+    <select id="positionSelector" name="filter[position]">
+      <option disabled selected>--by Position--</option>
+      <option value="G">G</option>
+      <option value="W">W</option>
+      <option value="F">F</option>
+      <option value="P">P</option>
+      <option value="C">C</option>
+    </select>
+    <select id="gradeSelector" name="filter[grade]">
+      <option disabled selected>--by Grade--</option>
+      <option value="12">12</option>
+      <option value="11">11</option>
+      <option value="10">10</option>
+      <option value="9">9</option>
+    </select>
+    <input type="text" placeholder="Filter by School..." id="schoolSearch" name="filter[school]">
+    <input type="submit" value="Filter" id="submitButton">
   </form>
-
-
   <h3>---------------</h3>
   <table id="myTable">
     <tr class="header">
