@@ -27,8 +27,6 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'normalize-rails', '~> 4.1', '>= 4.1.1'
-
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
@@ -36,6 +34,7 @@ gem 'normalize-rails', '~> 4.1', '>= 4.1.1'
 # gem 'capistrano-rails', group: :development
 
 gem 'jquery-rails'
+gem 'normalize-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
