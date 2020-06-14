@@ -1,17 +1,17 @@
 <label for="cellPhone" id="cellLabel">Cell:</label>
-<div id="cellPhone"><%= @contact_card[:cell] %></div>
+<div id="cellPhone"><%= @contact_card[0][:cell] %></div>
 <label for="email" id="emailLabel">Email:</label>
-<div id="email"><%= @contact_card[:email] %></div>
+<div id="email"><%= @contact_card[0][:email] %></div>
 <label for="homePhone" id="homePhoneLabel">Home:</label>
-<div id="homePhone"><%= @contact_card[:phone] %></div>
+<div id="homePhone"><%= @contact_card[0][:phone] %></div>
 <label for="street" id="streetLabel">Street:</label>
-<div id="street"><%= @contact_card[:street] %></div>
+<div id="street"><%= @contact_card[0][:street] %></div>
 <label for="city" id="cityLabel">City:</label>
-<div id="city"><%= @contact_card[:city] %></div>
+<div id="city"><%= @contact_card[0][:city] %></div>
 <label for="state" id="stateLabel">State:</label>
-<div id="state"><%= @contact_card[:state] %></div>
+<div id="state"><%= @contact_card[0][:state] %></div>
 <label for="zip" id="zipLabel">Zip:</label>
-<div id="zip"><%= @contact_card[:zip] %></div>
-<form id="toEditContactCard" action="<%= edit_contact_card_url %>%" method="get">
+<div id="zip"><%= @contact_card[0][:zip] %></div>
+<form id="toEditContactCard" action="<%= edit_contact_card_path %>%" method="get">
     <button type="submit">Edit</button>
 </form>

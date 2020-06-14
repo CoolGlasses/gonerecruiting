@@ -1,4 +1,4 @@
-<form action="/contact_cards" method="post" id="contactCardForm" remote: true>
+<form action="/contact_cards" method="post" id="contactCardForm" remote: "false">
     <label for="cellPhone" id="cellLabel">Cell:</label>
     <input type="text" id="cellPhone" name="contact_card[cell]">
     <label for="email" id="emailLabel">Email:</label>
@@ -13,5 +13,8 @@
     <input type="text" id="state" name="contact_card[state]">
     <label for="zip" id="zipLabel">Zip:</label>
     <input type="number" id="zip" name="contact_card[zip]">
-    <input type="button" id="contactCardEditButton" value="Submit">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" id="contactCardPlayerID" name="contact_card[player_id]" value= <%= @player.id %> >
+    <input type="hidden" id="contactCardUserID" name="contact_card[user_id]" value= <%= current_user.id %> >
+    <input type="submit" id="contactCardEditButton" value="Submit">
 </form>

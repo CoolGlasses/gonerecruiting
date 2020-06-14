@@ -33,7 +33,7 @@
         </div>
         <% if current_user.nil? %>
             <a href="<%= new_session_url %>" id="signin1">Sign in</a>     
-        <% elsif  @contact_card != false && !@contact_card.nil?%> <!-- there is an existing contact_card for this user for this player -->
+        <% elsif  @contact_card != [] %> <!-- there is an existing contact_card for this user for this player -->
             <%= render "contact_card_edit", locals: {contact_card: @contact_card, player: @player, current_user: current_user} %>
         <% else %> <!-- if there is no contact card for this player, for this user -->
             <%= render "contact_card_new", locals: {contact_card: @contact_card, player: @player, current_user: current_user} %>

@@ -1,4 +1,9 @@
+#Need to figure out how to limit the number of contact_cards created per player per user to just 1!
+
 class ContactCardsController < ApplicationController
+    attr_accessor :cell, :street, :email, :city, :state, :zip, :phone
+    attr_reader :user_id, :player_id
+
     skip_before_action :verify_authenticity_token
 
     def index
@@ -9,7 +14,7 @@ class ContactCardsController < ApplicationController
         @contact_card = ContactCard.new(contact_card_params)
 
         @contact_card.save!
-        redirect fallback_location: "/players/#{contact_card_params['player_id']}"
+        redirect_to player_url(@contact_card.player_id)
     end
 
     def new
@@ -17,7 +22,7 @@ class ContactCardsController < ApplicationController
 
     def edit
         @contact_card = ContactCard.find_by(id: contact_card_params[:id])
-
+        @contact_card = @contact_card. flatten
         render :edit
     end
 
@@ -36,6 +41,6 @@ class ContactCardsController < ApplicationController
 
     protected
     def contact_card_params
-        self.params.require(:contact_card).permit(:street, :email, :city, :state, :zip, :cell, :phone)
+        self.params.require(:contact_card).permit(:street, :email, :city, :state, :zip, :cell, :phone, :user_id, :player_id)
     end
 end
