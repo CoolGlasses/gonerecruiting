@@ -1,0 +1,17 @@
+<label for="cellPhone" id="cellLabel">Cell:</label>
+<div id="cellPhone"><%= @contact_card[:cell] %></div>
+<label for="email" id="emailLabel">Email:</label>
+<div id="email"><%= @contact_card[:email] %></div>
+<label for="homePhone" id="homePhoneLabel">Home:</label>
+<div id="homePhone"><%= @contact_card[:phone] %></div>
+<label for="street" id="streetLabel">Street:</label>
+<div id="street"><%= @contact_card[:street] %></div>
+<label for="city" id="cityLabel">City:</label>
+<div id="city"><%= @contact_card[:city] %></div>
+<label for="state" id="stateLabel">State:</label>
+<div id="state"><%= @contact_card[:state] %></div>
+<label for="zip" id="zipLabel">Zip:</label>
+<div id="zip"><%= @contact_card[:zip] %></div>
+<form id="toEditContactCard" action="<%= edit_contact_card_url %>%" method="get">
+    <button type="submit">Edit</button>
+</form>

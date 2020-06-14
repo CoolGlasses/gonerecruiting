@@ -33,26 +33,10 @@
         </div>
         <% if current_user.nil? %>
             <a href="<%= new_session_url %>" id="signin1">Sign in</a>     
-        <% else %>
-            <!-- use readonly attribute on form fields paired with javascript function tied to an 'edit' button that removes the readonly attribute and replaces the edit button with a submit button to post the form to the database -->
-            <form action="/contact_cards" method="post" id="contactCardForm" remote: true>
-                <label for="cellPhone" id="cellLabel">Cell:</label>
-                <input type="text" id="cellPhone" name="contact_card[cell]" readonly value=<%= @contact_card['cell'] %>  ><br>
-                <label for="email" id="emailLabel">Email:</label>
-                <input type="email" id="email" name="contact_card[email]" readonly value=<%= @contact_card['email'] %> ><br>
-                <label for="homePhone" id="homePhoneLabel">Home:</label>
-                <input type="text" id="homePhone" name="contact_card[phone]" readonly value=<%= @contact_card['phone'] %> ><br>
-                <label for="street" id="streetLabel">Street:</label>
-                <input type="text" id="street" name="contact_card[street]" readonly value=<%= @contact_card['street'] %> ><br>
-                <label for="ctiy" id="cityLabel">City:</label>
-                <input type="text" id="city" name="contact_card[city]" readonly value=<%= @contact_card['city'] %> ><br>
-                <label for="state" id="stateLabel">State:</label>
-                <input type="text" id="state" name="contact_card[state]" readonly value=<%= @contact_card['state'] %> ><br>
-                <label for="zip" id="zipLabel">Zip:</label>
-                <input type="number" id="zip" name="contact_card[zip]" readonly value=<%= @contact_card['zip'] %> ><br>
-                <input type="hidden" id="submitContactCard" value="Submit"><br>
-            </form>
-            <button type="button" id="contactCardEditButton">Edit</button>
+        <% elsif  @contact_card != false && !@contact_card.nil?%> <!-- there is an existing contact_card for this user for this player -->
+            <%= render "contact_card_edit", locals: {contact_card: @contact_card, player: @player, current_user: current_user} %>
+        <% else %> <!-- if there is no contact card for this player, for this user -->
+            <%= render "contact_card_new", locals: {contact_card: @contact_card, player: @player, current_user: current_user} %>
         <% end %>
     </div>
     <div id="socialMediaCard">
