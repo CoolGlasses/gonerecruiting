@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :recruits
   resources :notes
   resources :contact_cards
+  resources :contests
   resource :user, only: [:create, :new, :show] do
     resource :counter, only: [:update]
   end

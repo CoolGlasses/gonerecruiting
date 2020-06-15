@@ -46,30 +46,44 @@ end
 
 def get_varsity_schedules
     schedule_conn = Faraday.new(
-        url: 'http://www.osaa.org/contests/gbx',
+        url: 'http://www.osaa.org/api/contests/gbx',
         headers: {'x-api-key' => 'DG8rhd7LDJ6MqwTvw8OUQQWWpjc75Tqe',
                 'x-api-user' => '$2y$08$N4KDuEkBdzi8J0VlF9vWqeJSPkQCCbZ9v2YWnGv1BCSY5h44DjwTq'
                 })        
-    )
 
     schedule_resp = schedule_conn.get
 
     body = schedule_resp.body #array of hashes, each hash is a game between two teams
 
     parsed = JSON.parse(body)
-    varsity_schedule = Array.new()
+    varsity_schedule = []
     
     parsed.each do |contest|
-        if contest[:level] == "V"
+        if contest["level"] == "V"
             varsity_schedule << contest
         end
     end
-
     return varsity_schedule
 end
 
 def write_varsity_schedule_to_db(varsity_schedule)
     varsity_schedule.each do |contest|
+        Contest.create!(
+            status: "#{contest["status"]}",
+            start_at: "#{contest["start_at"]}",
+            home_id: "#{contest["home"]["id"]}", #maps to osaa_team_id
+            home_win: "#{contest["home"]["is_win"]}",
+            home_tie: "#{contest["home"]["is_tie"]}",
+            home_forfeit: "#{contest["home"]["is_forfeit"]}",
+            home_score: "#{contest["home"]["score"]}",
+            home_name: "#{contest["home"]["name"]}",
+            away_id: "#{contest["away"]["id"]}", #maps to osaa_team_id
+            away_win: "#{contest["away"]["is_win"]}",
+            away_tie: "#{contest["away"]["is_tie"]}",
+            away_forfeit: "#{contest["away"]["is_forfeit"]}",
+            away_score: "#{contest["away"]["score"]}",
+            away_name: "#{contest["away"]["name"]}"
+        )
     end
 end
 
@@ -209,6 +223,8 @@ end
 
 parsed_team = get_team_table()
 parsed_school = get_school_table()
+varsity_schedule = get_varsity_schedules()
+write_varsity_schedule_to_db(varsity_schedule)
 write_school_to_db(parsed_school)
 write_team_to_db(parsed_team)
 write_full_players_to_db(parsed_team, parsed_school)
