@@ -12,16 +12,6 @@
 <div id="state"><%= @contact_card[0][:state] %></div>
 <label for="zip" id="zipLabel">Zip:</label>
 <div id="zip"><%= @contact_card[0][:zip] %></div>
-<form id="toEditContactCard" action="/contact_cards/:id/edit" method="post" remote: "false">
-    <input type="hidden" name="authenticity_token" value=<%= form_authenticity_token %> >
-    <input type="hidden" id="cellPhone" name="contact_card[cell]" value=<%= @contact_card[0][:cell] %> >
-    <input type="hidden" id="email" name="contact_card[email]" value=<%= @contact_card[0][:email] %> >
-    <input type="hidden" id="homePhone" name="contact_card[phone]" value=<%= @contact_card[0][:phone] %> >
-    <input type="hidden" id="street" name="contact_card[street]" value=<%= @contact_card[0][:street] %> >
-    <input type="hidden" id="city" name="contact_card[city]" value=<%= @contact_card[0][:city] %> >
-    <input type="hidden" id="state" name="contact_card[state]" value=<%= @contact_card[0][:state] %> >
-    <input type="hidden" id="zip" name="contact_card[zip]" value=<%= @contact_card[0][:zip] %> >
-    <input type="hidden" id="contactCardPlayerID" name="contact_card[player_id]" value= <%= @player.id %> >
-    <input type="hidden" id="contactCardUserID" name="contact_card[user_id]" value= <%= current_user.id %> >
-    <button type="submit" value="submit">Edit</button>
+<form id="toEditContactCard" action=<%= edit_contact_card_path %> method="get" remote: "false">
+    <input type="submit" value="submit">
 </form>

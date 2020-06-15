@@ -21,8 +21,7 @@ class ContactCardsController < ApplicationController
     end
 
     def edit
-        @contact_card = ContactCard.find_by(id: contact_card_params[:id])
-        @contact_card = @contact_card. flatten
+        @contact_card = ContactCard.find_by(id: params[:id])
         render :edit
     end
 
@@ -41,6 +40,6 @@ class ContactCardsController < ApplicationController
 
     protected
     def contact_card_params
-        self.params.require(:contact_card).permit(:street, :email, :city, :state, :zip, :cell, :phone, :user_id, :player_id)
+        self.params.require(:contact_card).permit(:id, :street, :email, :city, :state, :zip, :cell, :phone, :user_id, :player_id)
     end
 end
