@@ -71,11 +71,29 @@
         <% end  %>
     </div>
     <div id="scheduleCard">
-        <div id="scheduleHeader">
+        <div id="scheduleCardHeader">
             Schedule
         </div>
         <div id="scheduleBody">
-        -- Coming Soon --
+        <tr id="scheduleHeaderBar">
+            <th>Date</th>
+            <th>Time</th>
+            <th>Home</th>
+            <th>Score</th>
+            <th>Away</th>
+            <th>Score</th>
+            <th>Result</th>
+        </tr>
+        <% @schedule.each do |contest| %>
+            <tr> 
+                <td><%= contest["start_at"] %></td>
+                <td><%= contest["start_at"] %></td>
+                <td><%= contest["home_id"] %></td>
+                <td><%= contest["home_score"] %></td>
+                <td><%= contest["away_id"] %></td>
+                <td><%= contest["away_score"] %></td>
+                <td><%= contest["home_win"] %></td>
+            </tr>
         </div>
     </div>
     <div id="filmCard">

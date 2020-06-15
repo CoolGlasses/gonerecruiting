@@ -76,6 +76,8 @@ class PlayersController < ApplicationController
             @notes = false 
             @contact_card = false
         end
+        
+        @schedule = get_schedule(@player)
         render :show
     end
 
@@ -93,5 +95,14 @@ class PlayersController < ApplicationController
         contact_card = contact_card.to_a
 
         return contact_card
+    end
+
+    def get_schedule(player)
+        player = Player.find_by("id = ?", player.id)
+        team_id = Team.where("osaa_team_id = ?", player.team_id)
+        schedule = Contest.where("home_id = ?", team_id[0].osaa_team_id).or(Contest.where("away_id = ?", team_id[0].osaa_team_id))
+        schedule = schedule.to_a
+
+        return schedule
     end
 end
