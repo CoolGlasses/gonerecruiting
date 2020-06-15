@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_10_233211) do
+ActiveRecord::Schema.define(version: 2020_06_15_030102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -64,6 +64,27 @@ ActiveRecord::Schema.define(version: 2020_06_10_233211) do
     t.datetime "updated_at", null: false
     t.index ["player_id"], name: "index_contact_cards_on_player_id"
     t.index ["user_id"], name: "index_contact_cards_on_user_id"
+  end
+
+  create_table "contests", force: :cascade do |t|
+    t.string "status"
+    t.string "start_at"
+    t.integer "home_id"
+    t.boolean "home_win"
+    t.boolean "home_tie"
+    t.boolean "home_forfeit"
+    t.integer "home_score"
+    t.string "home_name"
+    t.integer "away_id"
+    t.boolean "away_win"
+    t.boolean "away_tie"
+    t.boolean "away_forfeit"
+    t.integer "away_score"
+    t.string "away_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["away_id"], name: "index_contests_on_away_id"
+    t.index ["home_id"], name: "index_contests_on_home_id"
   end
 
   create_table "notes", force: :cascade do |t|

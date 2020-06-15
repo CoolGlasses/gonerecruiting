@@ -68,6 +68,11 @@ def get_varsity_schedules
     return varsity_schedule
 end
 
+def write_varsity_schedule_to_db(varsity_schedule)
+    varsity_schedule.each do |contest|
+    end
+end
+
 
 def write_team_to_db(parsed_team)
 
