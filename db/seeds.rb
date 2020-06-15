@@ -44,6 +44,30 @@ def get_school_table #not currently returning staff as part of the school hash
     return parsed
 end
 
+def get_varsity_schedules
+    schedule_conn = Faraday.new(
+        url: 'http://www.osaa.org/contests/gbx',
+        headers: {'x-api-key' => 'DG8rhd7LDJ6MqwTvw8OUQQWWpjc75Tqe',
+                'x-api-user' => '$2y$08$N4KDuEkBdzi8J0VlF9vWqeJSPkQCCbZ9v2YWnGv1BCSY5h44DjwTq'
+                })        
+    )
+
+    schedule_resp = schedule_conn.get
+
+    body = schedule_resp.body #array of hashes, each hash is a game between two teams
+
+    parsed = JSON.parse(body)
+    varsity_schedule = Array.new()
+    
+    parsed.each do |contest|
+        if contest[:level] == "V"
+            varsity_schedule << contest
+        end
+    end
+
+    return varsity_schedule
+end
+
 
 def write_team_to_db(parsed_team)
 
@@ -183,5 +207,3 @@ parsed_school = get_school_table()
 write_school_to_db(parsed_school)
 write_team_to_db(parsed_team)
 write_full_players_to_db(parsed_team, parsed_school)
-
-
