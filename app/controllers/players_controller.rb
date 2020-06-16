@@ -76,7 +76,7 @@ class PlayersController < ApplicationController
             @notes = false 
             @contact_card = false
         end
-        
+
         @schedule = get_schedule(@player)
         render :show
     end
@@ -102,7 +102,26 @@ class PlayersController < ApplicationController
         team_id = Team.where("osaa_team_id = ?", player.team_id)
         schedule = Contest.where("home_id = ?", team_id[0].osaa_team_id).or(Contest.where("away_id = ?", team_id[0].osaa_team_id))
         schedule = schedule.to_a
+        schedule = bubble_sort(schedule)
 
+        return schedule
+    end
+
+    def bubble_sort(schedule)
+        length = schedule.length
+        loop do
+           swapped = false
+           (length - 1).times do |i|
+                if schedule[i]["start_at"] > schedule[i + 1]["start_at"]
+                    
+                    schedule[i], schedule[i + 1] = schedule[i + 1], schedule[i]
+
+                    swapped = true
+                end
+            end
+
+            break if swapped == false
+        end
         return schedule
     end
 end
