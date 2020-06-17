@@ -16,5 +16,5 @@
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <input type="hidden" id="contactCardPlayerID" name="contact_card[player_id]" value= <%= @player.id %> >
     <input type="hidden" id="contactCardUserID" name="contact_card[user_id]" value= <%= current_user.id %> >
-    <input type="submit" id="contactCardEditButton" value="Submit">
+    <input type="submit" id="contactCardSubmitButton" value="Submit">
 </form>
