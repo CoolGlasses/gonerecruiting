@@ -12,8 +12,8 @@ class UsersController < ApplicationController
     if @user.save
       # redirect them to the new user's show page
       login!(@user)
-      # msg = UserMailer.welcome_email(@user)
-      # msg.deliver_now    ---  Welcome email code, haven't tested so commented this out
+      msg = UserMailer.welcome_email(@user)
+      msg.deliver_now    #---  Welcome email code, haven't tested so commented this out
       redirect_to user_url(@user)
     else
       render json: @user.errors.full_messages
