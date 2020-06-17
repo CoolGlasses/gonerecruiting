@@ -1,12 +1,11 @@
-<p>Hello, <%= @user.username %></p>
+<p id="userShowHeader">Hello, <%= @user.username %></p>
 
   <form id="toDatabase" action="/players" method="get">
     <button type="submit">Database</button>
   </form>
 
 <div id="tableContainer">
-  <h2>Recruits</h2>
-  <h3>Filter Options</h3>
+  <h2 id="recruitsCardHeader">Recruits</h2>
   <form id="filterBar" action="/players/filter" method="post">
    <input type="text" placeholder="Filter by Name..." id="nameSearch" name="filter[name]">
     <select id="heightSelector" name="filter[height]">
@@ -76,7 +75,7 @@
 Some thoughts:
 
 A list of this users Recruits that are being Actively Recruited?
-A list of "New Recruits" that fits a configured alert system bringing potential new recruits to the users attention?
+A list of "Recommended Recruits" that fits a configured alert system bringing potential new recruits to the users attention?
 A link to the main database
 A Calendar of Recruiting To-Do items to help the user manage their recruting schedule?
 >>>Maybe with an option to Email the user with their daily to-do items for recruiting?
