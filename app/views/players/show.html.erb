@@ -32,7 +32,7 @@
             Contact Card
         </div>
         <% if current_user.nil? %>
-            <a href="<%= new_session_url %>" id="signin1">Sign in</a>     
+            <a href="<%= new_session_url %>" id="contactCardSignIn">Sign in</a>     
         <% elsif  @contact_card != [] %> <!-- there is an existing contact_card for this user for this player -->
             <%= render "contact_card_edit", locals: {contact_card: @contact_card, player: @player, current_user: current_user} %>
         <% else %> <!-- if there is no contact card for this player, for this user -->
@@ -50,7 +50,7 @@
     <div id="notesCard">
         <div id="notesHeader">Notes</div>
         <% if current_user.nil? %>
-            <a href="<%= new_session_url %>" id="signin1">Sign in</a>     
+            <a href="<%= new_session_url %>" id="notesCardSignIn">Sign in</a>     
         <% else %>
         <div id="notesList">
             <% @notes.each_with_index do |note, i| %>
