@@ -55,7 +55,7 @@
       <th>Recruiting?</th>
     </tr> 
     <% @players.each do |player| %>
-      <tr>
+      <tr id="playerDatabaseRow">
         <td><%= player["home_number"] %></td>
         <td><%=link_to player["name"], player_path(player.id) %></td>
         <td><%= player["height"] %></td>
