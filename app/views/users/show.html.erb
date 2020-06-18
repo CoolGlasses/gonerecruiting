@@ -1,18 +1,18 @@
 
 <div id="userShowMainBar">
-  <p id="userShowHeaderWelcome">Hello, <%= @user.username %></p>
+  <p id="userShowHeaderWelcome"><%= @user.username %></p>
 
-    <form id="toDatabase" action="/players" method="get">
-      <button type="submit">Database</button>
+    <form id="userToDatabaseForm" action="/players" method="get">
+      <button type="submit" id="userToDatabaseButton">Database</button>
     </form>
 </div>
 
 <div id="userCardsContainer">
+    <div id="userToDoCard">
+    To Do Card
+  </div>
   <div id="userRecommendedRecruitsCard">
     Recommended Recruits Card
-  </div>
-  <div id="userToDoCard">
-    To Do Card
   </div>
   <div id="userRecruitsContainer">
       <div id="tableContainer">

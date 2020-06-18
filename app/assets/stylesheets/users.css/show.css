@@ -1,9 +1,24 @@
 #userShowMainBar {
-
+    display: grid;
+    justify-self: center;
+    border-color: white;
+    border-style: solid;
+    margin-top: 32px;
 }
 
 #userShowHeaderWelcome {
+    display: grid;
+    justify-self: center;
+}
 
+#userToDatabaseForm {
+    display: grid;
+    justify-self: center;
+}
+
+#userToDatabaseButton {
+    display: grid;
+    justify-self: center;
 }
 
 #userCardsContainer {
@@ -19,6 +34,8 @@
     background-color: darkgray;
     border-radius: 8px;
     color: black;
+    grid-column: 2 / 4;
+    grid-row: 2 / 3;
 }
 
 #userRecommendedRecruitsCard {
@@ -26,6 +43,9 @@
     background-color: darkgray;
     border-radius: 8px;
     color: black;
+    max-height: 450px;
+    min-height: 200px;
+    grid-column: 2 / 4;
 }
 
 #userToDoCard {
@@ -33,4 +53,8 @@
     background-color: darkgray;
     border-radius: 8px;
     color: black;
+    max-height: 450px;
+    min-height: 200px;
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
 }
