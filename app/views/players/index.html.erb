@@ -64,7 +64,7 @@
         <td><%= player["school_name"] %></td>
         <td>
           <% if current_user.nil? %>
-            <a href="<%= new_session_url %>" id="signin1">Sign in</a>
+            <a href="<%= new_session_url %>" id="playerIndexSignin">Sign in</a>
           <% else  %>
             <%= button_to "Recruit", recruits_url, params: {:recruit => { :user_id => current_user.id, :player_id => player.id }} %>
           <% end %>
