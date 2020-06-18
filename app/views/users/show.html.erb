@@ -1,83 +1,94 @@
-<p id="userShowHeader">Hello, <%= @user.username %></p>
 
-  <form id="toDatabase" action="/players" method="get">
-    <button type="submit">Database</button>
-  </form>
+<div id="userShowMainBar">
+  <p id="userShowHeaderWelcome">Hello, <%= @user.username %></p>
 
-<div id="tableContainer">
-  <h2 id="recruitsCardHeader">Recruits</h2>
-  <form id="filterBar" action="/players/filter" method="post">
-   <input type="text" placeholder="Filter by Name..." id="nameSearch" name="filter[name]">
-    <select id="heightSelector" name="filter[height]">
-      <option disabled selected>--by Height--</option>
-      <option value="<5ft 3in">&lt;5ft 3in</option>
-      <option value="5ft 3in">5ft 3in</option>
-      <option value="5ft 4in">5ft 4in</option>
-      <option value="5ft 5in">5ft 5in</option>
-      <option value="5ft 6in">5ft 6in</option>
-      <option value="5ft 7in">5ft 7in</option>
-      <option value="5ft 8in">5ft 8in</option>
-      <option value="5ft 9in">5ft 9in</option>
-      <option value="5ft 10in">5ft 10in</option>
-      <option value="5ft 11in">5ft 11in</option>
-      <option value="6ft 0in">6ft 0in</option>
-      <option value="6ft 1in">6ft 1in</option>
-      <option value="6ft 2in">6ft 2in</option>
-      <option value="6ft 3in">6ft 3in</option>
-      <option value="6ft 4in">6ft 4in</option>
-      <option value=">6ft 4in">&gt;6ft 4in</option>
-    </select>
-    <select id="positionSelector" name="filter[position]">
-      <option disabled selected>--by Position--</option>
-      <option value="G">G</option>
-      <option value="W">W</option>
-      <option value="F">F</option>
-      <option value="P">P</option>
-      <option value="C">C</option>
-    </select>
-    <select id="gradeSelector" name="filter[grade]">
-      <option disabled selected>--by Grade--</option>
-      <option value="12">12</option>
-      <option value="11">11</option>
-      <option value="10">10</option>
-      <option value="9">9</option>
-    </select>
-    <input type="text" placeholder="Filter by School..." id="schoolSearch" name="filter[school]">
-    <input type="submit" value="Filter" id="submitButton">
-  </form>
-  <h3>---------------</h3>
-  <table id="myTable">
-    <tr class="header">
-      <th>Number</th>
-      <th>Name</th>
-      <th>Height</th>
-      <th>Position</th>
-      <th>Grade</th>
-      <th>School</th>
-    </tr> 
-    <% @players.each do |player| %>
-      <tr>
-        <td><%= player["home_number"] %></td>
-        <td><%=link_to player["name"], player_path(player.id) %></td>
-        <td><%= player["height"] %></td>
-        <td><%= player["position"] %></td>
-        <td><%= player["grade"] %></td>
-        <td><%= player["school_name"] %></td>
-      </tr>
-    <% end %>
-  </table>
-  <h3>---------------</h3>
+    <form id="toDatabase" action="/players" method="get">
+      <button type="submit">Database</button>
+    </form>
 </div>
+
+<div id="userCardsContainer">
+  <div id="userRecommendedRecruitsCard">
+    Recommended Recruits Card
+  </div>
+  <div id="userToDoCard">
+    To Do Card
+  </div>
+  <div id="userRecruitsContainer">
+      <div id="tableContainer">
+      <h2 id="recruitsCardHeader">Recruits</h2>
+      <form id="filterBar" action="/players/filter" method="post">
+      <input type="text" placeholder="Filter by Name..." id="nameSearch" name="filter[name]">
+        <select id="heightSelector" name="filter[height]">
+          <option disabled selected>--by Height--</option>
+          <option value="<5ft 3in">&lt;5ft 3in</option>
+          <option value="5ft 3in">5ft 3in</option>
+          <option value="5ft 4in">5ft 4in</option>
+          <option value="5ft 5in">5ft 5in</option>
+          <option value="5ft 6in">5ft 6in</option>
+          <option value="5ft 7in">5ft 7in</option>
+          <option value="5ft 8in">5ft 8in</option>
+          <option value="5ft 9in">5ft 9in</option>
+          <option value="5ft 10in">5ft 10in</option>
+          <option value="5ft 11in">5ft 11in</option>
+          <option value="6ft 0in">6ft 0in</option>
+          <option value="6ft 1in">6ft 1in</option>
+          <option value="6ft 2in">6ft 2in</option>
+          <option value="6ft 3in">6ft 3in</option>
+          <option value="6ft 4in">6ft 4in</option>
+          <option value=">6ft 4in">&gt;6ft 4in</option>
+        </select>
+        <select id="positionSelector" name="filter[position]">
+          <option disabled selected>--by Position--</option>
+          <option value="G">G</option>
+          <option value="W">W</option>
+          <option value="F">F</option>
+          <option value="P">P</option>
+          <option value="C">C</option>
+        </select>
+        <select id="gradeSelector" name="filter[grade]">
+          <option disabled selected>--by Grade--</option>
+          <option value="12">12</option>
+          <option value="11">11</option>
+          <option value="10">10</option>
+          <option value="9">9</option>
+        </select>
+        <input type="text" placeholder="Filter by School..." id="schoolSearch" name="filter[school]">
+        <input type="submit" value="Filter" id="submitButton">
+      </form>
+      <h3>---------------</h3>
+      <table id="myTable">
+        <tr class="header">
+          <th>Number</th>
+          <th>Name</th>
+          <th>Height</th>
+          <th>Position</th>
+          <th>Grade</th>
+          <th>School</th>
+        </tr> 
+        <% @players.each do |player| %>
+          <tr>
+            <td><%= player["home_number"] %></td>
+            <td><%=link_to player["name"], player_path(player.id) %></td>
+            <td><%= player["height"] %></td>
+            <td><%= player["position"] %></td>
+            <td><%= player["grade"] %></td>
+            <td><%= player["school_name"] %></td>
+          </tr>
+        <% end %>
+      </table>
+      <h3>---------------</h3>
+      </div>
+  </div>
+</div>
+
 
 <!-- What do we want to include in this view?
 
 
 Some thoughts:
 
-A list of this users Recruits that are being Actively Recruited?
-A list of "Recommended Recruits" that fits a configured alert system bringing potential new recruits to the users attention?
-A link to the main database
-To-Do List for user defined activites
+>>How do we REMOVE someone from the Recruits list?
 >>>Maybe with an option to Email the user with their daily to-do items for recruiting?
 >>>LONG TERM---Maybe the can set up an email campaign checking in with their recruits (drip campaigns?)
 
