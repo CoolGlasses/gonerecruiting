@@ -15,11 +15,11 @@
     Recommended Recruits Card
   </div>
   <div id="userRecruitsContainer">
-      <div id="tableContainer">
+      <div id="userTableContainer">
       <h2 id="recruitsCardHeader">Recruits</h2>
-      <form id="filterBar" action="/players/filter" method="post">
-      <input type="text" placeholder="Filter by Name..." id="nameSearch" name="filter[name]">
-        <select id="heightSelector" name="filter[height]">
+      <form id="userFilterBar" action="/players/filter" method="post"> <!-- filterBar -->
+      <input type="text" placeholder="Filter by Name..." id="userNameSearch" name="filter[name]">
+        <select id="userHeightSelector" name="filter[height]">
           <option disabled selected>--by Height--</option>
           <option value="<5ft 3in">&lt;5ft 3in</option>
           <option value="5ft 3in">5ft 3in</option>
@@ -38,7 +38,7 @@
           <option value="6ft 4in">6ft 4in</option>
           <option value=">6ft 4in">&gt;6ft 4in</option>
         </select>
-        <select id="positionSelector" name="filter[position]">
+        <select id="userPositionSelector" name="filter[position]">
           <option disabled selected>--by Position--</option>
           <option value="G">G</option>
           <option value="W">W</option>
@@ -46,19 +46,19 @@
           <option value="P">P</option>
           <option value="C">C</option>
         </select>
-        <select id="gradeSelector" name="filter[grade]">
+        <select id="userGradeSelector" name="filter[grade]">
           <option disabled selected>--by Grade--</option>
           <option value="12">12</option>
           <option value="11">11</option>
           <option value="10">10</option>
           <option value="9">9</option>
         </select>
-        <input type="text" placeholder="Filter by School..." id="schoolSearch" name="filter[school]">
-        <input type="submit" value="Filter" id="submitButton">
+        <input type="text" placeholder="Filter by School..." id="userSchoolSearch" name="filter[school]">
+        <input type="submit" value="Filter" id="userFilterSubmitButton">
       </form>
       <h3>---------------</h3>
-      <table id="myTable">
-        <tr class="header">
+      <table id="userRecruitsTable"> <!-- myTable -->
+        <tr class="header"> <!-- header -->
           <th>Number</th>
           <th>Name</th>
           <th>Height</th>
