@@ -1,4 +1,5 @@
 require '/home/robin/gone_recruiting/db/convert_height.rb'
+require 'byebug'
 
 class PlayersController < ApplicationController
 
@@ -12,6 +13,10 @@ class PlayersController < ApplicationController
             "6ft 0in", "6ft 1in", "6ft 2in", "6ft 3in", "6ft 4in", ">6ft 4in"]
         @positionsArray = ["G", "W", "F", "P", "C"]
         @gradeArray = ["12", "11", "10", "9"]
+
+        if !current_user.nil?
+            @recruits = get_recruits(current_user)
+        end
     end
     
     def filter
@@ -63,6 +68,10 @@ class PlayersController < ApplicationController
             end
         end
 
+        if !current_user.nil?
+            @recruits = get_recruits(current_user)
+        end
+
         @players.to_a
         render :index
     end
@@ -72,6 +81,8 @@ class PlayersController < ApplicationController
         if !current_user.nil?
             @notes = get_notes(current_user, @player)
             @contact_card = get_contact_card(current_user, @player)
+            @recruits = get_recruits(current_user)
+            debugger
         else
             @notes = false 
             @contact_card = false
@@ -106,6 +117,18 @@ class PlayersController < ApplicationController
 
         return schedule
     end
+
+    def get_recruits(current_user)
+        recruits = Recruit.where("user_id = ?", current_user.id)
+
+        players = recruits.map do |recruit|
+            Player.where("id = ?", recruit.player_id)
+        end
+
+        players = players.flatten.uniq
+        return players
+    end
+
 
     def bubble_sort(schedule)
         length = schedule.length

@@ -3,6 +3,8 @@ class RecruitsController < ApplicationController
         @recruit = Recruit.new(recruit_params)
 
         @recruit.save!
+
+        redirect_back fallback_location: "/players/"
     end
 
     protected
