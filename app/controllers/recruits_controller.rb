@@ -4,7 +4,7 @@ class RecruitsController < ApplicationController
 
         @recruit.save!
 
-        redirect_back fallback_location: "/players/"
+        redirect_to request.referer
     end
 
     protected

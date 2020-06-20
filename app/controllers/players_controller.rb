@@ -82,7 +82,6 @@ class PlayersController < ApplicationController
             @notes = get_notes(current_user, @player)
             @contact_card = get_contact_card(current_user, @player)
             @recruits = get_recruits(current_user)
-            debugger
         else
             @notes = false 
             @contact_card = false

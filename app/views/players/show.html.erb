@@ -22,7 +22,15 @@
         <td><%= @player.position %></td>
         <td><%= @player.grade %></td>
         <td><%= @player.school_name %></td>
-        <td><button id="watchButton">Add to Recruits</button></td>
+        <td>
+          <% if current_user.nil? %>
+            <a href="<%= new_session_url %>" id="playerIndexSignin">Sign in</a>
+          <% elsif @recruits.include?(@player) %>
+              &#10003;
+          <% else  %>
+            <%= button_to "Recruit", recruits_url, params: {:recruit => { :user_id => current_user.id, :player_id => player.id }} %>
+          <% end %>
+        </td>
     </tr>
 </table>
 
