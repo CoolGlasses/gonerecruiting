@@ -81,7 +81,7 @@ class PlayersController < ApplicationController
         if !current_user.nil?
             @notes = get_notes(current_user, @player)
             @contact_card = get_contact_card(current_user, @player)
-            @recruits = get_recruits(current_user)
+            @recruits= get_recruit(current_user)
         else
             @notes = false 
             @contact_card = false
@@ -100,8 +100,8 @@ class PlayersController < ApplicationController
     end
 
     def get_contact_card(current_user, player)
-        contact_card = ContactCard.where("user_id = ?", current_user.id)
-        contact_card = contact_card.where("player_id = ?", player.id)
+        contact_card = ContactCard.where("player_id = ?", player.id)
+        contact_card = contact_card.where("user_id = ?", current_user.id)
         contact_card = contact_card.to_a
 
         return contact_card
@@ -128,6 +128,14 @@ class PlayersController < ApplicationController
         return players
     end
 
+    def get_recruit(current_user)
+        recruit = Recruit.where("user_id = ?", current_user.id)
+        recruit = recruit.to_a
+
+        player = Player.where("id = ?", recruit[0]["player_id"])
+
+        return player
+    end
 
     def bubble_sort(schedule)
         length = schedule.length

@@ -28,7 +28,7 @@
           <% elsif @recruits.include?(@player) %>
               &#10003;
           <% else  %>
-            <%= button_to "Recruit", recruits_url, params: {:recruit => { :user_id => current_user.id, :player_id => player.id }} %>
+            <%= button_to "Recruit", recruits_url, params: {:recruit => { :user_id => current_user.id, :player_id => @player.id }} %>
           <% end %>
         </td>
     </tr>
