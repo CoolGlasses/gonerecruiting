@@ -120,11 +120,11 @@ class PlayersController < ApplicationController
     def get_recruits(current_user)
         recruits = Recruit.where("user_id = ?", current_user.id)
 
-        players = recruits.map do |recruit|
+        players = recruits.uniq.map do |recruit|
             Player.where("id = ?", recruit.player_id)
         end
 
-        players = players.flatten.uniq
+        players = players.flatten
         return players
     end
 
