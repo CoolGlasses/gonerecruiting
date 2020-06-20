@@ -100,6 +100,7 @@
                         <td><%= contest["away_name"] %></td>
                         <td><%= contest["away_score"] %></td>
                         <td>
+                          <% if DateTime.parse(contest["start_at"]).to_date < Date.today%>
                             <% if contest["home_id"] == @player.team_id %>
                                 <% if contest["home_win"] == true  %>
                                     W
@@ -113,6 +114,9 @@
                                     L
                                 <% end %>
                             <% end %>
+                          <% else %>
+                            TBD
+                          <% end%>
                         </td>
                     </tr>
                 <% end %>
