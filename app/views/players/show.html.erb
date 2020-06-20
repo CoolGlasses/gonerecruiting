@@ -94,7 +94,7 @@
                 </tr>
                 <% @schedule.each do |contest| %>
                     <tr> 
-                        <td><%= contest["start_at"] %></td>
+                        <td><%= DateTime.parse(contest["start_at"]).to_s(:contest_start_at) %></td>
                         <td><%= contest["home_name"] %></td>
                         <td><%= contest["home_score"] %></td>
                         <td><%= contest["away_name"] %></td>
