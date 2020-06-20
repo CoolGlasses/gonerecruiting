@@ -99,7 +99,21 @@
                         <td><%= contest["home_score"] %></td>
                         <td><%= contest["away_name"] %></td>
                         <td><%= contest["away_score"] %></td>
-                        <td><%= contest["home_win"] %></td>
+                        <td>
+                            <% if contest["home_id"] == @player.team_id %>
+                                <% if contest["home_win"] == true  %>
+                                    W
+                                <% else %>
+                                    L
+                                <% end %>
+                            <% else %>
+                                <% if contest["away_win"] == true %>
+                                    W
+                                <% else %>
+                                    L
+                                <% end %>
+                            <% end %>
+                        </td>
                     </tr>
                 <% end %>
             </table>
