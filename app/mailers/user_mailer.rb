@@ -1,10 +1,11 @@
 class UserMailer < ApplicationMailer
     default from: "notifications@gonerecruiting.com"
 
-    def welcome_email(user)
-        @user = user
-        @url = "http://www.gonerecruiting.com/login"
-        mail(to: user.email, subject: 'Welcome to My Awesome Site')
+    def welcome_email
+        mail(to: params[:user].email) do |format|
+        format.html { render layout: 'mailer' }
+        format.text
+        end
     end
 
     def forgot_password(user)
@@ -13,6 +14,4 @@ class UserMailer < ApplicationMailer
   
         mail to: user.email, :subject => 'Reset password instructions'
     end
-
-    
 end
