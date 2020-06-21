@@ -38,6 +38,12 @@
     grid-row: 2 / 3;
 }
 
+#recruitsCardHeader {
+    display: grid;
+    grid-column: 2 / 3;
+    justify-self: center;
+}
+
 #userRecommendedRecruitsCard {
     display: grid;
     background-color: darkgray;
@@ -69,9 +75,9 @@
         0 2.8px 2.2px gray,
         0 6.7px 6.3px gray,
         0 12.5px 12px gray;
-    width: 90%;
     justify-self: center;
     border-radius: 12px;
+    width: 100%;
     grid-template-columns: 1fr 8fr 1fr;
 }
 
@@ -173,4 +179,34 @@ select {
     background-color: #f1f1f1;
 }
 
+#userHeightSelector {
+    display: grid;
+    overflow: hidden;
+}
+
+#userPositionSelector {
+    display: grid;
+    overflow: hidden;
+}
+
+#userGradeSelector {
+    display: grid;
+    overflow: hidden;
+}
+
+#userNameSearch {
+    display: grid;
+    overflow: hidden;
+}
+
+#userSchoolSearch {
+    display: grid;
+    overflow: hidden;
+}
+
+#userFilterSubmitButton {
+    display: grid;
+    overflow: hidden;
+    grid-column: 3 / 4;
+}
 
