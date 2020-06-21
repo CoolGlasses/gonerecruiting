@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   end
 
   post 'players/filter', to: 'players#filter'
+  post 'users/filter', to: 'users#filter'
 end
