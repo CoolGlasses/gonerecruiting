@@ -59,21 +59,21 @@
       <h3>---------------</h3>
       <table id="userRecruitsTable"> <!-- myTable -->
         <tr class="header"> <!-- header -->
-          <th>#</th>
-          <th>Name</th>
-          <th>Ht</th>
-          <th>Pos</th>
-          <th>Gr</th>
-          <th>HS</th>
+          <th id="playerNumber">#</th>
+          <th id="playerName">Name</th>
+          <th id="playerHeight">Ht</th>
+          <th id="playerPosition">Pos</th>
+          <th id="playerSchool">Gr</th>
+          <th id="playerRecruit">HS</th>
         </tr> 
         <% @players.each do |player| %>
           <tr>
-            <td><%= player["home_number"] %></td>
-            <td><%=link_to player["name"], player_path(player.id) %></td>
-            <td><%= player["height"] %></td>
-            <td><%= player["position"] %></td>
-            <td><%= player["grade"] %></td>
-            <td><%= player["school_name"] %></td>
+            <td id="playerNumber"><%= player["home_number"] %></td>
+            <td id="playerName"><%=link_to player["name"], player_path(player.id) %></td>
+            <td id="playerHeight"><%= player["height"] %></td>
+            <td id="playerPosition"><%= player["position"] %></td>
+            <td id="playerSchool"><%= player["grade"] %></td>
+            <td id="playerRecruit"><%= player["school_name"] %></td>
           </tr>
         <% end %>
       </table>
