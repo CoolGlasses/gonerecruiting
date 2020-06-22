@@ -1,3 +1,5 @@
+require '/home/robin/gone_recruiting/db/convert_height.rb'
+
 class UsersController < ApplicationController
   before_action :require_current_user!, except: [:create, :new, :index]
   skip_before_action :verify_authenticity_token
@@ -55,49 +57,49 @@ class UsersController < ApplicationController
         if !height.nil?
             converted_height = convert_height(height)
             if @players.nil?
-                @players = Player.where("height_inches >= #{converted_height}")
+                @players = Player.height_filter(converted_height)
             else
-                @players = @players.where("height_inches >= #{converted_height}")
+                @players = @players.height_filter(converted_height)
             end
         end
 
         if grade != "" && !grade.nil?
             if @players.nil?
-                @players = Player.where("grade = ?", grade)
+                @players = Player.grade_filter(grade)
             else
-                @players = @players.where("grade = ?", grade)
+                @players = @players.grade_filter(grade)
             end
         end
 
         if !position.nil?
             if @players.nil?
-                @players = Player.where("position = ?", position)
+                @players = Player.position_filter(position)
             else
-                @players = @players.where("position = ?", position)
+                @players = @players.position_filter(position)
             end
         end
 
         if school != ""
             if @players.nil?
-                @players = Player.where("LOWER(school_name) LIKE ?", "%#{school}%")
+                @players = Player.school_filter(school)
             else
-                @players = @players.where("LOWER(school_name) LIKE ?", "%#{school}%")
+                @players = @players.school_filter(school)
             end
         end
 
         if player_name != "" && !player_name.nil?
             if @players.nil?
-                @players = Player.where("LOWER(name) LIKE ?", "%#{player_name}%")
+                @players = Player.name_filter(player_name)
             else
-                @players = @players.where("LOWER(name) LIKE ?", "%#{player_name}%")
+                @players = @players.name_filter(player_name)
             end
         end
 
-        initial_where_clause = @players
 
         @recruits.each do |recruit|
-            @players = @players.or(initial_where_clause)
+          @players = @players.or_player_id_filter(recruit["id"])
         end
+
 
         @user = current_user
         @players.to_a
