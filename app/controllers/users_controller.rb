@@ -37,22 +37,38 @@ class UsersController < ApplicationController
       return
     end
 
-    @players = get_recruits(current_user)
+    @players = get_recruits(current_user).flatten.uniq
     @user = current_user
     render :show
   end
 
   def filter
+      @players = filter_without_rendering()
+      @user = current_user
+      render :show
+  end
+
+  protected
+  def user_params
+    self.params.require(:user).permit(:username, :password)
+  end
+
+  def get_recruits(current_user)
+    recruits = Recruit.where("user_id = ?", current_user.id)
+
+    players = recruits.map do |recruit|
+      Player.where("id = ?", recruit.player_id)
+    end
+
+    return players
+  end
+
+  def filter_without_rendering
         player_name = params["filter"]["name"].downcase
         height = params["filter"]["height"]
         position = params["filter"]["position"]
         school = params["filter"]["school"].downcase
         grade = params["filter"]["grade"]
-        @recruits = get_recruits(current_user)
-
-        if @recruits.nil?
-           return render :show
-        end
 
         if !height.nil?
             converted_height = convert_height(height)
@@ -95,30 +111,12 @@ class UsersController < ApplicationController
             end
         end
 
-
-        @recruits.each do |recruit|
-          @players = @players.or_player_id_filter(recruit["id"])
+        recruits = Recruit.where("user_id = ?", current_user.id)
+        
+        players = recruits.map do |recruit|
+          @players.where("id = ?", recruit.player_id)
         end
 
-
-        @user = current_user
-        @players.to_a
-        render :show
-  end
-
-  protected
-  def user_params
-    self.params.require(:user).permit(:username, :password)
-  end
-
-  def get_recruits(current_user)
-    recruits = Recruit.where("user_id = ?", current_user.id)
-
-    players = recruits.map do |recruit|
-      Player.where("id = ?", recruit.player_id)
-    end
-
-    players = players.flatten.uniq
-    return players
+        return players.flatten.uniq
   end
 end
