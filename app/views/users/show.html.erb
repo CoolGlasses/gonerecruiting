@@ -1,10 +1,8 @@
 
 <div id="userShowMainBar">
   <p id="userShowHeaderWelcome"><%= @user.username %></p>
-
-    <form id="userToDatabaseForm" action="/players" method="get">
-      <button type="submit" id="userToDatabaseButton">Database</button>
-    </form>
+  <div id="linkBackToDatabase"><%= link_to "Database", players_path %></div>
+  <div id="linkToAccountInformation">My Account</div>
 </div>
 
 <div id="userCardsContainer">
@@ -91,5 +89,4 @@ Some thoughts:
 >>How do we REMOVE someone from the Recruits list?
 >>>Maybe with an option to Email the user with their daily to-do items for recruiting?
 >>>LONG TERM---Maybe the can set up an email campaign checking in with their recruits (drip campaigns?)
-
->
+>>>

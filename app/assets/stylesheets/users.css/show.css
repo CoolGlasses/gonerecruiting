@@ -4,6 +4,9 @@
     border-color: white;
     border-style: solid;
     margin-top: 32px;
+    width: 60%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
 }
 
 #userShowHeaderWelcome {
@@ -210,3 +213,27 @@ select {
     grid-column: 3 / 4;
 }
 
+#userShowHeaderWelcome {
+    display: grid;
+    justify-self: center;
+    grid-column: 2 / 4;
+    font-size: xx-large;
+}
+
+#linkBackToDatabase {
+    display: grid;
+    justify-self: center;
+    align-items: center;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    color: antiquewhite;
+}
+
+#linkToAccountInformation {
+    display: grid;
+    justify-self: center;
+    align-items: center;
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+    color: antiquewhite;
+}
