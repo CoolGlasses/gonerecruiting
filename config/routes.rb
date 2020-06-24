@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'password_resets/new'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root to: 'users#index'
+  root to: 'pages#index'
   
   resources :players
   resource :session, only: [:create, :destroy, :new]
