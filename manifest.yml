@@ -1,0 +1,5 @@
+---
+applications:
+- name: GoneRecruiting
+  random-route: true
+  memory: 256M
