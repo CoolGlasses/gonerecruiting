@@ -3,7 +3,7 @@ applications:
 - instances: 1
   timeout: 180
   name: GoneRecruiting
-  buildpack: sdk-for-nodejs
+  buildpack: ruby_buildpack
   command: npm start
   memory: 256M
   domain: not-used.net
