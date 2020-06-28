@@ -1,0 +1,1 @@
+Time::DATE_FORMATS[:contest_start_at] = "%B %d, %l:%M %p"

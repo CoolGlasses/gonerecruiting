@@ -12,6 +12,10 @@ class PlayersController < ApplicationController
             "6ft 0in", "6ft 1in", "6ft 2in", "6ft 3in", "6ft 4in", ">6ft 4in"]
         @positionsArray = ["G", "W", "F", "P", "C"]
         @gradeArray = ["12", "11", "10", "9"]
+
+        if !current_user.nil?
+            @recruits = get_recruits(current_user)
+        end
     end
     
     def filter
@@ -24,43 +28,46 @@ class PlayersController < ApplicationController
         if !height.nil?
             converted_height = convert_height(height)
             if @players.nil?
-                @players = Player.where("height_inches >= #{converted_height}")
-                
+                @players = Player.height_filter(converted_height)
             else
-                @players = @players.where("height_inches >= #{converted_height}")
+                @players = @players.height_filter(converted_height)
             end
         end
 
         if grade != "" && !grade.nil?
             if @players.nil?
-                @players = Player.where("grade = ?", grade)
+                @players = Player.grade_filter(grade)
             else
-                @players = @players.where("grade = ?", grade)
+                @players = @players.grade_filter(grade)
             end
         end
 
         if !position.nil?
             if @players.nil?
-                @players = Player.where("position = ?", position)
+                @players = Player.position_filter(position)
             else
-                @players = @players.where("position = ?", position)
+                @players = @players.position_filter(position)
             end
         end
 
         if school != ""
             if @players.nil?
-                @players = Player.where("LOWER(school_name) LIKE ?", "%#{school}%")
+                @players = Player.school_filter(school)
             else
-                @players = @players.where("LOWER(school_name) LIKE ?", "%#{school}%")
+                @players = @players.school_filter(school)
             end
         end
 
         if player_name != "" && !player_name.nil?
             if @players.nil?
-                @players = Player.where("LOWER(name) LIKE ?", "%#{player_name}%")
+                @players = Player.name_filter(player_name)
             else
-                @players = @players.where("LOWER(name) LIKE ?", "%#{player_name}%")
+                @players = @players.name_filter(player_name)
             end
+        end
+
+        if !current_user.nil?
+            @recruits = get_recruits(current_user)
         end
 
         @players.to_a
@@ -72,6 +79,7 @@ class PlayersController < ApplicationController
         if !current_user.nil?
             @notes = get_notes(current_user, @player)
             @contact_card = get_contact_card(current_user, @player)
+            @recruits= get_recruit(current_user)
         else
             @notes = false 
             @contact_card = false
@@ -90,8 +98,8 @@ class PlayersController < ApplicationController
     end
 
     def get_contact_card(current_user, player)
-        contact_card = ContactCard.where("user_id = ?", current_user.id)
-        contact_card = contact_card.where("player_id = ?", player.id)
+        contact_card = ContactCard.where("player_id = ?", player.id)
+        contact_card = contact_card.where("user_id = ?", current_user.id)
         contact_card = contact_card.to_a
 
         return contact_card
@@ -105,6 +113,26 @@ class PlayersController < ApplicationController
         schedule = bubble_sort(schedule)
 
         return schedule
+    end
+
+    def get_recruits(current_user)
+        recruits = Recruit.where("user_id = ?", current_user.id)
+
+        players = recruits.uniq.map do |recruit|
+            Player.where("id = ?", recruit.player_id)
+        end
+
+        players = players.flatten
+        return players
+    end
+
+    def get_recruit(current_user)
+        recruit = Recruit.where("user_id = ?", current_user.id)
+        recruit = recruit.to_a
+
+        player = Player.where("id = ?", recruit[0]["player_id"])
+
+        return player
     end
 
     def bubble_sort(schedule)
