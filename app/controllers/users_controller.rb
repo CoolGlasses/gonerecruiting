@@ -1,4 +1,4 @@
-require '/home/robin/gone_recruiting/db/convert_height.rb'
+require_relative  'convert_height.rb'
 
 class UsersController < ApplicationController
   before_action :require_current_user!, except: [:create, :new, :index]
