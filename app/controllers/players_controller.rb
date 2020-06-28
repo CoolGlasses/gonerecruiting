@@ -1,4 +1,4 @@
-require '/home/robin/gone_recruiting/db/convert_height.rb'
+require_relative 'convert_height.rb'
 
 class PlayersController < ApplicationController
 

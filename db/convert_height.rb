@@ -1,5 +1,3 @@
-require 'byebug'
-
 def convert_height(height_string)
     new_height = 0
 
