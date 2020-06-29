@@ -22,7 +22,15 @@
         <td><%= @player.position %></td>
         <td><%= @player.grade %></td>
         <td><%= @player.school_name %></td>
-        <td><button id="watchButton">Add to Recruits</button></td>
+        <td>
+          <% if current_user.nil? %>
+            <a href="<%= new_session_url %>" id="playerIndexSignin">Sign in</a>
+          <% elsif @recruits.include?(@player) %>
+              &#10003;
+          <% else  %>
+            <%= button_to "Recruit", recruits_url, params: {:recruit => { :user_id => current_user.id, :player_id => @player.id }} %>
+          <% end %>
+        </td>
     </tr>
 </table>
 
@@ -32,7 +40,7 @@
             Contact Card
         </div>
         <% if current_user.nil? %>
-            <a href="<%= new_session_url %>" id="signin1">Sign in</a>     
+            <a href="<%= new_session_url %>" id="contactCardSignIn">Sign in</a>     
         <% elsif  @contact_card != [] %> <!-- there is an existing contact_card for this user for this player -->
             <%= render "contact_card_edit", locals: {contact_card: @contact_card, player: @player, current_user: current_user} %>
         <% else %> <!-- if there is no contact card for this player, for this user -->
@@ -50,7 +58,7 @@
     <div id="notesCard">
         <div id="notesHeader">Notes</div>
         <% if current_user.nil? %>
-            <a href="<%= new_session_url %>" id="signin1">Sign in</a>     
+            <a href="<%= new_session_url %>" id="notesCardSignIn">Sign in</a>     
         <% else %>
         <div id="notesList">
             <% @notes.each_with_index do |note, i| %>
@@ -86,12 +94,30 @@
                 </tr>
                 <% @schedule.each do |contest| %>
                     <tr> 
-                        <td><%= contest["start_at"] %></td>
+                        <td><%= DateTime.parse(contest["start_at"]).to_s(:contest_start_at) %></td>
                         <td><%= contest["home_name"] %></td>
                         <td><%= contest["home_score"] %></td>
                         <td><%= contest["away_name"] %></td>
                         <td><%= contest["away_score"] %></td>
-                        <td><%= contest["home_win"] %></td>
+                        <td>
+                          <% if DateTime.parse(contest["start_at"]).to_date < Date.today%>
+                            <% if contest["home_id"] == @player.team_id %>
+                                <% if contest["home_win"] == true  %>
+                                    W
+                                <% else %>
+                                    L
+                                <% end %>
+                            <% else %>
+                                <% if contest["away_win"] == true %>
+                                    W
+                                <% else %>
+                                    L
+                                <% end %>
+                            <% end %>
+                          <% else %>
+                            TBD
+                          <% end%>
+                        </td>
                     </tr>
                 <% end %>
             </table>

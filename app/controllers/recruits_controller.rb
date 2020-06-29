@@ -3,6 +3,8 @@ class RecruitsController < ApplicationController
         @recruit = Recruit.new(recruit_params)
 
         @recruit.save!
+
+        redirect_to request.referer
     end
 
     protected

@@ -23,7 +23,13 @@ h3 {
     justify-self: center;
     border-radius: 12px;
     grid-template-columns: 1fr 8fr 1fr;
+    overflow-wrap: anywhere;
 }
+
+#playerIndexSigning {
+    color: black;
+}
+
 
 #myTable {
     border-collapse: separate;
@@ -50,7 +56,7 @@ h3 {
 #myTable td {
     text-align: center;
     /* Left-align text */
-    padding: 12px;
+     padding: 12px; 
     /* Add padding */
 }
 
@@ -65,24 +71,6 @@ h3 {
     background-color: #f1f1f1;
 }
 
-#myInput {
-    background-image: ;
-    /* Add a search icon to input */
-    background-position: 10px 12px;
-    /* Position the search icon */
-    background-repeat: no-repeat;
-    /* Do not repeat the icon image */
-    width: 55%;
-    /* Full-width */
-    font-size: 16px;
-    /* Increase font-size */
-    padding: 12px 20px 12px 40px;
-    /* Add some padding */
-    border: 1px solid #ddd;
-    /* Add a grey border */
-    margin-bottom: 12px;
-    /* Add some space below the input */
-}
 
 #filterBar {
     display: grid;
@@ -363,6 +351,15 @@ select {
     border-radius: 8px;
 }
 
+#contactCardSubmitButton {
+    display: grid;
+    text-align: center;
+    justify-self: center;
+    grid-column: 2 / 3;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
 #contactCardForm {
     display: grid;
     grid-row: 2 / 3;
@@ -391,6 +388,7 @@ select {
 #email {
     display: grid;
     grid-column: 2 / 3;
+    overflow: hidden;
 }
 
 #homePhoneLabel {
@@ -401,7 +399,8 @@ select {
 
 #homePhone {
     display: grid;
-    grid-column: 2 / 3;    
+    grid-column: 2 / 3;
+    overflow: hidden;
 }
 
 #streetLabel {
@@ -413,7 +412,9 @@ select {
 #street {
     display: grid;
     grid-column: 2 / 3;
+    overflow: hidden;
 }
+
 
 #cityLabel {
     display: grid;
@@ -423,8 +424,10 @@ select {
 
 #city {
     display: grid;
-    grid-column: 2 / 3;    
+    grid-column: 2 / 3;
+    overflow: hidden;
 }
+
 
 #stateLabel {
     display: grid;
@@ -435,7 +438,9 @@ select {
 #state {
     display: grid;
     grid-column: 2 / 3;
+    overflow: hidden;
 }
+
 
 #zipLabel {
     display: grid;
@@ -446,6 +451,7 @@ select {
 #zip {
     display: grid;
     grid-column: 2 / 3;
+    overflow: hidden;
 }
 
 #socialMediaHeader {
@@ -485,4 +491,52 @@ select {
 #filmBody {
     display: grid;
     text-align: center;
+}
+
+#contactCardSignIn {
+    display: grid;
+    justify-self: center;
+    grid-column: 2 / 3;
+    margin-bottom: 80px;
+}
+
+#notesCardSignIn {
+    display: grid;
+    grid-row: 2 / 3;
+    justify-self: center;
+}
+
+#playerDatabaseRow {
+    overflow: hidden;
+}
+
+#playerHeight {
+    width: 30px;
+}
+
+#playerNumber {
+    width: 30px;
+}
+
+#playerName {
+    text-align: center;
+}
+
+#playerPosition {
+    width: 30px;
+    text-align: center;
+}
+
+#playerGrade {
+    width: 20px;
+    text-align: center;
+
+}
+
+#playerSchool {
+    text-align: center;
+}
+
+#playerRecruit {
+    justify-content: center;
 }

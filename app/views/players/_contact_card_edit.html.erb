@@ -13,5 +13,5 @@
 <label for="zip" id="zipLabel">Zip:</label>
 <div id="zip"><%= @contact_card[0][:zip] %></div>
 <form id="toEditContactCard" action=<%= edit_contact_card_path %> method="get" remote: "false">
-    <input type="submit" value="Edit">
+    <input type="submit" value="Edit" id="contactCardEditButton">
 </form>

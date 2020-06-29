@@ -5,7 +5,7 @@
   <form id="filterBar" action="/players/filter" method="post">
     <input type="text" placeholder="Filter by Name..." id="nameSearch" name="filter[name]">
     <select id="heightSelector" name="filter[height]">
-      <option disabled selected>--by Height--</option>
+      <option disabled selected>--by Ht--</option>
       <option value="<5ft 3in">&lt;5ft 3in</option>
       <option value="5ft 3in">5ft 3in</option>
       <option value="5ft 4in">5ft 4in</option>
@@ -24,7 +24,7 @@
       <option value=">6ft 4in">&gt;6ft 4in</option>
     </select>
     <select id="positionSelector" name="filter[position]">
-      <option disabled selected>--by Position--</option>
+      <option disabled selected>--by Pos--</option>
       <option value="G">G</option>
       <option value="W">W</option>
       <option value="F">F</option>
@@ -32,13 +32,13 @@
       <option value="C">C</option>
     </select>
     <select id="gradeSelector" name="filter[grade]">
-      <option disabled selected>--by Grade--</option>
+      <option disabled selected>--by Gr--</option>
       <option value="12">12</option>
       <option value="11">11</option>
       <option value="10">10</option>
       <option value="9">9</option>
     </select>
-    <input type="text" placeholder="Filter by School..." id="schoolSearch" name="filter[school]">
+    <input type="text" placeholder="Filter by HS..." id="schoolSearch" name="filter[school]">
     <input type="submit" value="Filter" id="submitButton">
   </form>
 
@@ -46,25 +46,27 @@
   <h3>---------------</h3>
   <table id="myTable">
     <tr class="header">
-      <th>Number</th>
-      <th>Name</th>
-      <th>Height</th>
-      <th>Position</th>
-      <th>Grade</th>
-      <th>School</th>
-      <th>Recruiting?</th>
+      <th id="playerNumber">#</th>
+      <th id="playerName">Name</th>
+      <th id="playerHeight">Ht</th>
+      <th id="playerPosition">Pos</th>
+      <th id="playerGrade">Gr</th>
+      <th id="playerSchool">HS</th>
+      <th id="playerRecruit">Recruit?</th>
     </tr> 
     <% @players.each do |player| %>
-      <tr>
-        <td><%= player["home_number"] %></td>
-        <td><%=link_to player["name"], player_path(player.id) %></td>
-        <td><%= player["height"] %></td>
-        <td><%= player["position"] %></td>
-        <td><%= player["grade"] %></td>
-        <td><%= player["school_name"] %></td>
-        <td>
+      <tr id="playerDatabaseRow">
+        <td id="playerNumber"><%= player["home_number"] %></td>
+        <td id="playerName"><%=link_to player["name"], player_path(player.id) %></td>
+        <td id="playerHeight"><%= player["height"] %></td>
+        <td id="playerPosition"><%= player["position"] %></td>
+        <td id="playerGrade"><%= player["grade"] %></td>
+        <td id="playerSchool"><%= player["school_name"] %></td>
+        <td id="playerRecruit">
           <% if current_user.nil? %>
-            <a href="<%= new_session_url %>" id="signin1">Sign in</a>
+            <a href="<%= new_session_url %>" id="playerIndexSignin">Sign in</a>
+          <% elsif @recruits.include?(player) %>
+              &#10003;
           <% else  %>
             <%= button_to "Recruit", recruits_url, params: {:recruit => { :user_id => current_user.id, :player_id => player.id }} %>
           <% end %>
