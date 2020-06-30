@@ -4,7 +4,7 @@ class RecruitsController < ApplicationController
 
         @recruit.save!
 
-        redirect_to request.referer
+        redirect_to players_url
     end
 
     protected
