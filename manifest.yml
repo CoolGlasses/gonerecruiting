@@ -1,7 +1,12 @@
 ---
 applications:
 - name: GoneRecruiting
-  random-route: true
+  routes:
+    - route: www.gonerecruiting.com
+    - route: gonerecruiting.com
   memory: 256M
   buildpacks:
     - ruby_buildpack
+  env:
+    DATABASE_URL:  	postgres://grmeurdk:nP_czoWldGd9aVB8g-W60quDN-kNeNYK@hanno.db.elephantsql.com:5432/grmeurdk
+    
