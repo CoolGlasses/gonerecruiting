@@ -1,0 +1,7 @@
+---
+applications:
+- name: GoneRecruiting
+  random-route: true
+  memory: 256M
+  buildpacks:
+    - ruby_buildpack
