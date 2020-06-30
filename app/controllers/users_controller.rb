@@ -49,7 +49,7 @@ class UsersController < ApplicationController
 
   protected
   def user_params
-    self.params.require(:user).permit(:username, :password)
+    self.params.require(:user).permit(:username, :password, :email, :first_name, :last_name, :phone, :organization)
   end
 
   def get_recruits(current_user)

@@ -7,13 +7,45 @@
 </ul>
 
 
-<div id="loginContainer">
-  <div id="loginBox">
+<div id="signUpContainer">
+  <div id="signUpBox">
     <form action="/user" method="POST" id="signupForm">
         <input
           type="hidden"
           name="authenticity_token"
           value="<%= form_authenticity_token %>">
+        
+        <label for="user_first_name">First Name</label>
+        <input
+          type="text"
+          name="user[first_name]"
+          id="user_first_name"
+          value="<%= @user.first_name %>">
+        <br>
+
+        <label for="user_last_name">Last Name</label>
+        <input
+          type="text"
+          name="user[last_name]"
+          id="user_last_name"
+          value="<%= @user.last_name %>">
+        <br>
+
+        <label for="user_phone">Phone</label>
+        <input
+          type="text"
+          name="user[phone]"
+          id="user_phone"
+          value="<%= @user.phone %>">
+        <br>
+
+        <label for="user_organization">Organization</label>
+        <input
+          type="text"
+          name="user[organization]"
+          id="user_organization"
+          value="<%= @user.organization %>">
+        <br>
 
         <label for="user_email">Email</label>
         <input
