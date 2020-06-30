@@ -7,6 +7,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= render partial: 'layouts/errors' %>
+    <%= render partial: 'layouts/flash' %>
   </head>
 
   <body>
@@ -29,11 +30,6 @@
     <% end %>
     </div>
   </header>
-    <% flash.each do |type, msg| %>
-      <div>
-        <%= msg %>
-      </div>
-    <% end %>
-    <%= yield %>
+  <%= yield %>
   </body>
 </html>
