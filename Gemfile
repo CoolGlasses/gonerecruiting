@@ -38,6 +38,7 @@ gem 'normalize-rails'
 gem 'letter_opener', group: :development
 gem 'mail'
 gem 'rack', ">=2.2.3"
+gem 'figaro'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

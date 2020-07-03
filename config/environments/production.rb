@@ -69,11 +69,11 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'www.gonerecruiting.com' }
 
   config.action_mailer.smtp_settings = {
-    address:              "smtp.office365.com",
-    port:                 587,
-    domain:               "gonerecruiting.com",
-    user_name:            "randrea@gonerecruiting.com",
-    password:             "Whitney-810",
+    address:              ENV['smtp_address'],
+    port:                 ENV['smtp_port'],
+    domain:               ENV['smtp_domain'],
+    user_name:            ENV['smtp_user_name'],
+    password:             ENV['smtp_password'],
     authentication:       :login,
     enable_starttls_auto: true
   }
