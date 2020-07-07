@@ -9,8 +9,7 @@ class PasswordResetsController < ApplicationController
   def create
     @user = User.find_by(email: params[:email].downcase)
     if @user
-      @user.create_reset_digest
-      @user.send_password_reset_email
+      @user.send_password_reset
       flash[:info] = "Email sent with password reset instructions"
       redirect_to root_url
     else
@@ -20,20 +19,22 @@ class PasswordResetsController < ApplicationController
   end
 
   def edit
+    @user = User.find_by_password_reset_token!(params[:id]) 
   end
 
   def update
-    if params[:user][:password].empty?
-      @user.errors.add(:password, "can't be empty")
-      render 'edit'
-    elsif @user.update_attributes(user_params)
-      log_in @user
-      flash[:success] = "Password has been reset."
-      redirect_to @user
+    @user = User.find_by_password_reset_token!(params[:id])
+    if @user.password_reset_sent_at < 2.hour.ago
+      flash[:notice] = 'Password reset has expired'
+      redirect_to new_password_reset_path
+    elsif @user.update(user_params)
+      flash[:notice] = 'Password has been reset!'
+      redirect_to new_session_path
     else
-      render 'edit'
+      render :edit
     end
   end
+
 
   private
 
