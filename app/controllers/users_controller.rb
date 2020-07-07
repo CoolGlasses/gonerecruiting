@@ -22,6 +22,7 @@ class UsersController < ApplicationController
     end
   end
 
+
   def new
     # present form for signup
     @user = User.new # dummy user object
@@ -49,7 +50,7 @@ class UsersController < ApplicationController
 
   protected
   def user_params
-    self.params.require(:user).permit(:username, :password, :email, :first_name, :last_name, :phone, :organization)
+    self.params.require(:user).permit(:username, :password, :password_confirmation, :email, :first_name, :last_name, :phone, :organization)
   end
 
   def get_recruits(current_user)

@@ -19,18 +19,28 @@ class PasswordResetsController < ApplicationController
   end
 
   def edit
-    @user = User.find_by_password_reset_token!(params[:id]) 
+    @user = User.find_by_password_reset_token!(params[:id])
+    render :edit
+  end
+
+  def show
+    render plain: "this is wrong"
   end
 
   def update
     @user = User.find_by_password_reset_token!(params[:id])
+
     if @user.password_reset_sent_at < 2.hour.ago
       flash[:notice] = 'Password reset has expired'
-      redirect_to new_password_reset_path
-    elsif @user.update(user_params)
+      redirect_to 'sessions#new'
+    elsif user_params["password"] != user_params["password_confirmation"]
+      flash[:notice] = "Passwords do not match.  Please try again!"
+      render :edit
+    elsif @user.update(password: user_params["password"])
       flash[:notice] = 'Password has been reset!'
-      redirect_to new_session_path
+      redirect_to root_url
     else
+      flash[:alert] = "Something went wrong.  Please try again."
       render :edit
     end
   end
@@ -50,17 +60,16 @@ class PasswordResetsController < ApplicationController
 
     # Confirms a valid user.
     def valid_user
-      unless (@user && @user.activated? &&
-              @user.authenticated?(:reset, params[:id]))
+      unless @user
         redirect_to root_url
       end
     end
 
     # Checks expiration of reset token.
     def check_expiration
-      if @user.password_reset_expired?
-        flash[:danger] = "Password reset has expired."
-        redirect_to new_password_reset_url
-      end
+    #   if @user.password_reset_expired?
+    #     flash[:danger] = "Password reset has expired."
+    #     redirect_to new_password_reset_url
+    #   end
     end
 end
