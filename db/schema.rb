@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_30_003538) do
+ActiveRecord::Schema.define(version: 2020_07_08_015841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -85,6 +85,14 @@ ActiveRecord::Schema.define(version: 2020_06_30_003538) do
     t.datetime "updated_at", null: false
     t.index ["away_id"], name: "index_contests_on_away_id"
     t.index ["home_id"], name: "index_contests_on_home_id"
+  end
+
+  create_table "news_items", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "textarea"
+    t.string "author", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "notes", force: :cascade do |t|
