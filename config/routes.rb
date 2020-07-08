@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :contact_cards
   resources :contests
   resources :password_resets
+  resources :news_items
   resource :user, only: [:create, :new, :show] do
     resource :counter, only: [:update]
   end
