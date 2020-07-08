@@ -24,11 +24,19 @@
         --Our Products--
     </div>
     <div id="newsReleasesCardContainer">
-        7/6/20 -- Password Reset Functionality is Fully Operational 
-        <br>
-        No further direct access to the database will be allowed without a login.
-        <br>
-        <br>
-        6/1/20 -- State of Oregon - Women's Basketball - Added to database
+        <div id="newsReleasesHeader">News</div>
+        <div id="newsReleasesList">
+            <% if @news_items.nil? %>
+                No news!
+            <% else %>
+                <% @news_items.each_with_index do |news_item, i|  %>
+                    <% if i % 2 == 0 %>
+                        <div id="newsItem2"><%= news_item.created_at %> : <%= news_item.textarea %></div>
+                    <% else %>
+                        <div id="newsItem1"><%= news_item.created_at %> : <%= news_item.textarea %></div>    
+                    <% end %>
+                <% end %> 
+            <% end %>
+        </div>
     </div>
 </div>

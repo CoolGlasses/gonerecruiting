@@ -2,7 +2,7 @@ class NewsItems < ApplicationController
     skip_before_action :verify_authenticity_token
 
     def create
-        @news_item = News_item.new(news_params)
+        @news_item = NewsItem.new(news_params)
 
         @news_item.save!
         redirect_back root_url
