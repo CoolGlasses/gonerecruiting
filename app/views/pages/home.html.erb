@@ -31,9 +31,9 @@
             <% else %>
                 <% @news_items.each_with_index do |news_item, i|  %>
                     <% if i % 2 == 0 %>
-                        <div id="newsItem2"><%= news_item.created_at %> : <%= news_item.textarea %></div>
+                        <div id="newsItem2"><%= news_item.created_at.strftime("%B %d, %Y") %> : <%= news_item.textarea %></div>
                     <% else %>
-                        <div id="newsItem1"><%= news_item.created_at %> : <%= news_item.textarea %></div>    
+                        <div id="newsItem1"><%= news_item.created_atstrftime("%B %d, %Y") %> : <%= news_item.textarea %></div>    
                     <% end %>
                 <% end %> 
             <% end %>

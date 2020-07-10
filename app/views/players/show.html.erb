@@ -63,9 +63,9 @@
         <div id="notesList">
             <% @notes.each_with_index do |note, i| %>
                 <% if i % 2 == 0 %>
-                    <div id="note2"><%= DateTime.parse(note["created_at"].to_s(:db_item_created_at)) %> : <%= note.note %></div>
+                    <div id="note2"><%= note["created_at"].strftime("%B %d, %Y - %l:%M %p") %> : <%= note.note %></div>
                 <% else %>
-                    <div id="note1"><%= note.created_at %> : <%= note.note %></div>    
+                    <div id="note1"><%= note["created_at"].strftime("%B %d, %Y - %l:%M %p") %> : <%= note.note %></div>
                 <% end %>
             <% end %>
         </div>
