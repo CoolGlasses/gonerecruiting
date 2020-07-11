@@ -3,6 +3,7 @@ require_relative  'convert_height.rb'
 class UsersController < ApplicationController
   before_action :require_current_user!, except: [:create, :new, :index]
   skip_before_action :verify_authenticity_token
+  before_action :check_for_reset, :only => [:create, :update]
 
   ##Need to change where the root route goes!!
   def index
@@ -51,6 +52,12 @@ class UsersController < ApplicationController
   protected
   def user_params
     self.params.require(:user).permit(:username, :password, :password_confirmation, :email, :first_name, :last_name, :phone, :organization)
+  end
+
+  def check_for_reset
+    if params[:commit] == "Reset"
+      redirect_to my_page_path
+    end
   end
 
   def get_recruits(current_user)

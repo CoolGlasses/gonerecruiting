@@ -79,6 +79,7 @@
         </select>
         <input type="text" placeholder="Filter by School..." id="userSchoolSearch" name="filter[school]">
         <input type="submit" value="Filter" id="userFilterSubmitButton">
+        <input type="button" onclick="location.href='/user.<%= current_user.id %>';" value="Reset" id="userResetButton">
       </form>
       <h3>---------------</h3>
       <table id="userRecruitsTable"> <!-- myTable -->
