@@ -8,6 +8,7 @@ class PagesController < ApplicationController
     def get_news
         news = NewsItem.all
         news = news.to_a
+        news.sort!.reverse!
         return news
     end
 end

@@ -11,7 +11,7 @@
         </form>
     </div>
     <div id="aboutCardContainer">
-        <div id="aboutCardHeader">--Who We Are--</div>
+        <div id="aboutCardHeader">--Who I Am--</div>
         <div id="aboutCardContent">
             I am a current collegiate assistant coach who has spent the better part of my career frustrated with miscommunication and bad data on potential recruits.
             It is my hope that this tool will make communication more efficient, and provide a centralized location for all information relevant to recruiters who 
@@ -23,7 +23,7 @@
     </div>
     <div id="productsCardContainer">
         <div id="productsCardHeader">--Our Products--</div>
-        <div id="productsCardContent"></div>
+        <div id="productsCardContent">Coming Soon</div>
     </div>
     <div id="newsReleasesCardContainer">
         <div id="newsReleasesHeader">News</div>
@@ -33,9 +33,11 @@
             <% else %>
                 <% @news_items.each_with_index do |news_item, i|  %>
                     <% if i % 2 == 0 %>
+                        <br>
                         <div id="newsItem2"><%= news_item.created_at.strftime("%B %d, %Y") %> : <%= news_item.textarea %></div>
                     <% else %>
-                        <div id="newsItem1"><%= news_item.created_atstrftime("%B %d, %Y") %> : <%= news_item.textarea %></div>    
+                        <br>
+                        <div id="newsItem1"><%= news_item.created_at.strftime("%B %d, %Y") %> : <%= news_item.textarea %></div>    
                     <% end %>
                 <% end %> 
             <% end %>
