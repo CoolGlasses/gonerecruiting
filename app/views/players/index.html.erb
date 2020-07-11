@@ -71,13 +71,35 @@
   <h3>---------------</h3>
   <table id="myTable">
     <tr class="header">
-      <th id="playerNumber">#</th>
-      <th id="playerName">Name</th>
-      <th id="playerHeight">Ht</th>
-      <th id="playerPosition">Pos</th>
-      <th id="playerGrade">Gr</th>
-      <th id="playerSchool">HS</th>
-      <th id="playerRecruit">Recruit?</th>
+      <th id="playersNumberHeader">#</th>
+      <th id="playersNameHeader">Name</th>
+      <th id="playersHeightHeader">Ht</th>
+      <th id="playersPositionHeader">Pos</th>
+      <th id="playersGradeHeader">Gr</th>
+      <th id="playersSchoolHeader">HS</th>
+      <th id="playersRecruitHeader">Recruit?</th>
+      <% if !params["filter"].nil? %>      
+          <script>
+            let number = document.getElementById("playersNumberHeader");
+            number.setAttribute('onclick', 'sortTable(0); changeArrowDirection("numberSortArrow");');
+            number.innerHTML += "<div class='arrow-right' id='numberSortArrow'></div>";
+            let name = document.getElementById("playersNameHeader");
+            name.setAttribute('onclick', 'sortTable(1); changeArrowDirection("nameSortArrow");');
+            name.innerHTML += "<div class='arrow-right' id='nameSortArrow'></div>";
+            let height = document.getElementById("playersHeightHeader");
+            height.setAttribute('onclick', 'sortTable(2); changeArrowDirection("heightSortArrow");');
+            height.innerHTML += "<div class='arrow-right' id='heightSortArrow'></div>";
+            let position = document.getElementById("playersPositionHeader");
+            position.setAttribute('onclick', 'sortTable(3); changeArrowDirection("positionSortArrow");');
+            position.innerHTML += "<div class='arrow-right' id='positionSortArrow'></div>";
+            let grade = document.getElementById("playersGradeHeader");
+            grade.setAttribute('onclick', 'sortTable(4); changeArrowDirection("gradeSortArrow");');
+            grade.innerHTML += "<div class='arrow-right' id='gradeSortArrow'></div>";
+            let school = document.getElementById("playersSchoolHeader");
+            school.setAttribute('onclick', 'sortTable(5); changeArrowDirection("schoolSortArrow");');
+            school.innerHTML += "<div class='arrow-right' id='schoolSortArrow'></div>";
+          </script>
+      <% end %>
     </tr> 
     <% @players.each do |player| %>
       <tr id="playerDatabaseRow">
@@ -100,3 +122,71 @@
   </table>
   <h3>---------------</h3>
 </div>
+<script>
+  function changeArrowDirection(arrowToChange) {
+    let arrow = document.getElementById(arrowToChange);
+    let direction = arrow.getAttribute("class");
+    if (direction == 'arrow-right') {
+        arrow.setAttribute("class", "arrow-down");      
+    } else if (direction == 'arrow-down') {
+        arrow.setAttribute('class', 'arrow-up');
+    } else {
+        arrow.setAttribute('class', 'arrow-down');
+    }
+  }
+
+  function sortTable(n) {
+    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    table = document.getElementById("myTable");
+    switching = true;
+    //Set the sorting direction to ascending:
+    dir = "asc"; 
+    /*Make a loop that will continue until
+    no switching has been done:*/
+    while (switching) {
+      //start by saying: no switching is done:
+      switching = false;
+      rows = table.rows;
+      /*Loop through all table rows (except the
+      first, which contains table headers):*/
+      for (i = 1; i < (rows.length - 1); i++) {
+        //start by saying there should be no switching:
+        shouldSwitch = false;
+        /*Get the two elements you want to compare,
+        one from current row and one from the next:*/
+        x = rows[i].getElementsByTagName("TD")[n];
+        y = rows[i + 1].getElementsByTagName("TD")[n];
+        /*check if the two rows should switch place,
+        based on the direction, asc or desc:*/
+        if (dir == "asc") {
+          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+            //if so, mark as a switch and break the loop:
+            shouldSwitch= true;
+            break;
+          }
+        } else if (dir == "desc") {
+          if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+            //if so, mark as a switch and break the loop:
+            shouldSwitch = true;
+            break;
+          }
+        }
+      }
+      if (shouldSwitch) {
+        /*If a switch has been marked, make the switch
+        and mark that a switch has been done:*/
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+        //Each time a switch is done, increase this count by 1:
+        switchcount ++;      
+      } else {
+        /*If no switching has been done AND the direction is "asc",
+        set the direction to "desc" and run the while loop again.*/
+        if (switchcount == 0 && dir == "asc") {
+          dir = "desc";
+          switching = true;
+        }
+      }
+    }
+  }
+</script>
