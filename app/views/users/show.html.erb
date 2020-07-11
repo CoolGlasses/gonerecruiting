@@ -20,38 +20,62 @@
       <form id="userFilterBar" action="/users/filter" method="post"> <!-- filterBar -->
       <input type="text" placeholder="Filter by Name..." id="userNameSearch" name="filter[name]">
         <select id="userHeightSelector" name="filter[height]">
-          <option disabled selected>--by Height--</option>
-          <option value="<5ft 3in">&lt;5ft 3in</option>
-          <option value="5ft 3in">5ft 3in</option>
-          <option value="5ft 4in">5ft 4in</option>
-          <option value="5ft 5in">5ft 5in</option>
-          <option value="5ft 6in">5ft 6in</option>
-          <option value="5ft 7in">5ft 7in</option>
-          <option value="5ft 8in">5ft 8in</option>
-          <option value="5ft 9in">5ft 9in</option>
-          <option value="5ft 10in">5ft 10in</option>
-          <option value="5ft 11in">5ft 11in</option>
-          <option value="6ft 0in">6ft 0in</option>
-          <option value="6ft 1in">6ft 1in</option>
-          <option value="6ft 2in">6ft 2in</option>
-          <option value="6ft 3in">6ft 3in</option>
-          <option value="6ft 4in">6ft 4in</option>
-          <option value=">6ft 4in">&gt;6ft 4in</option>
+          <option id="heightSelectorHeader" disabled selected>--by Ht--</option>
+          <option id="<5ft 3in" value="<5ft 3in">&lt;5ft 3in</option>
+          <option id="5ft 3in" value="5ft 3in">5ft 3in</option>
+          <option id="5ft 4in" value="5ft 4in">5ft 4in</option>
+          <option id="5ft 5in" value="5ft 5in">5ft 5in</option>
+          <option id="5ft 6in" value="5ft 6in">5ft 6in</option>
+          <option id="5ft 7in" value="5ft 7in">5ft 7in</option>
+          <option id="5ft 8in" value="5ft 8in">5ft 8in</option>
+          <option id="5ft 9in" value="5ft 9in">5ft 9in</option>
+          <option id="5ft 10in" value="5ft 10in">5ft 10in</option>
+          <option id="5ft 11in" value="5ft 11in">5ft 11in</option>
+          <option id="6ft 0in" value="6ft 0in">6ft 0in</option>
+          <option id="6ft 1in" value="6ft 1in">6ft 1in</option>
+          <option id="6ft 2in" value="6ft 2in">6ft 2in</option>
+          <option id="6ft 3in" value="6ft 3in">6ft 3in</option>
+          <option id="6ft 4in" value="6ft 4in">6ft 4in</option>
+          <option id=">6ft 4in" value=">6ft 4in">&gt;6ft 4in</option>
+          <% if !params["filter"].nil? %>      
+            <% if !params["filter"]["height"].nil? %>
+              <script>
+                document.getElementById("<%= params["filter"]["height"] %>").setAttribute('selected', 'selected')
+                document.getElementById("heightSelectorHeader").setAttribute('selected', 'false')
+              </script>
+            <% end %>
+          <% end %>
         </select>
         <select id="userPositionSelector" name="filter[position]">
-          <option disabled selected>--by Position--</option>
-          <option value="G">G</option>
-          <option value="W">W</option>
-          <option value="F">F</option>
-          <option value="P">P</option>
-          <option value="C">C</option>
+          <option id="positionSelectorHeader" disabled selected>--by Pos--</option>
+          <option id="G" value="G">G</option>
+          <option id="W" value="W">W</option>
+          <option id="F" value="F">F</option>
+          <option id="P" value="P">P</option>
+          <option id="C" value="C">C</option>
+          <% if !params["filter"].nil? %>      
+            <% if !params["filter"]["position"].nil? %>
+              <script>
+                document.getElementById("<%= params["filter"]["position"] %>").setAttribute('selected', 'selected')
+                document.getElementById("positionSelectorHeader").setAttribute('selected', 'false')
+              </script>
+            <% end %>
+          <% end %>
         </select>
         <select id="userGradeSelector" name="filter[grade]">
-          <option disabled selected>--by Grade--</option>
-          <option value="12">12</option>
-          <option value="11">11</option>
-          <option value="10">10</option>
-          <option value="9">9</option>
+          <option id="gradeSelectorHeader" disabled selected>--by Gr--</option>
+          <option id="12" value="12">12</option>
+          <option id="11" value="11">11</option>
+          <option id="10" value="10">10</option>
+          <option id="9" value="9">9</option>
+          <% if !params["filter"].nil? %>      
+            <% if !params["filter"]["grade"].nil? %>
+              <script>
+                document.getElementById("<%= params["filter"]["grade"] %>").setAttribute('selected', 'selected')
+                document.getElementById("gradeSelectorHeader").setAttribute('selected', 'false')
+              </script>
+            <% end %>
+          <% end %>
         </select>
         <input type="text" placeholder="Filter by School..." id="userSchoolSearch" name="filter[school]">
         <input type="submit" value="Filter" id="userFilterSubmitButton">
