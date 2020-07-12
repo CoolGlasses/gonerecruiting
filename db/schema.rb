@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_12_224920) do
+ActiveRecord::Schema.define(version: 2020_07_12_225600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -157,6 +157,21 @@ ActiveRecord::Schema.define(version: 2020_07_12_224920) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_code"], name: "index_products_on_product_code"
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "product_code"
+    t.decimal "price"
+    t.string "start_date"
+    t.string "end_date"
+    t.integer "organization_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["end_date"], name: "index_purchases_on_end_date"
+    t.index ["organization_id"], name: "index_purchases_on_organization_id"
+    t.index ["start_date"], name: "index_purchases_on_start_date"
+    t.index ["user_id"], name: "index_purchases_on_user_id"
   end
 
   create_table "recruits", force: :cascade do |t|
