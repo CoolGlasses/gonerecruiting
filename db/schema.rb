@@ -10,11 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_08_015841) do
+ActiveRecord::Schema.define(version: 2020_07_12_224920) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "btree_gin"
+  enable_extension "btree_gist"
   enable_extension "citext"
+  enable_extension "cube"
+  enable_extension "dblink"
+  enable_extension "dict_int"
+  enable_extension "dict_xsyn"
+  enable_extension "earthdistance"
+  enable_extension "fuzzystrmatch"
+  enable_extension "hstore"
+  enable_extension "intarray"
+  enable_extension "ltree"
+  enable_extension "pg_stat_statements"
+  enable_extension "pg_trgm"
+  enable_extension "pgcrypto"
+  enable_extension "pgrowlocks"
+  enable_extension "pgstattuple"
   enable_extension "plpgsql"
+  enable_extension "plv8"
+  enable_extension "tablefunc"
+  enable_extension "unaccent"
+  enable_extension "uuid-ossp"
+  enable_extension "xml2"
 
   create_table "athletic_directors", force: :cascade do |t|
     t.string "name", null: false
@@ -126,6 +147,16 @@ ActiveRecord::Schema.define(version: 2020_07_08_015841) do
     t.index ["height_inches"], name: "index_players_on_height_inches"
     t.index ["school_name"], name: "index_players_on_school_name"
     t.index ["team_id"], name: "index_players_on_team_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.string "product_code"
+    t.string "description"
+    t.decimal "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_code"], name: "index_products_on_product_code"
   end
 
   create_table "recruits", force: :cascade do |t|
