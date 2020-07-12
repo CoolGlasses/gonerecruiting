@@ -34,10 +34,18 @@
                 <% @news_items.each_with_index do |news_item, i|  %>
                     <% if i % 2 == 0 %>
                         <br>
-                        <div id="newsItem2"><%= news_item.created_at.strftime("%B %d, %Y") %> : <%= news_item.textarea %></div>
+                        <div id="newsItem2"><%= news_item.created_at.strftime("%B %d, %Y") %> :</div> 
+                        <br>
+                        <div id="newsItem2Title"><%= news_item.title %></div>
+                        <br>
+                        <div id="newsItem2TextArea"><%= news_item.textarea %></div>
                     <% else %>
                         <br>
-                        <div id="newsItem1"><%= news_item.created_at.strftime("%B %d, %Y") %> : <%= news_item.textarea %></div>    
+                        <div id="newsItem1"><%= news_item.created_at.strftime("%B %d, %Y") %> :</div> 
+                        <br>
+                        <div id="newItem1Title"><%= news_item.title %></div>
+                        <br>
+                        <div id="newsItem1TextArea"><%= news_item.textarea %></div>    
                     <% end %>
                 <% end %> 
             <% end %>
