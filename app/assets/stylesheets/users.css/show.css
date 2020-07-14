@@ -136,11 +136,6 @@ select {
     border-radius: 4px;
 }
 
-#submitButton {
-    grid-column: 3 / 4;
-    overflow: hidden;
-    border-radius: 4px;
-}
 
 #userRecruitsTable {
     border-collapse: separate;
