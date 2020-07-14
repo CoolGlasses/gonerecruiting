@@ -1,3 +1,118 @@
+#homePageCardsContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-gap: 25px;
+    padding: 50px;
+    width: 75%;
+    margin-top: 25px;
+    justify-self: center;
+}
+
+
+#aboutCardContainer {
+    display: grid;
+    background: #36454F;
+    color: black;
+    justify-content: center;
+    align-items: center;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    box-shadow:
+        0 -2.8px 2.2px gray,
+        0 -6.7px 6.3px gray,
+        0 -12.5px 12px gray,
+        0 2.8px 2.2px gray,
+        0 6.7px 6.3px gray;
+}
+
+#aboutCardHeader {
+    text-align: center;
+    font-size: 36px;
+    color: white;
+}
+
+#aboutCardContent {
+    display: grid;
+    grid-gap: 6px;
+    background-color: whitesmoke;
+    border-style: solid;
+    border-color: black;
+    border-width: 3px;
+    border-radius: 8px;
+    padding: 8px;
+    margin: 8px;
+    width: 90%;
+    justify-self: center;
+}
+
+#productsCardContainer {
+    display: grid;
+    background: #36454F;
+    justify-content: center;
+    align-items: center;
+    grid-column: 3 / 4;
+    grid-row: 1 / 3;
+    box-shadow:
+        0 -2.8px 2.2px gray,
+        0 -6.7px 6.3px gray,
+        0 -12.5px 12px gray,
+        0 2.8px 2.2px gray,
+        0 6.7px 6.3px gray;
+}
+
+#newsReleasesCardContainer {
+    display: grid;
+    color: black;
+    background: #36454F;
+    justify-content: center;
+    align-items: center;
+    grid-row: 2 / 4;
+    grid-column: 1 / 3;
+    box-shadow:
+        0 -2.8px 2.2px gray,
+        0 -6.7px 6.3px gray,
+        0 2.8px 2.2px gray,
+        0 6.7px 6.3px gray,
+        0 12.5px 12px gray;
+}
+
+#newsReleasesHeader {
+    text-align: center;
+    font-size: 36px;
+}
+
+#newsReleasesList {
+    display: grid;
+    overflow: scroll;
+    grid-gap: 8px;
+}
+
+#newsItem1 {
+    display: grid;
+    grid-gap: 6px;
+    background-color: whitesmoke;
+    border-style: solid;
+    border-color: black;
+    border-width: 3px;
+    border-radius: 8px;
+    padding: 8px;
+    width: 90%;
+    justify-self: center;
+}
+
+#newsItem2 {
+    display: grid;
+    grid-gap: 6px;
+    background-color: slategray;
+    border-style: solid;
+    border-color: black;
+    border-radius: 8px;
+    padding: 8px;
+    width: 90%;
+    justify-self: center;
+}
+
 #aboutCardHeader {
     display: grid;
     padding: 6px;

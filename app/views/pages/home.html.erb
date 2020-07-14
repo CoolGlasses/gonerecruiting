@@ -26,7 +26,9 @@
         <div id="productsCardContent">Coming Soon</div>
     </div>
     <div id="newsReleasesCardContainer">
-        <div id="newsReleasesHeader">News</div>
+        <div id="newsReleasesHeader">
+            News
+        </div>
         <div id="newsReleasesList">
             <% if @news_items.nil? %>
                 No news!
@@ -34,18 +36,22 @@
                 <% @news_items.each_with_index do |news_item, i|  %>
                     <% if i % 2 == 0 %>
                         <br>
-                        <div id="newsItem2"><%= news_item.created_at.strftime("%B %d, %Y") %> :</div> 
-                        <br>
-                        <div id="newsItem2Title"><%= news_item.title %></div>
-                        <br>
-                        <div id="newsItem2TextArea"><%= news_item.textarea %></div>
+                        <div id="newsItem2">
+                            <div id="newsItem2CreatedAt"><%= news_item.created_at.strftime("%B %d, %Y") %> :</div> 
+                            <br>
+                            <div id="newsItem2Title"><%= news_item.title %></div>
+                            <br>
+                            <div id="newsItem2TextArea"><%= news_item.textarea %></div>
+                        </div>
                     <% else %>
                         <br>
-                        <div id="newsItem1"><%= news_item.created_at.strftime("%B %d, %Y") %> :</div> 
-                        <br>
-                        <div id="newItem1Title"><%= news_item.title %></div>
-                        <br>
-                        <div id="newsItem1TextArea"><%= news_item.textarea %></div>    
+                        <div id="newsItem1">
+                            <div id="newsItem2CreatedAt"><%= news_item.created_at.strftime("%B %d, %Y") %> :</div> 
+                            <br>
+                            <div id="newItem1Title"><%= news_item.title %></div>
+                            <br>
+                            <div id="newsItem1TextArea"><%= news_item.textarea %></div>   
+                        </div> 
                     <% end %>
                 <% end %> 
             <% end %>
