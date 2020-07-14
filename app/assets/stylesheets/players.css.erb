@@ -202,6 +202,10 @@ select {
     border-radius: 4px;
 }
 
+#submitButton:hover {
+    background-color: gray;
+}
+
 #toDatabase {
     display: grid;
     width: 10%;
@@ -578,4 +582,33 @@ select {
     justify-self: center;
 }
 
+.pagy-nav {
+    display: block;
+    grid-row: 5 / 6;
+    grid-column: 2 / 3;
+    justify-self: center;
+    padding: 23px;
+    margin-top: 23px;
+    border-radius: 8px;
+    font-size: 20px;
+    background-color: black;
+}
 
+.pagy-nav > span {
+    display: inline-block;
+}
+
+.pagy-nav > span > a {
+    color: whitesmoke
+}
+
+.pagy-nav > span > a:hover {
+    color: yellow;
+}
+
+.pagy-nav > span.page.active {
+    background-color: gray;
+    color: black;
+    border-radius: 8px;
+    padding: 8px;
+}

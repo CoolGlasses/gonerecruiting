@@ -1,11 +1,12 @@
 require_relative  'convert_height.rb'
 
 class PlayersController < ApplicationController
+    include Pagy::Backend
 
     skip_before_action :verify_authenticity_token
 
     def index
-        @players = Player.all
+        @pagy, @players = pagy(Player.all, items: 30)
         @heightArray = [
             "<5ft 3in", "5ft 3in", "5ft 4in", "5ft 5in", "5ft 5in",
             "5ft 6in", "5ft 7in", "5ft 8in", "5ft 9in", "5ft 10in", "5ft 11in",
