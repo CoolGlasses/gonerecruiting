@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_12_225600) do
+ActiveRecord::Schema.define(version: 2020_07_17_011056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -144,6 +144,7 @@ ActiveRecord::Schema.define(version: 2020_07_12_225600) do
     t.string "color_1"
     t.string "color_2"
     t.string "league"
+    t.string "state"
     t.index ["height_inches"], name: "index_players_on_height_inches"
     t.index ["school_name"], name: "index_players_on_school_name"
     t.index ["team_id"], name: "index_players_on_team_id"
@@ -196,6 +197,7 @@ ActiveRecord::Schema.define(version: 2020_07_12_225600) do
     t.integer "osaa_school_id"
     t.string "social_media"
     t.integer "classification"
+    t.string "state"
     t.index ["osaa_school_id"], name: "index_schools_on_osaa_school_id", unique: true
   end
 
