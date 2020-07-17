@@ -29,32 +29,41 @@ end
         #     end
         # end
 
+        #create school, add it to the database
+        #school and team ids for the state of washington start with the number 42 -- 42nd state of the union
+        #the 4 digits that follow the number 42 on the id start at 0001 and increment up with ever iteration
+        #there is no other reasoning behind this other than to attempt to ensure the made up ids are not duplicated when other states are added
+
+        
+        header = doc.css('#roster_header div div')
+        year = header.text[0..3].to_i ##need this for the year column on the school table
+
 
         #go to the sub-page
 
         # @roster_page = Nokogiri::HTML(open('#{@girls_url_finally}', 'User-Agent' => '#{browser}'))
 
-        #add team to database
+        #add team to database, reference school id created above... this will not be the primary key of the school table
         #
         #
         #add the roster to an array
 
         # @roster_array = []
 
-        if doc.css('#tbl_roster tr[2]').children.length == 9
-            #is a roster with Home Away Height Position Year Games Pts Avg columns
-        elsif doc.css('#tbl_roster tr[2]').children.length == 6
-            #is a roster with Home Away Height Position Year columns
-        else
-            break #haven't seen a roster without either 6 or 9 columns... investigate
-        end
+        # if doc.css('#tbl_roster tr[2]').children.length == 9
+        #     #is a roster with Home Away Height Position Year Games Pts Avg columns
+        # elsif doc.css('#tbl_roster tr[2]').children.length == 6
+        #     #is a roster with Home Away Height Position Year columns
+        # else
+        #     break #haven't seen a roster without either 6 or 9 columns... investigate
+        # end
         
         # @roster_html = @roster_page.css('#tbl_roster td')
         # @roster_html.each do |data|
         #     @roster_array << data.text
         # end
 
-        #add players to database with the above team id to track them back to the team
+        #add players to database with the above team id to track them back to the team...this will not be the primary key of the teams table
 
 
 
