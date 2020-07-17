@@ -16,75 +16,88 @@ doc = Nokogiri::HTML(open('http://www.2bcentral.com/index.php?pid=0.31.245.12.32
     @final_list_of_schools << school["value"]
 end
 
-#go to every school
+school_id = 420001
+
+# #go to every school
 # @final_list_of_schools.each do |url|
 #     @school = Nokogiri::HTML(open('#{url}', 'User-Agent' => '#{browser}'))
-    #identify url of specifically the girls basketball sub-page..have to iterate throught the girls sports element in case a season (fall/winter/spring) is not present
+#     #identify url of specifically the girls basketball sub-page..have to iterate throught the girls sports element in case a season (fall/winter/spring) is not present
 
-        # @girls_url_nodes = @school.xpath('//*[@id="school_menu_container"]/table/tr/td[2]/div/div/table/tr[3]/td/a')
-        # @girls_url_finally = ""
-        # @girls_url_nodes.each do |node|
-        #     if node.text.to_s == "Basketball"
-        #         @girls_url_finally = node["href"]
-        #     end
-        # end
+#         @girls_url_nodes = @school.xpath('//*[@id="school_menu_container"]/table/tr/td[2]/div/div/table/tr[3]/td/a')
+#         @girls_url_finally = ""
+#         @girls_url_nodes.each do |node|
+#             if node.text.to_s == "Basketball"
+#                 @girls_url_finally = node["href"]
+#             end
+#         end
 
-        #create school, add it to the database
-        #school and team ids for the state of washington start with the number 42 -- 42nd state of the union
-        #the 4 digits that follow the number 42 on the id start at 0001 and increment up with ever iteration
-        #there is no other reasoning behind this other than to attempt to ensure the made up ids are not duplicated when other states are added
 
-        
-        header = doc.css('#roster_header div div')
-        year = header.text[0..3].to_i ##need this for the year column on the school table
+#       #go to the sub-page
+        #have to check whether or not this page uses javascript to load its tab or if the info is located at a seperate url
+        @basketball_page = Nokogiri::HTML(open('#{@girls_url_finally}', 'User-Agent' => '#{browser}'))
+        if @basketball_page.css('#roster_header').nil?
+            new_url = doc.css('.page_title > div:nth-child(1) > div:nth-child(2) > a:nth-child(3)').attribute('href')
+            @roster_page = Nokogiri::HTML(open('#{new_url', 'User-Agent' => '#{browser}'))
+            header = @roster_page.css('#roster_header div div')
+            year = header.text[0..3].to_i ##need this for the year column on the school table
+        else
+            header = @basketball_page.css('#roster_header div div')
+            year = header.text[0..3].to_i ##need this for the year column on the school table
+        end
+
         state = "WA"
 
-        #go to the sub-page
 
-        # @roster_page = Nokogiri::HTML(open('#{@girls_url_finally}', 'User-Agent' => '#{browser}'))
+#         #create school, add it to the database
+#         #school and team ids for the state of washington start with the number 42 -- 42nd state of the union
+#         #the 4 digits that follow the number 42 on the id start at 0001 and increment up with ever iteration
+#         #there is no other reasoning behind this other than to attempt to ensure the made up ids are not duplicated when other states are added
 
-        #add team to database, reference school id created above... this will not be the primary key of the school table
-        #
-        #
-        #add the roster to an array
 
-        # @roster_array = []
+#         #add team to database, reference school id created above... this will not be the primary key of the school table
+#         #
+#         #
+#         #add the roster to an array
 
-        # if doc.css('#tbl_roster tr[2]').children.length == 9
-        #     #is a roster with Home Away Height Position Year Games Pts Avg columns
-        # elsif doc.css('#tbl_roster tr[2]').children.length == 6
-        #     #is a roster with Home Away Height Position Year columns
-        # else
-        #     break #haven't seen a roster without either 6 or 9 columns... investigate
-        # end
+#         @roster_array = []
+
+#         if doc.css('#tbl_roster tr[2]').children.length == 9
+#             #is a roster with Home Away Height Position Year Games Pts Avg columns
+#         elsif doc.css('#tbl_roster tr[2]').children.length == 6
+#             #is a roster with Home Away Height Position Year columns
+#         else
+#             break #haven't seen a roster without either 6 or 9 columns... investigate
+#         end
         
-        # @roster_html = @roster_page.css('#tbl_roster td')
-        # @roster_html.each do |data|
-        #     @roster_array << data.text
-        # end
+#         @roster_html = @roster_page.css('#tbl_roster td')
+#         @roster_html.each do |data|
+#             @roster_array << data.text
+#         end
 
-        #add players to database with the above team id to track them back to the team...this will not be the primary key of the teams table
-
-
-
-        #Home Away Height Position Year Games Pts Avg
-        # i = 0    
-        # player = []
-        # @final_roster = []
-        # while i < @roster_array.length
-        #     counter = 0
+#         #add players to database with the above team id to track them back to the team...this will not be the primary key of the teams table
 
 
-        #     player << @roster_array[counter]
-        #     i += 1
-        #     counter += 1
 
-        #     if counter == 7
-        #         counter = 0
-        #         @final_roster << player
-        #         player = []
-        #     end
-        # end
+#         #Home Away Height Position Year Games Pts Avg
+#         i = 0    
+#         player = []
+#         @final_roster = []
+#         while i < @roster_array.length
+#             counter = 0
+
+
+#             player << @roster_array[counter]
+#             i += 1
+#             counter += 1
+
+#             if counter == 7
+#                 counter = 0
+#                 @final_roster << player
+#                 player = []
+#             end
+#         end
+#     school_id += 1
+# end
 
 
 binding.pry
