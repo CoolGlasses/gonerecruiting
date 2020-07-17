@@ -37,7 +37,7 @@ end
         
         header = doc.css('#roster_header div div')
         year = header.text[0..3].to_i ##need this for the year column on the school table
-
+        state = "WA"
 
         #go to the sub-page
 
