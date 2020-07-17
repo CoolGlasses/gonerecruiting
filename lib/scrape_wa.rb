@@ -35,11 +35,20 @@ end
         # @roster_page = Nokogiri::HTML(open('#{@girls_url_finally}', 'User-Agent' => '#{browser}'))
 
         #add team to database
-
+        #
+        #
         #add the roster to an array
 
         # @roster_array = []
 
+        if doc.css('#tbl_roster tr[2]').children.length == 9
+            #is a roster with Home Away Height Position Year Games Pts Avg columns
+        elsif doc.css('#tbl_roster tr[2]').children.length == 6
+            #is a roster with Home Away Height Position Year columns
+        else
+            break #haven't seen a roster without either 6 or 9 columns... investigate
+        end
+        
         # @roster_html = @roster_page.css('#tbl_roster td')
         # @roster_html.each do |data|
         #     @roster_array << data.text
