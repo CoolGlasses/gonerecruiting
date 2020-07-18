@@ -96,14 +96,18 @@ debugger
             A: nil,
             Name: "",
             Height: "",
-            Year: ""
+            Position: "",
+            Year: "",
+            Games: 0,
+            Pts: 0,
+            Avg: 0
         }
         keys = player.keys
         @final_roster = [] #meant to be an array of hashes
         counter = 0
         debugger
         while i < @roster_array.length
-            player[keys[counter]] = @roster_array[counter]
+            player[keys[counter]] = @roster_array[i]
 
             i += 1
             counter += 1
