@@ -105,38 +105,6 @@
     grid-column: 2 / 3;
 }
 
-select {
-    display: grid;
-    width: 100%;
-}
-
-
-#nameSearch {
-    overflow: hidden;
-    border-radius: 4px;
-}
-
-#schoolSearch {
-    overflow: hidden;
-    border-radius: 4px;
-}
-
-#gradeSelector {
-    overflow: hidden;
-    border-radius: 4px;
-}
-
-#positionSelector {
-    overflow: hidden;
-    border-radius: 4px;
-}
-
-#heightSelector {
-    overflow: hidden;
-    border-radius: 4px;
-}
-
-
 #userRecruitsTable {
     border-collapse: separate;
     border-spacing: 0px;
@@ -202,10 +170,30 @@ select {
     overflow: hidden;
 }
 
+#userStateSelector {
+    display: grid;
+    overflow: hidden;
+}
+
 #userFilterSubmitButton {
     display: grid;
     overflow: hidden;
     grid-column: 3 / 4;
+    border-radius: 6px;
+}
+
+#userFilterSubmitButton:hover {
+    background-color: gray; 
+}
+
+#userResetButton {
+    display: grid;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+#userResetButton:hover {
+    background-color: gray;
 }
 
 #userShowHeaderWelcome {

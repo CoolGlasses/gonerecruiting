@@ -78,6 +78,19 @@
           <% end %>
         </select>
         <input type="text" placeholder="Filter by School..." id="userSchoolSearch" name="filter[school]">
+        <select id="userStateSelector" name="filter[state]">
+          <option id="userStateSelectorHeader" disabled selected>--by State--</option>
+          <option id="OR" value="OR">OR</option>
+          <option id="WA" value="WA">WA</option>
+          <% if !params["filter"].nil? %>      
+            <% if !params["filter"]["state"].nil? %>
+              <script>
+                document.getElementById("<%= params["filter"]["state"] %>").setAttribute('selected', 'selected')
+                document.getElementById("userStateSelectorHeader").setAttribute('selected', 'false')
+              </script>
+            <% end %>
+          <% end %>
+        </select>
         <input type="submit" value="Filter" id="userFilterSubmitButton">
         <input type="button" onclick="location.href='/user.<%= current_user.id %>';" value="Reset" id="userResetButton">
       </form>
@@ -90,6 +103,7 @@
           <th id="playerPosition">Pos</th>
           <th id="playerSchool">Gr</th>
           <th id="playerRecruit">HS</th>
+          <th id="playerState">ST</th>
         </tr> 
         <% @players.each do |player| %>
           <tr>
@@ -99,6 +113,7 @@
             <td id="playerPosition"><%= player["position"] %></td>
             <td id="playerSchool"><%= player["grade"] %></td>
             <td id="playerRecruit"><%= player["school_name"] %></td>
+            <td id="playerState"><%= player["state"] %></td>
           </tr>
         <% end %>
       </table>

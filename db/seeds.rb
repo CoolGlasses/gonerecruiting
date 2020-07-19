@@ -131,7 +131,8 @@ def write_player_to_db(player, osaa_team_id)
             grade: "#{grade}",
             height: "#{height}",
             team_id: "#{osaa_team_id}",
-            height_inches: "#{height_inches}"
+            height_inches: "#{height_inches}",
+            state: "OR"
         )
 end
 
@@ -160,7 +161,8 @@ def write_school_to_db(parsed_school)
             # color_3: "#{color_3}",
             year: "#{year}",
             osaa_school_id: "#{osaa_school_id}",
-            social_media: "#{social_media}"
+            social_media: "#{social_media}",
+            state: "OR"
         ) 
     end
 end
@@ -213,7 +215,8 @@ def write_full_players_to_db(parsed_team, parsed_school)
                     mascot: "#{mascot}",
                     color_1: "#{color_1}",
                     color_2: "#{color_2}",
-                    league: "#{league}"
+                    league: "#{league}",
+                    state: "OR"
                 )
             end
         end

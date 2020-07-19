@@ -25,6 +25,7 @@ class PlayersController < ApplicationController
         position = params["filter"]["position"]
         school = params["filter"]["school"].downcase
         grade = params["filter"]["grade"]
+        state = params["filter"]["state"]
 
         if !height.nil?
             converted_height = convert_height(height)
@@ -48,6 +49,14 @@ class PlayersController < ApplicationController
                 @players = Player.position_filter(position)
             else
                 @players = @players.position_filter(position)
+            end
+        end
+
+        if !state.nil?
+            if @players.nil?
+                @players = Player.state_filter(state)
+            else
+                @players = @players.state_filter(state)
             end
         end
 

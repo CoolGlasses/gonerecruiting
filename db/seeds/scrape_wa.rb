@@ -179,7 +179,6 @@ end
         end
 
         #add players to database with the above team id to track them back to the team...this will not be the primary key of the teams table
-        debugger
         @final_roster.each do |player|
             if !player[:Height].nil? && player[:Height] != ""
                 player[:Height] = format_height(player[:Height][0..-2])

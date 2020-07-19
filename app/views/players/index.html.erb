@@ -63,6 +63,19 @@
       <% end %>
     </select>
     <input type="text" placeholder="Filter by HS..." id="schoolSearch" name="filter[school]">
+    <select id="stateSelector" name="filter[state]">
+      <option id="stateSelectorHeader" disabled selected>--by State--</option>
+      <option id="OR" value="OR">OR</option>
+      <option id="WA" value="WA">WA</option>
+      <% if !params["filter"].nil? %>      
+        <% if !params["filter"]["state"].nil? %>
+          <script>
+            document.getElementById("<%= params["filter"]["state"] %>").setAttribute('selected', 'selected')
+            document.getElementById("stateSelectorHeader").setAttribute('selected', 'false')
+          </script>
+        <% end %>
+      <% end %>
+    </select>
     <input type="submit" value="Filter" id="submitButton">
     <input type="button" onclick="location.href='<%= players_path %>';" value="Reset" id="resetButton">
   </form>
@@ -77,6 +90,7 @@
       <th id="playersPositionHeader">Pos</th>
       <th id="playersGradeHeader">Gr</th>
       <th id="playersSchoolHeader">HS</th>
+      <th id="playersStateHeader">ST</th>
       <th id="playersRecruitHeader">Recruit?</th>
       <% if !params["filter"].nil? %>      
           <script>
@@ -98,6 +112,9 @@
             let school = document.getElementById("playersSchoolHeader");
             school.setAttribute('onclick', 'sortTable(5); changeArrowDirection("schoolSortArrow");');
             school.innerHTML += "<div class='arrow-right' id='schoolSortArrow'></div>";
+            let state = document.getElementById("playersStateHeader");
+            state.setAttribute('onclick', 'sortTable(5); changeArrowDirection("stateSortArrow");');
+            state.innerHTML += "<div class='arrow-right' id='stateSortArrow'></div>";
           </script>
       <% end %>
     </tr> 
@@ -109,6 +126,7 @@
         <td id="playerPosition"><%= player["position"] %></td>
         <td id="playerGrade"><%= player["grade"] %></td>
         <td id="playerSchool"><%= player["school_name"] %></td>
+        <td id="playerState"><%= player["state"] %></td>
         <td id="playerRecruit">
           <% if current_user.nil? %>
             <a href="<%= new_session_url %>" id="playerIndexSignin">Sign in</a>
