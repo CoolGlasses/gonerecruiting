@@ -41,16 +41,16 @@ end
             end
         end
         
-        # test = School.all.where('osaa_school_id = ?', @school_id)
+        test = School.all.where('osaa_school_id = ?', @school_id)
 
         if @girls_url_finally.empty? #if school doesn't have girls basketball, move on
             next
         end
 
-        # if !test.empty? #if school is already in the db, move on
-        #     @school_id += 1
-        #     next
-        # end
+        if !test.empty? #if school is already in the db, move on
+            @school_id += 1
+            next
+        end
 
 
         #go to the sub-page
@@ -73,13 +73,13 @@ end
 
         #create school, add it to the database
 
-        # School.create!(
-        #     name: "#{@school_names[i]}",
-        #     classification: "#{@school_classifications[i]}",
-        #     year: "#{year}",
-        #     osaa_school_id: "#{@school_id}",
-        #     state: "#{state}"
-        # )
+        School.create!(
+            name: "#{@school_names[i]}",
+            classification: "#{@school_classifications[i]}",
+            year: "#{year}",
+            osaa_school_id: "#{@school_id}",
+            state: "#{state}"
+        )
 
         #school and team ids for the state of washington start with the number 42 -- 42nd state of the union
         #the 4 digits that follow the number 42 on the id start at 0001 and increment up with ever iteration
@@ -87,10 +87,10 @@ end
 
 
         #add team to database, reference school id created above... this will not be the primary key of the school table
-        # Team.create!(
-        #     osaa_school_id: "#{@school_id}",
-        #     osaa_team_id: "#{@school_id}",
-        # )
+        Team.create!(
+            osaa_school_id: "#{@school_id}",
+            osaa_team_id: "#{@school_id}",
+        )
         
         #add the roster to an array
 
@@ -116,7 +116,7 @@ end
         @roster_html.each do |data|
             @roster_array << data.text
         end
-        debugger
+
         #H# A# Captain? Name Height Position Year Games Pts Avg
         m = 0 #variable that counts how far along @roster_array we are
         player = {
@@ -179,11 +179,11 @@ end
         end
 
         #add players to database with the above team id to track them back to the team...this will not be the primary key of the teams table
-
+        debugger
         @final_roster.each do |player|
             if !player[:Height].nil? && player[:Height] != ""
+                player[:Height] = format_height(player[:Height][0..-2])
                 height_inches = convert_height(player[:Height])
-                player[:Height].delete_suffix!('\"')
             else
                 height_inches = 0
             end
