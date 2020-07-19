@@ -24,4 +24,8 @@ class Player < ApplicationRecord
     def self.grade_filter(user_input)
         where(grade: user_input)
     end
+
+    def self.state_filter(user_input)
+        where(state: user_input)
+    end
 end
