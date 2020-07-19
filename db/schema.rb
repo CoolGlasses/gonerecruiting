@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 2020_07_17_011056) do
   enable_extension "pgrowlocks"
   enable_extension "pgstattuple"
   enable_extension "plpgsql"
-  enable_extension "plv8"
   enable_extension "tablefunc"
   enable_extension "unaccent"
   enable_extension "uuid-ossp"
