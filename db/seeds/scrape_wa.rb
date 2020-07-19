@@ -117,11 +117,12 @@ end
             @roster_array << data.text
         end
 
-        #H# A# Name Height Position Year Games Pts Avg
-        m = 0    
+        #H# A# Captain? Name Height Position Year Games Pts Avg
+        m = 0 #variable that counts how far along @roster_array we are
         player = {
             H: nil,
             A: nil,
+            Captain: nil,
             Name: "",
             Height: "",
             Position: "",
@@ -130,12 +131,31 @@ end
             Pts: 0,
             Avg: 0
         }
-        keys = player.keys
         @final_roster = [] #meant to be an array of hashes
-        counter = 0
-
+        counter = 0 #variable that counts how far along the player embedded in @roster_array we are
         while m < @roster_array.length
-            player[keys[counter]] = @roster_array[m]
+            case @headers[counter]
+            when "H"
+                player[0] = @roster_array[m]
+            when "A"
+                player[1] = @roster_array[m]
+            when ""
+                player[2] = @roster_array[m]
+            when "Name"
+                player[3] = @roster_array[m]
+            when "Height"
+                player[4] = @roster_array[m]
+            when "Position"
+                player[5] = @roster_array[m]
+            when "Year"
+                player[6] = @roster_array[m]
+            when "Games"
+                player[7] = @roster_array[m]
+            when "Pts"
+                player[8] = @roster_array[m]
+            when "Avg"
+                player[9] = @roster_array[m]
+            end
 
             m += 1
             counter += 1
@@ -146,6 +166,7 @@ end
                 player = {
                     H: nil,
                     A: nil,
+                    Captain: nil,
                     Name: "",
                     Height: "",
                     Position: "",
