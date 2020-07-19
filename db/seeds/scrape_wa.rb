@@ -41,16 +41,16 @@ end
             end
         end
         
-        test = School.all.where('osaa_school_id = ?', @school_id)
+        # test = School.all.where('osaa_school_id = ?', @school_id)
 
         if @girls_url_finally.empty? #if school doesn't have girls basketball, move on
             next
         end
 
-        if !test.empty? #if school is already in the db, move on
-            @school_id += 1
-            next
-        end
+        # if !test.empty? #if school is already in the db, move on
+        #     @school_id += 1
+        #     next
+        # end
 
 
         #go to the sub-page
@@ -73,13 +73,13 @@ end
 
         #create school, add it to the database
 
-        School.create!(
-            name: "#{@school_names[i]}",
-            classification: "#{@school_classifications[i]}",
-            year: "#{year}",
-            osaa_school_id: "#{@school_id}",
-            state: "#{state}"
-        )
+        # School.create!(
+        #     name: "#{@school_names[i]}",
+        #     classification: "#{@school_classifications[i]}",
+        #     year: "#{year}",
+        #     osaa_school_id: "#{@school_id}",
+        #     state: "#{state}"
+        # )
 
         #school and team ids for the state of washington start with the number 42 -- 42nd state of the union
         #the 4 digits that follow the number 42 on the id start at 0001 and increment up with ever iteration
@@ -87,10 +87,10 @@ end
 
 
         #add team to database, reference school id created above... this will not be the primary key of the school table
-        Team.create!(
-            osaa_school_id: "#{@school_id}",
-            osaa_team_id: "#{@school_id}",
-        )
+        # Team.create!(
+        #     osaa_school_id: "#{@school_id}",
+        #     osaa_team_id: "#{@school_id}",
+        # )
         
         #add the roster to an array
 
@@ -99,12 +99,12 @@ end
         @headers = Hash.new
         #identify headers on of the roster
         @basketball_page.css('#tbl_roster th').each_with_index do |header, j|
-            if header == "H#"
+            if header.text == "H#"
                 fixed_header = "H"
-            elsif header == "A#"
+            elsif header.text == "A#"
                 fixed_header = "A"
             else
-                fixed_header = header
+                fixed_header = header.text
             end
 
             @headers[j] = fixed_header
@@ -116,7 +116,7 @@ end
         @roster_html.each do |data|
             @roster_array << data.text
         end
-
+        debugger
         #H# A# Captain? Name Height Position Year Games Pts Avg
         m = 0 #variable that counts how far along @roster_array we are
         player = {
@@ -136,25 +136,25 @@ end
         while m < @roster_array.length
             case @headers[counter]
             when "H"
-                player[0] = @roster_array[m]
+                player[:H] = @roster_array[m]
             when "A"
-                player[1] = @roster_array[m]
+                player[:A] = @roster_array[m]
             when ""
-                player[2] = @roster_array[m]
+                player[:Captain] = @roster_array[m]
             when "Name"
-                player[3] = @roster_array[m]
+                player[:Name] = @roster_array[m]
             when "Height"
-                player[4] = @roster_array[m]
+                player[:Height] = @roster_array[m]
             when "Position"
-                player[5] = @roster_array[m]
+                player[:Position] = @roster_array[m]
             when "Year"
-                player[6] = @roster_array[m]
+                player[:Year] = @roster_array[m]
             when "Games"
-                player[7] = @roster_array[m]
+                player[:Games] = @roster_array[m]
             when "Pts"
-                player[8] = @roster_array[m]
+                player[:Pts] = @roster_array[m]
             when "Avg"
-                player[9] = @roster_array[m]
+                player[:Avg] = @roster_array[m]
             end
 
             m += 1
