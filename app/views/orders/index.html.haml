@@ -1,3 +1,4 @@
+%script(src="https://www.paypal.com/sdk/js?client-id=#{ENV['PAYPAL_CLIENT_ID']}")
 %div
   %h1 List of products
   = form_tag({:controller => "orders", :action => "submit" }, {:id => 'order-details'}) do
@@ -46,6 +47,29 @@
     $('.paymentSelectionTab').removeClass('active');
     $('#tab-' + newActiveTabID).addClass('active');
   }
+
+    (function setupPaypal() {
+    function isPayment() {
+      return $('[data-charges-and-payments-section] input[name="orders[product_id]"]:checked').length
+    }
+
+    function submitOrderPaypal(chargeID) {
+      var $form = $("#order-details");
+      // Add a hidden input orders[charge_id]
+      $form.append($('<input type="hidden" name="orders[charge_id]"/>').val(chargeID));
+      // Set order type
+      $('#order-type').val('paypal');
+      $form.submit();
+    }
+
+    paypal.Buttons({
+      env: "#{ENV['PAYPAL_ENV']}",
+      createOrder: function() {
+      },
+      onApprove: function(data) {
+      }
+    }).render('#submit-paypal');
+  }());
 
 :css
   #card-element {
