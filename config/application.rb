@@ -20,6 +20,10 @@ module GoneRecruiting
       end if File.exists?(env_file)
     end
 
+    config_file = Rails.application.config_for(:application)
+    config_file.each do |key,value|
+      ENV[key] = value
+    end unless config_file.nil?
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

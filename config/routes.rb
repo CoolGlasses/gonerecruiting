@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     resource :counter, only: [:update]
   end
 
+  get '/orders', to: 'orders#index'
+  post '/orders/submit', to: 'orders#submit'
   post 'players/filter', to: 'players#filter'
   post 'users/filter', to: 'users#filter'
 end
