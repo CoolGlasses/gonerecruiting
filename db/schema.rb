@@ -10,11 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_20_154748) do
+ActiveRecord::Schema.define(version: 2020_07_20_234708) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "btree_gin"
+  enable_extension "btree_gist"
   enable_extension "citext"
+  enable_extension "cube"
+  enable_extension "dblink"
+  enable_extension "dict_int"
+  enable_extension "dict_xsyn"
+  enable_extension "earthdistance"
+  enable_extension "fuzzystrmatch"
+  enable_extension "hstore"
+  enable_extension "intarray"
+  enable_extension "ltree"
+  enable_extension "pg_stat_statements"
+  enable_extension "pg_trgm"
+  enable_extension "pgcrypto"
+  enable_extension "pgrowlocks"
+  enable_extension "pgstattuple"
   enable_extension "plpgsql"
+  enable_extension "plv8"
+  enable_extension "tablefunc"
+  enable_extension "unaccent"
+  enable_extension "uuid-ossp"
+  enable_extension "xml2"
 
   create_table "athletic_directors", force: :cascade do |t|
     t.string "name", null: false
@@ -105,6 +126,29 @@ ActiveRecord::Schema.define(version: 2020_07_20_154748) do
     t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "product_code"
+    t.decimal "price"
+    t.string "start_date"
+    t.string "end_date"
+    t.integer "organization_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "product_id"
+    t.integer "status", default: 0
+    t.string "token"
+    t.string "charge_id"
+    t.string "error_message"
+    t.string "customer_id"
+    t.integer "payment_gateway"
+    t.integer "price_cents", default: 0, null: false
+    t.index ["end_date"], name: "index_orders_on_end_date"
+    t.index ["organization_id"], name: "index_orders_on_organization_id"
+    t.index ["start_date"], name: "index_orders_on_start_date"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "players", force: :cascade do |t|
     t.string "name", null: false
     t.string "position"
@@ -141,21 +185,6 @@ ActiveRecord::Schema.define(version: 2020_07_20_154748) do
     t.integer "price_cents", default: 0, null: false
     t.string "price_currency", default: "USD", null: false
     t.index ["product_code"], name: "index_products_on_product_code"
-  end
-
-  create_table "purchases", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "product_code"
-    t.decimal "price"
-    t.string "start_date"
-    t.string "end_date"
-    t.integer "organization_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["end_date"], name: "index_purchases_on_end_date"
-    t.index ["organization_id"], name: "index_purchases_on_organization_id"
-    t.index ["start_date"], name: "index_purchases_on_start_date"
-    t.index ["user_id"], name: "index_purchases_on_user_id"
   end
 
   create_table "recruits", force: :cascade do |t|
