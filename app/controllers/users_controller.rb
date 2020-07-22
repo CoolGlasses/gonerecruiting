@@ -1,4 +1,5 @@
 require_relative  'convert_height.rb'
+require 'byebug'
 
 class UsersController < ApplicationController
   before_action :require_current_user!, except: [:create, :new, :index]
@@ -12,15 +13,23 @@ class UsersController < ApplicationController
 
   def create
     # sign up the user
-    @user = User.new(user_params)
-    if @user.save
-      # redirect them to the new user's show page
-      login!(@user)
-      UserMailer.with(user: @user).welcome_email.deliver_later
-      redirect_to user_url(@user)
+    if !User.all.where('username = ?', params['user']["username"]).nil? 
+        ##error message -- redirect back to signup page
+        flash[:alert] = "Username is already taken.  Please choose a different username."
+        redirect_back fallback_location: "/user/new"
+    elsif !User.all.where('email = ?', user["email"]).nil?
+        ##error message --redirect back to signup page
+        flash[:alert] = "That email address is already in use.  Please try again."
+        redirect_back fallback_location: "/user/new"
     else
-      render json: @user.errors.full_messages
-    end
+        @user = User.new(user_params)
+        if @user.save
+        # redirect them to the new user's show page
+        login!(@user)
+        UserMailer.with(user: @user).welcome_email.deliver_later
+        redirect_to user_url(@user)
+        end
+    end    
   end
 
 
