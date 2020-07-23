@@ -5,29 +5,42 @@ class PlayersController < ApplicationController
 
     skip_before_action :verify_authenticity_token
 
-    def index
+    def index(filters=nil)
         @pagy, @players = pagy(Player.all, items: 30)
-        @heightArray = [
-            "<5ft 3in", "5ft 3in", "5ft 4in", "5ft 5in", "5ft 5in",
-            "5ft 6in", "5ft 7in", "5ft 8in", "5ft 9in", "5ft 10in", "5ft 11in",
-            "6ft 0in", "6ft 1in", "6ft 2in", "6ft 3in", "6ft 4in", ">6ft 4in"]
-        @positionsArray = ["G", "W", "F", "P", "C"]
-        @gradeArray = ["12", "11", "10", "9"]
+
+        if filters.nil?
+            @filters = nil
+        end
 
         if !current_user.nil?
             @recruits = get_recruits(current_user)
         end
     end
     
-    def filter
-        player_name = params["filter"]["name"].downcase
-        height = params["filter"]["height"]
-        position = params["filter"]["position"]
-        school = params["filter"]["school"].downcase
-        grade = params["filter"]["grade"]
-        state = params["filter"]["state"]
+    def filter(filters=nil)
+        if filters.nil?
+            player_name = params["filter"]["name"].downcase
+            height = params["filter"]["height"]
+            position = params["filter"]["position"]
+            school = params["filter"]["school"].downcase
+            grade = params["filter"]["grade"]
+            state = params["filter"]["state"]
 
-        if !height.nil?
+            @filters = {
+                :player_name => player_name,
+                :height => height,
+                :position => position,
+                :school => school,
+                :grade => grade,
+                :state => state
+            }
+        else
+            @filters = filters
+        end
+
+        
+
+        if !@filters[:height].nil?
             converted_height = convert_height(height)
             if @players.nil?
                 @players = Player.height_filter(converted_height)
@@ -36,7 +49,7 @@ class PlayersController < ApplicationController
             end
         end
 
-        if grade != "" && !grade.nil?
+        if @filters[:grade] != "" && !@filters[:grade].nil?
             if @players.nil?
                 @players = Player.grade_filter(grade)
             else
@@ -44,7 +57,7 @@ class PlayersController < ApplicationController
             end
         end
 
-        if !position.nil?
+        if !@filters[:position].nil?
             if @players.nil?
                 @players = Player.position_filter(position)
             else
@@ -52,7 +65,7 @@ class PlayersController < ApplicationController
             end
         end
 
-        if !state.nil?
+        if !@filters[:state].nil?
             if @players.nil?
                 @players = Player.state_filter(state)
             else
@@ -60,7 +73,7 @@ class PlayersController < ApplicationController
             end
         end
 
-        if school != ""
+        if @filters[:school] != ""
             if @players.nil?
                 @players = Player.school_filter(school)
             else
@@ -68,7 +81,7 @@ class PlayersController < ApplicationController
             end
         end
 
-        if player_name != "" && !player_name.nil?
+        if @filters[:player_name] != "" && !@filters[:player_name].nil?
             if @players.nil?
                 @players = Player.name_filter(player_name)
             else

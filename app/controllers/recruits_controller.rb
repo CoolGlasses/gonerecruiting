@@ -4,7 +4,7 @@ class RecruitsController < ApplicationController
 
         @recruit.save!
 
-        redirect_to players_url
+        redirect_to "/players/filter", params: {filters: @filter}
     end
 
     protected

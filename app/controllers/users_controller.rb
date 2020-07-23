@@ -32,7 +32,6 @@ class UsersController < ApplicationController
     end    
   end
 
-
   def new
     # present form for signup
     @user = User.new # dummy user object
