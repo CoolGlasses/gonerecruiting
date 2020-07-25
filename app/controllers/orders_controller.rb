@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
   skip_before_action :verify_authenticity_token
 
+  before_action :paypal_init, :except => [:index]
+
   def index
     render :index
   end
@@ -49,8 +51,8 @@ class OrdersController < ApplicationController
   private
 
   def paypal_init
-    client_id = ENV['paypal_client_id']
-    client_secret = ENV['paypal_client_secret']
+    client_id = ENV['PAYPAL_CLIENT_ID']
+    client_secret = ENV['PAYPAL_CLIENT_SECRET']
 
     environment = PayPal::SandboxEnvironment.new client_id, client_secret
     @client = PayPal::PayPalHttpClient.new environment

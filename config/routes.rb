@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   end
 
   get '/orders', to: 'orders#index'
+  post :create_order, :to => 'orders#create_order'
+  post :capture_order, :to => 'orders#capture_order'
   post 'players/filter', to: 'players#filter'
   post 'users/filter', to: 'users#filter'
+
 end

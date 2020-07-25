@@ -24,10 +24,11 @@
     <div id="productsCardContainer">
         <div id="productsCardHeader">--Our Products--</div>
         <div id="productsCardContent">
-            <form method="get" action="/orders">
-                <button type="submit">See Plans</button>
-            </form>
+            <div id="focusProduct">This will be the primary plan!</div>
             <div id="homepage-paypal-button-container"></div>
+            <form method="get" action="/orders" id="seePlansForm">
+                <button type="submit" id="seePlansButton">See All Plans</button>
+            </form>
         </div>
     </div>
     <div id="newsReleasesCardContainer">
