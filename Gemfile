@@ -40,7 +40,7 @@ gem 'mail'
 gem 'rack', ">=2.2.3"
 gem 'pagy'
 gem 'money-rails'
-gem 'haml'
+gem 'paypal-checkout-sdk'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

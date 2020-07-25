@@ -23,7 +23,12 @@
     </div>
     <div id="productsCardContainer">
         <div id="productsCardHeader">--Our Products--</div>
-        <div id="productsCardContent">Coming Soon</div>
+        <div id="productsCardContent">
+            <form method="get" action="/orders">
+                <button type="submit">See Plans</button>
+            </form>
+            <div id="homepage-paypal-button-container"></div>
+        </div>
     </div>
     <div id="newsReleasesCardContainer">
         <div id="newsReleasesHeader">
@@ -58,3 +63,28 @@
         </div>
     </div>
 </div>
+<script src="https://www.paypal.com/sdk/js?client-id=AZmFmXTsblFzWthOwu3ZfjoMtuNUiCwzfO8ln7EKKW616Uqmuzx5CHgDcSSF9nc2xRhJ17BIIkOSpgkO"></script>
+<script>
+    paypal.Buttons({
+     env: 'sandbox', // Valid values are sandbox and live.
+    createOrder: async () => {
+        const response = await fetch('/create_order', {method: 'POST'});
+        const responseData = await response.json();
+        return responseData.token;
+        },
+    onApprove: async (data) => {
+        const response = await fetch('/capture_order', {
+        method: 'POST',
+        headers: {
+           'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({order_id: data.orderID})
+        });
+        const responseData = await response.json();
+        if (responseData.status === 'COMPLETED') {
+            alert('COMPLETED');
+            // REDIRECT TO SUCCESS PAGE
+        }
+    }
+    }).render('#homepage-paypal-button-container');
+</script>

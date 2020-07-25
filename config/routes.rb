@@ -11,12 +11,12 @@ Rails.application.routes.draw do
   resources :contests
   resources :password_resets
   resources :news_items
+  resources :orders
   resource :user, only: [:create, :new, :show] do
     resource :counter, only: [:update]
   end
 
   get '/orders', to: 'orders#index'
-  post '/orders/submit', to: 'orders#submit'
   post 'players/filter', to: 'players#filter'
   post 'users/filter', to: 'users#filter'
 end
