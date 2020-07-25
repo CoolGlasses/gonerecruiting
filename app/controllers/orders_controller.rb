@@ -21,11 +21,13 @@ class OrdersController < ApplicationController
         }
       ]
     })
+
     begin
       response = @client.execute request
       order = Order.new
       order.price = price.to_i
       order.token = response.result.id
+      debugger
       if order.save
         return render :json => {:token => response.result.id}, :status => :ok
       end

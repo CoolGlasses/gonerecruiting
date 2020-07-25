@@ -84,7 +84,7 @@
         const responseData = await response.json();
         if (responseData.status === 'COMPLETED') {
             alert('COMPLETED');
-            // REDIRECT TO SUCCESS PAGE
+            location.replace("http://www.gonerecruiting.com/user")
         }
     }
     }).render('#homepage-paypal-button-container');
