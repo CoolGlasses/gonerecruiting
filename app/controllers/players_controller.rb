@@ -93,7 +93,6 @@ class PlayersController < ApplicationController
             @recruits = get_recruits(current_user)
         end
 
-        @pagy, @players = pagy(@players)
         render :index
     end
     

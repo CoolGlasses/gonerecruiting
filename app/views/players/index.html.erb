@@ -138,7 +138,9 @@
         </td>
     <% end %>
   </table>
-  <%== pagy_nav(@pagy).html_safe %>
+  <% if params["filter"].nil? %>
+    <%== pagy_nav(@pagy).html_safe %>
+  <% end %>
   <h3>---------------</h3>
 </div>
 <script>
