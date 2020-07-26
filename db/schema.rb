@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_25_004817) do
+ActiveRecord::Schema.define(version: 2020_07_25_222312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -127,27 +127,11 @@ ActiveRecord::Schema.define(version: 2020_07_25_004817) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "product_code"
-    t.decimal "price"
-    t.string "start_date"
-    t.string "end_date"
-    t.integer "organization_id"
+    t.boolean "paid", default: false
+    t.string "token"
+    t.integer "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "product_id"
-    t.integer "status", default: 0
-    t.string "token"
-    t.string "charge_id"
-    t.string "error_message"
-    t.string "customer_id"
-    t.integer "payment_gateway"
-    t.integer "price_cents", default: 0, null: false
-    t.boolean "paid"
-    t.index ["end_date"], name: "index_orders_on_end_date"
-    t.index ["organization_id"], name: "index_orders_on_organization_id"
-    t.index ["start_date"], name: "index_orders_on_start_date"
-    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "players", force: :cascade do |t|
