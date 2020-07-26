@@ -1,5 +1,4 @@
 require_relative  'convert_height.rb'
-require 'byebug'
 
 class UsersController < ApplicationController
   before_action :require_current_user!, except: [:create, :new, :index]
