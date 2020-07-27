@@ -45,7 +45,8 @@ class UsersController < ApplicationController
       return
     end
 
-    @players = get_recruits(current_user).flatten.uniq
+    @recruits = get_recruits(current_user)
+    @players = get_players(@recruits).flatten.uniq
     @user = current_user
     render :show
   end
@@ -70,6 +71,10 @@ class UsersController < ApplicationController
   def get_recruits(current_user)
     recruits = Recruit.where("user_id = ?", current_user.id)
 
+    return recruits.to_a
+  end
+
+  def get_players(recruits)
     players = recruits.map do |recruit|
       Player.where("id = ?", recruit.player_id)
     end
