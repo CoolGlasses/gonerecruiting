@@ -1,14 +1,24 @@
-<h1>The Last Recruiting Tool You'll Ever Need</h1>
+<h1 id="homepageHeader">The Last Recruiting Tool You'll Ever Need</h1>
 
 <div id="homePageCardsContainer">
     <div id="loginCardContainer">
+        <div id="loginCardHeader">Already a have login?  Login Below!</div>
         <form id="login" action="/session/new" method="get">
             <input type="submit" value="Login">
         </form>
-
-        <form id="signup" action="/user/new" method="get">
-            <input type="submit" value="Signup">
-        </form>
+    </div>
+    <div id="productPreviewContainer">
+        <div id="productPreviewMainHeader">One Place, All the Recruits</div>
+        <div id="productPreviewContent">
+            <div id="productPreviewSubHeader1">Search by Height, Grade, Position, School or Name</div>
+            <div id="productPreviewFilterBar"></div>
+            <div id="productPreviewSubHeader2">Keep track of your recruits, take notes, store contact information</div>
+            <div id="productPreviewPlayerShowPage"></div>
+            <div id="productPreviewSubHeader3">Identify important games to evaluate, send emails to your staff with a list of this weeks recruiting games</div>
+            <div id="productPreviewImportantGames"></div>
+            <div id="productPreviewSubHeader4">Manage your time with a To-Do list so you never forget miss another step in the recruitment process again</div>
+            <div id="productPreviewToDoList"></div>
+        </div>
     </div>
     <div id="aboutCardContainer">
         <div id="aboutCardHeader">--Who I Am--</div>
@@ -24,7 +34,7 @@
     <div id="productsCardContainer">
         <div id="productsCardHeader">--Our Products--</div>
         <div id="productsCardContent">
-            <div id="focusProduct">This will be the primary plan!</div>
+            <div id="focusProduct">Pick your State and take your recruiting to the next level!</div>
             <div id="homepage-paypal-button-container"></div>
             <form method="get" action="/orders" id="seePlansForm">
                 <button type="submit" id="seePlansButton">See All Plans</button>
