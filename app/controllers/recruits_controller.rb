@@ -8,9 +8,7 @@ class RecruitsController < ApplicationController
     end
 
     def destroy
-        @recruit = Recruit.find(params[:recruit][:user_id])
-        @recruit = @recruit.find(params[:recruit][:player_id])
-        debugger
+        @recruit = Recruit.find_by(user_id: params[:recruit][:user_id], player_id: params[:recruit][:player_id])
         @recruit.destroy
 
         redirect_to user_path

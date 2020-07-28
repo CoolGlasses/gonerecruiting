@@ -71,7 +71,7 @@ class UsersController < ApplicationController
   def get_recruits(current_user)
     recruits = Recruit.where("user_id = ?", current_user.id)
 
-    return recruits.to_a
+    return recruits
   end
 
   def get_players(recruits)
