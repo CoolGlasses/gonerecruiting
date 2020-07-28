@@ -41,6 +41,7 @@ gem 'rack', ">=2.2.3"
 gem 'pagy'
 gem 'money-rails'
 gem 'paypal-checkout-sdk'
+gem 'sidekiq'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
