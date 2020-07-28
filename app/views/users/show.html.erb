@@ -7,8 +7,23 @@
 
 <div id="userCardsContainer">
   <div id="userToDoCard">
-    To Do Card
-    --Coming Soon--
+    <div id="userToDosHeader">To-Do's</div>
+    <div id="userToDosList">
+      <% @todos.each_with_index do |todo, i| %>
+        <% if i % 2 == 0 %>
+          <div id="todo2"></div>
+        <% else %>
+          <div id="todo1"></div>
+        <% end %>
+      <% end %>
+    </div>
+    <form action="/todos" method="post" id="todosForm" remote: "false">
+        <textarea id="todosDescription" name="todo[description]"></textarea>
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type="hidden" id="todosUserID" name="todos[user_id]" value= <%= current_user.id %> >
+        <input type="hidden" id="todosPlayerID" name="todos[player_id]">
+        <input type="submit" value="Add Todo" id="todoSubmitButton">
+    </form>    
   </div>
   <div id="userRecommendedRecruitsCard">
     Games To Watch
@@ -141,9 +156,8 @@
 Some thoughts:
 
 Need to show the information that they entere for their user:
-email, phone, username, first, last, etc
+email, phone, username, first, last, etc -- OR is this an account page type thing?
 
->>How do we REMOVE someone from the Recruits list?
 >>>Maybe with an option to Email the user with their daily to-do items for recruiting?
 >>>LONG TERM---Maybe the can set up an email campaign checking in with their recruits (drip campaigns?)
 >>>

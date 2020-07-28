@@ -45,6 +45,7 @@ class UsersController < ApplicationController
       return
     end
 
+    @todos = get_todos(current_user)
     @recruits = get_recruits(current_user)
     @players = get_players(@recruits).flatten.uniq
     @user = current_user
@@ -60,6 +61,13 @@ class UsersController < ApplicationController
   protected
   def user_params
     self.params.require(:user).permit(:username, :password, :password_confirmation, :email, :first_name, :last_name, :phone, :organization)
+  end
+
+  def get_todos(user)
+    todos = Todos.where("user_id = ?", user.id)
+    todos = todos.to_a
+
+    return todos
   end
 
   def check_for_reset
