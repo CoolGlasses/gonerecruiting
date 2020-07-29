@@ -18,6 +18,12 @@
       <% end %>
     </div>
     <form action="/todos" method="post" id="todosForm" remote: "false">
+        <div class='input-group date' id='datetimepicker1'>
+          <input type='text' class="form-control" />
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>          
         <textarea id="todosDescription" name="todo[description]"></textarea>
         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
         <input type="hidden" id="todosUserID" name="todos[user_id]" value= <%= current_user.id %> >
@@ -148,6 +154,17 @@
       </div>
   </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script>
+  $(function () {
+    $('#datetimepicker1').datetimepicker();
+ });
+</script>
 
 
 <!-- What do we want to include in this view?
@@ -157,6 +174,8 @@ Some thoughts:
 
 Need to show the information that they entere for their user:
 email, phone, username, first, last, etc -- OR is this an account page type thing?
+
+Do we want to add recurrence to Todos?
 
 >>>Maybe with an option to Email the user with their daily to-do items for recruiting?
 >>>LONG TERM---Maybe the can set up an email campaign checking in with their recruits (drip campaigns?)

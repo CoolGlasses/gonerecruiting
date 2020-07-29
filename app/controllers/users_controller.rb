@@ -64,7 +64,7 @@ class UsersController < ApplicationController
   end
 
   def get_todos(user)
-    todos = Todos.where("user_id = ?", user.id)
+    todos = Todo.where("user_id = ?", user.id)
     todos = todos.to_a
 
     return todos
