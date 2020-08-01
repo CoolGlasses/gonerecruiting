@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resource :session, only: [:create, :destroy, :new]
   resources :recruits
   resources :notes
+  resources :todos
   resources :contact_cards
   resources :contests
   resources :password_resets

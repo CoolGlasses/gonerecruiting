@@ -11,25 +11,36 @@
     <div id="userToDosList">
       <% @todos.each_with_index do |todo, i| %>
         <% if i % 2 == 0 %>
-          <div id="todo2"></div>
+          <div id="todo2">
+            <div id="dueBy"><%= todo.due_by %></div>
+            <div id="description"><%= todo.description %></div>
+            <div id="markCompleted">Complete?</div>
+          </div>
         <% else %>
-          <div id="todo1"></div>
+          <div id="todo1">
+            <div id="dueBy"> Due By: <%= todo.due_by %></div>
+            <div id="description">Description: <%= todo.description %></div>
+            <div id="markCompleted">Complete?</div>
+          </div>
         <% end %>
       <% end %>
     </div>
-    <form action="/todos" method="post" id="todosForm" remote: "false">
-        <div class='input-group date' id='datetimepicker1'>
-          <input type='text' class="form-control" />
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-calendar"></span>
-          </span>
-        </div>          
-        <textarea id="todosDescription" name="todo[description]"></textarea>
-        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-        <input type="hidden" id="todosUserID" name="todos[user_id]" value= <%= current_user.id %> >
-        <input type="hidden" id="todosPlayerID" name="todos[player_id]">
-        <input type="submit" value="Add Todo" id="todoSubmitButton">
-    </form>    
+    <div id="todoFormWrapper">
+      <form action="/todos" method="post" id="todosForm" remote: "false">
+          <label for="datetimepicker1" id="datetimepicker1Label">Due By Date/Time</label>
+          <div class='input-group date' id='datetimepicker1'>
+            <input type='text' class="form-control" />
+            <span class="input-group-addon" id="firstTodoSpan">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+          <textarea id="todosDescription" name="todo[description]">Add Description Here...</textarea>
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="hidden" id="todosUserID" name="todo[user_id]" value= <%= current_user.id %> >
+          <input type="hidden" id="todosPlayerID" name="todo[player_id]">
+          <input type="submit" value="Add Todo" id="todoSubmitButton">
+      </form>
+    </div>  
   </div>
   <div id="userRecommendedRecruitsCard">
     Games To Watch

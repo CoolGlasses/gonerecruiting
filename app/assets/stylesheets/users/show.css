@@ -24,6 +24,7 @@
     justify-self: center;
 }
 
+
 #userCardsContainer {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -67,6 +68,91 @@
     grid-column: 1 / 2;
     grid-row: 1 / 3;
 }
+
+#userToDosHeader {
+    display: grid;
+    text-align: center;
+    font-size: x-large;
+    padding: 8px;
+    text-decoration: underline;
+}
+
+#userToDosList {
+    display: grid;
+    overflow: scroll;
+    grid-gap: 8px;
+}
+
+#todoFormWrapper {
+    display: grid;
+    border-style: double;
+    border-radius: 6px;
+    padding: 12px;
+    margin: 6px;
+}
+
+#todosForm {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr 1fr 5fr 1fr;
+}
+
+#datetimepicker1Label {
+    display: grid;
+    grid-column: 1 / 2;
+    margin-right: 6px;
+}
+
+#datetimepicker1 {
+    display: grid;
+    grid-column: 2 / 3;
+}
+
+#firstTodoSpan {
+    display: grid;
+    grid-column: 3 / 4;
+    justify-content: center;
+    max-height: 34px;
+    margin-right: 6px;
+    width: auto;
+}
+
+#todosDescription {
+    display: grid;
+    grid-column: 3 / 6;
+    height: 40px;
+    border-radius: 6px;
+}
+
+#todoSubmitButton {
+    display: grid;
+    grid-column: 6 / 7;
+    max-height: 34px;
+}
+
+#todo1 {
+    display: grid;
+    background-color: whitesmoke;
+    border-style: solid;
+    border-color: black;
+    border-width: 3px;
+    border-radius: 8px;
+    padding: 8px;
+    width: 90%;
+    justify-self: center;
+}
+
+#todo2 {
+    display: grid;
+    background-color: slategray;
+    border-style: solid;
+    border-color: black;
+    border-radius: 8px;
+    padding: 8px;
+    width: 90%;
+    justify-self: center;
+}
+
+
 
 #userTableContainer {
     display: grid;
@@ -220,3 +306,5 @@
     grid-row: 2 / 3;
     color: antiquewhite;
 }
+
+
