@@ -13,13 +13,21 @@
             <div id="todo2">
                 <div id="dueBy">Due By: <%= todo.due_by.strftime("%a, %b %-d, %l:%M %p") %></div>
                 <div id="description"><%= todo.description %></div>
-                <div id="markCompleted">Complete?</div>
+                <div id="markCompleted">
+                    <%= button_to "Mark Completed", todo_path(todo.id), 
+                      params: {:todo => { :id => todo.id, :completed => true, :user_id => current_user.id }}, 
+                      method: :put, data: { confirm: "Mark this To-Do as being completed?  This will hide it from view." } %>
+                </div>
             </div>
             <% else %>
             <div id="todo1">
                 <div id="dueBy"> Due By: <%= todo.due_by.strftime("%a, %b %-d, %l:%M %p") %></div>
                 <div id="description">Description: <%= todo.description %></div>
-                <div id="markCompleted">Complete?</div>
+                <div id="markCompleted">
+                    <%= button_to "Mark Completed", todo_path(todo.id), 
+                      params: {:todo => { :id => todo.id, :completed => true, :user_id => current_user.id }}, 
+                      method: :put, data: { confirm: "Mark this To-Do as being completed?  This will hide it from view." } %>
+                </div>
             </div>
             <% end %>
             <% end %>
