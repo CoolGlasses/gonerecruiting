@@ -1,175 +1,185 @@
-
 <div id="userShowMainBar">
-  <p id="userShowHeaderWelcome"><%= @user.username %></p>
-  <div id="linkBackToDatabase"><%= link_to "Database", players_path %></div>
-  <div id="linkToAccountInformation">My Account</div>
+    <p id="userShowHeaderWelcome"><%= @user.username %></p>
+    <div id="linkBackToDatabase"><%= link_to "Database", players_path %></div>
+    <div id="linkToAccountInformation">My Account</div>
 </div>
 
 <div id="userCardsContainer">
-  <div id="userToDoCard">
-    <div id="userToDosHeader">To-Do's</div>
-    <div id="userToDosList">
-      <% @todos.each_with_index do |todo, i| %>
-        <% if i % 2 == 0 %>
-          <div id="todo2">
-            <div id="dueBy"><%= todo.due_by %></div>
-            <div id="description"><%= todo.description %></div>
-            <div id="markCompleted">Complete?</div>
-          </div>
-        <% else %>
-          <div id="todo1">
-            <div id="dueBy"> Due By: <%= todo.due_by %></div>
-            <div id="description">Description: <%= todo.description %></div>
-            <div id="markCompleted">Complete?</div>
-          </div>
-        <% end %>
-      <% end %>
+    <div id="userToDoCard">
+        <div id="userToDosHeader">To-Do's</div>
+        <div id="userToDosList">
+            <% @todos.each_with_index do |todo, i| %>
+            <% if i % 2 == 0 %>
+            <div id="todo2">
+                <div id="dueBy">Due By: <%= todo.due_by.strftime("%a, %b %-d, %l:%M %p") %></div>
+                <div id="description"><%= todo.description %></div>
+                <div id="markCompleted">Complete?</div>
+            </div>
+            <% else %>
+            <div id="todo1">
+                <div id="dueBy"> Due By: <%= todo.due_by.strftime("%a, %b %-d, %l:%M %p") %></div>
+                <div id="description">Description: <%= todo.description %></div>
+                <div id="markCompleted">Complete?</div>
+            </div>
+            <% end %>
+            <% end %>
+        </div>
+        <div id="todoFormWrapper">
+            <form action="/todos" method="post" id="todosForm" remote: "false">
+                <label for="datetimepicker1" id="datetimepicker1Label">Due By Date/Time</label>
+                <div class='input-group date' id='datetimepicker1' name="todo[due_by]">
+                    <input type='text' class="form-control" name="todo[due_by]" />
+                    <span class="input-group-addon" id="firstTodoSpan">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+                <textarea id="todosDescription" name="todo[description]" placeholder="Add Description Here..."></textarea>
+                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                <input type="hidden" id="todosUserID" name="todo[user_id]" value=<%= current_user.id %>>
+                <input type="hidden" id="todosPlayerID" name="todo[player_id]">
+                <input type="submit" value="Add Todo" id="todoSubmitButton">
+            </form>
+        </div>
     </div>
-    <div id="todoFormWrapper">
-      <form action="/todos" method="post" id="todosForm" remote: "false">
-          <label for="datetimepicker1" id="datetimepicker1Label">Due By Date/Time</label>
-          <div class='input-group date' id='datetimepicker1'>
-            <input type='text' class="form-control" />
-            <span class="input-group-addon" id="firstTodoSpan">
-              <span class="glyphicon glyphicon-calendar"></span>
-            </span>
-          </div>
-          <textarea id="todosDescription" name="todo[description]">Add Description Here...</textarea>
-          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-          <input type="hidden" id="todosUserID" name="todo[user_id]" value= <%= current_user.id %> >
-          <input type="hidden" id="todosPlayerID" name="todo[player_id]">
-          <input type="submit" value="Add Todo" id="todoSubmitButton">
-      </form>
-    </div>  
-  </div>
-  <div id="userRecommendedRecruitsCard">
-    Games To Watch
-    --Coming Soon--
-  </div>
-  <div id="userRecruitsContainer">
-      <div id="userTableContainer">
-      <h2 id="recruitsCardHeader">Recruits</h2>
-      <form id="userFilterBar" action="/users/filter" method="post"> <!-- filterBar -->
-      <input type="text" placeholder="Filter by Name..." id="userNameSearch" name="filter[name]">
-        <select id="userHeightSelector" name="filter[height]">
-          <option id="heightSelectorHeader" disabled selected>--by Ht--</option>
-          <option id="<5ft 3in" value="<5ft 3in">&lt;5ft 3in</option>
-          <option id="5ft 3in" value="5ft 3in">5ft 3in</option>
-          <option id="5ft 4in" value="5ft 4in">5ft 4in</option>
-          <option id="5ft 5in" value="5ft 5in">5ft 5in</option>
-          <option id="5ft 6in" value="5ft 6in">5ft 6in</option>
-          <option id="5ft 7in" value="5ft 7in">5ft 7in</option>
-          <option id="5ft 8in" value="5ft 8in">5ft 8in</option>
-          <option id="5ft 9in" value="5ft 9in">5ft 9in</option>
-          <option id="5ft 10in" value="5ft 10in">5ft 10in</option>
-          <option id="5ft 11in" value="5ft 11in">5ft 11in</option>
-          <option id="6ft 0in" value="6ft 0in">6ft 0in</option>
-          <option id="6ft 1in" value="6ft 1in">6ft 1in</option>
-          <option id="6ft 2in" value="6ft 2in">6ft 2in</option>
-          <option id="6ft 3in" value="6ft 3in">6ft 3in</option>
-          <option id="6ft 4in" value="6ft 4in">6ft 4in</option>
-          <option id=">6ft 4in" value=">6ft 4in">&gt;6ft 4in</option>
-          <% if !params["filter"].nil? %>      
-            <% if !params["filter"]["height"].nil? %>
-              <script>
-                document.getElementById("<%= params["filter"]["height"] %>").setAttribute('selected', 'selected')
-                document.getElementById("heightSelectorHeader").setAttribute('selected', 'false')
-              </script>
-            <% end %>
-          <% end %>
-        </select>
-        <select id="userPositionSelector" name="filter[position]">
-          <option id="positionSelectorHeader" disabled selected>--by Pos--</option>
-          <option id="G" value="G">G</option>
-          <option id="W" value="W">W</option>
-          <option id="F" value="F">F</option>
-          <option id="P" value="P">P</option>
-          <option id="C" value="C">C</option>
-          <% if !params["filter"].nil? %>      
-            <% if !params["filter"]["position"].nil? %>
-              <script>
-                document.getElementById("<%= params["filter"]["position"] %>").setAttribute('selected', 'selected')
-                document.getElementById("positionSelectorHeader").setAttribute('selected', 'false')
-              </script>
-            <% end %>
-          <% end %>
-        </select>
-        <select id="userGradeSelector" name="filter[grade]">
-          <option id="gradeSelectorHeader" disabled selected>--by Gr--</option>
-          <option id="12" value="12">12</option>
-          <option id="11" value="11">11</option>
-          <option id="10" value="10">10</option>
-          <option id="9" value="9">9</option>
-          <% if !params["filter"].nil? %>      
-            <% if !params["filter"]["grade"].nil? %>
-              <script>
-                document.getElementById("<%= params["filter"]["grade"] %>").setAttribute('selected', 'selected')
-                document.getElementById("gradeSelectorHeader").setAttribute('selected', 'false')
-              </script>
-            <% end %>
-          <% end %>
-        </select>
-        <input type="text" placeholder="Filter by School..." id="userSchoolSearch" name="filter[school]">
-        <select id="userStateSelector" name="filter[state]">
-          <option id="userStateSelectorHeader" disabled selected>--by State--</option>
-          <option id="OR" value="OR">OR</option>
-          <option id="WA" value="WA">WA</option>
-          <% if !params["filter"].nil? %>      
-            <% if !params["filter"]["state"].nil? %>
-              <script>
-                document.getElementById("<%= params["filter"]["state"] %>").setAttribute('selected', 'selected')
-                document.getElementById("userStateSelectorHeader").setAttribute('selected', 'false')
-              </script>
-            <% end %>
-          <% end %>
-        </select>
-        <input type="submit" value="Filter" id="userFilterSubmitButton">
-        <input type="button" onclick="location.href='/user.<%= current_user.id %>';" value="Reset" id="userResetButton">
-      </form>
-      <h3>---------------</h3>
-      <table id="userRecruitsTable"> <!-- myTable -->
-        <tr class="header"> <!-- header -->
-          <th id="playerNumber">#</th>
-          <th id="playerName">Name</th>
-          <th id="playerHeight">Ht</th>
-          <th id="playerPosition">Pos</th>
-          <th id="playerGrade">Gr</th>
-          <th id="playerSchool">HS</th>
-          <th id="playerState">ST</th>
-          <th id="playerRemove"></th>
-        </tr> 
-        <% @players.each do |player| %>
-          <tr>
-            <td id="playerNumber"><%= player["home_number"] %></td>
-            <td id="playerName"><%=link_to player["name"], player_path(player.id) %></td>
-            <td id="playerHeight"><%= player["height"] %></td>
-            <td id="playerPosition"><%= player["position"] %></td>
-            <td id="playerGrade"><%= player["grade"] %></td>
-            <td id="playerSchool"><%= player["school_name"] %></td>
-            <td id="playerState"><%= player["state"] %></td>
-            <td id="playerRemove">
-              <% @recruits.each do |recruit|          %>
-              <%    if recruit.player_id == player.id %>
-              <%           this_recruit = recruit     %>
-              <%= button_to "Remove", recruit_path(this_recruit.id), 
+    <div id="userRecommendedRecruitsCard">
+        Games To Watch
+        --Coming Soon--
+    </div>
+    <div id="userRecruitsContainer">
+        <div id="userTableContainer">
+            <h2 id="recruitsCardHeader">Recruits</h2>
+            <form id="userFilterBar" action="/users/filter" method="post">
+                <!-- filterBar -->
+                <input type="text" placeholder="Filter by Name..." id="userNameSearch" name="filter[name]">
+                <select id="userHeightSelector" name="filter[height]">
+                    <option id="heightSelectorHeader" disabled selected>--by Ht--</option>
+                    <option id="<5ft 3in" value="<5ft 3in">&lt;5ft 3in</option>
+                    <option id="5ft 3in" value="5ft 3in">5ft 3in</option>
+                    <option id="5ft 4in" value="5ft 4in">5ft 4in</option>
+                    <option id="5ft 5in" value="5ft 5in">5ft 5in</option>
+                    <option id="5ft 6in" value="5ft 6in">5ft 6in</option>
+                    <option id="5ft 7in" value="5ft 7in">5ft 7in</option>
+                    <option id="5ft 8in" value="5ft 8in">5ft 8in</option>
+                    <option id="5ft 9in" value="5ft 9in">5ft 9in</option>
+                    <option id="5ft 10in" value="5ft 10in">5ft 10in</option>
+                    <option id="5ft 11in" value="5ft 11in">5ft 11in</option>
+                    <option id="6ft 0in" value="6ft 0in">6ft 0in</option>
+                    <option id="6ft 1in" value="6ft 1in">6ft 1in</option>
+                    <option id="6ft 2in" value="6ft 2in">6ft 2in</option>
+                    <option id="6ft 3in" value="6ft 3in">6ft 3in</option>
+                    <option id="6ft 4in" value="6ft 4in">6ft 4in</option>
+                    <option id=">6ft 4in" value=">6ft 4in">&gt;6ft 4in</option>
+                    <% if !params["filter"].nil? %>
+                    <% if !params["filter"]["height"].nil? %>
+                    <script>
+                        document.getElementById("<%= params["
+                            filter "]["
+                            height "] %>").setAttribute('selected', 'selected')
+                        document.getElementById("heightSelectorHeader").setAttribute('selected', 'false')
+                    </script>
+                    <% end %>
+                    <% end %>
+                </select>
+                <select id="userPositionSelector" name="filter[position]">
+                    <option id="positionSelectorHeader" disabled selected>--by Pos--</option>
+                    <option id="G" value="G">G</option>
+                    <option id="W" value="W">W</option>
+                    <option id="F" value="F">F</option>
+                    <option id="P" value="P">P</option>
+                    <option id="C" value="C">C</option>
+                    <% if !params["filter"].nil? %>
+                    <% if !params["filter"]["position"].nil? %>
+                    <script>
+                        document.getElementById("<%= params["
+                            filter "]["
+                            position "] %>").setAttribute('selected', 'selected')
+                        document.getElementById("positionSelectorHeader").setAttribute('selected', 'false')
+                    </script>
+                    <% end %>
+                    <% end %>
+                </select>
+                <select id="userGradeSelector" name="filter[grade]">
+                    <option id="gradeSelectorHeader" disabled selected>--by Gr--</option>
+                    <option id="12" value="12">12</option>
+                    <option id="11" value="11">11</option>
+                    <option id="10" value="10">10</option>
+                    <option id="9" value="9">9</option>
+                    <% if !params["filter"].nil? %>
+                    <% if !params["filter"]["grade"].nil? %>
+                    <script>
+                        document.getElementById("<%= params["
+                            filter "]["
+                            grade "] %>").setAttribute('selected', 'selected')
+                        document.getElementById("gradeSelectorHeader").setAttribute('selected', 'false')
+                    </script>
+                    <% end %>
+                    <% end %>
+                </select>
+                <input type="text" placeholder="Filter by School..." id="userSchoolSearch" name="filter[school]">
+                <select id="userStateSelector" name="filter[state]">
+                    <option id="userStateSelectorHeader" disabled selected>--by State--</option>
+                    <option id="OR" value="OR">OR</option>
+                    <option id="WA" value="WA">WA</option>
+                    <% if !params["filter"].nil? %>
+                    <% if !params["filter"]["state"].nil? %>
+                    <script>
+                        document.getElementById("<%= params["
+                            filter "]["
+                            state "] %>").setAttribute('selected', 'selected')
+                        document.getElementById("userStateSelectorHeader").setAttribute('selected', 'false')
+                    </script>
+                    <% end %>
+                    <% end %>
+                </select>
+                <input type="submit" value="Filter" id="userFilterSubmitButton">
+                <input type="button" onclick="location.href='/user.<%= current_user.id %>';" value="Reset" id="userResetButton">
+            </form>
+            <h3>---------------</h3>
+            <table id="userRecruitsTable">
+                <!-- myTable -->
+                <tr class="header">
+                    <!-- header -->
+                    <th id="playerNumber">#</th>
+                    <th id="playerName">Name</th>
+                    <th id="playerHeight">Ht</th>
+                    <th id="playerPosition">Pos</th>
+                    <th id="playerGrade">Gr</th>
+                    <th id="playerSchool">HS</th>
+                    <th id="playerState">ST</th>
+                    <th id="playerRemove"></th>
+                </tr>
+                <% @players.each do |player| %>
+                <tr>
+                    <td id="playerNumber"><%= player["home_number"] %></td>
+                    <td id="playerName"><%=link_to player["name"], player_path(player.id) %></td>
+                    <td id="playerHeight"><%= player["height"] %></td>
+                    <td id="playerPosition"><%= player["position"] %></td>
+                    <td id="playerGrade"><%= player["grade"] %></td>
+                    <td id="playerSchool"><%= player["school_name"] %></td>
+                    <td id="playerState"><%= player["state"] %></td>
+                    <td id="playerRemove">
+                        <% @recruits.each do |recruit|          %>
+                        <%    if recruit.player_id == player.id %>
+                        <%           this_recruit = recruit     %>
+                        <%= button_to "Remove", recruit_path(this_recruit.id), 
                       params: {:recruit => { :user_id => current_user.id, :player_id => player.id }}, 
                       method: :delete, data: { confirm: "Are you sure? You will lose all data you've entered for this recruit!" } %>
-              <%           break                      %>
-              <%    end                               %>
-              <% end                                  %>
-            </td>
-          </tr>
-        <% end %>
-      </table>
-      <h3>---------------</h3>
-      </div>
-  </div>
+                        <%           break                      %>
+                        <%    end                               %>
+                        <% end                                  %>
+                    </td>
+                </tr>
+                <% end %>
+            </table>
+            <h3>---------------</h3>
+        </div>
+    </div>
 </div>
 
 <script>
-  $(function () {
-    $('#datetimepicker1').datetimepicker();
- });
+    $(function() {
+        $('#datetimepicker1').datetimepicker();
+    });
 </script>
 
 

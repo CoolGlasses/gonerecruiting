@@ -12,6 +12,7 @@ module GoneRecruiting
     config.load_defaults 6.0
     config.action_mailer.default_url_options = { host: 'gonerecruiting.com'}
     config.autoloader = :classic
+    config.time_zone = 'Pacific Time (US & Canada)'
 
     config.before_configuration do
       env_file = File.join(Rails.root, 'config', 'local_env.yml')
