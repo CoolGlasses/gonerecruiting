@@ -1,5 +1,20 @@
-#goToDatabase {
-    text-align: center;
+#loginContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#loginBox {
+    display: grid;
+    grid-column: 2 / 3;
+    background-color: #36454F;
+    border-radius: 8px;
+    box-shadow:
+        0 -2.8px 2.2px gray,
+        0 -6.7px 6.3px gray,
+        0 -12.5px 12px gray,
+        0 2.8px 2.2px gray,
+        0 6.7px 6.3px gray,
+        0 12.5px 12px gray;
 }
 
 #loginWelcomeText {
@@ -9,20 +24,25 @@
 #loginForm {
     display: grid;
     justify-self: center;
-    grid-column: 2 / 3;
     grid-gap: 6px;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    color: black;
 }
 
 #loginFormLoginButton {
+    display: grid;
     justify-self: center;
+    color: black;
+    grid-row: 3 / 4;
+    grid-column: 1 / 3;
 }
 
 
 #forgotPasswordLinkDiv {
     display: grid;
-    grid-column: 2 / 3;
+    grid-row: 3 / 4;
     justify-self: center;
-    padding-top: 14px;
 }
 
 #forgotPasswordLinkDiv>a {
@@ -35,5 +55,27 @@
 
 #usernameLabel {
     display: grid;
-    margin-top: 12px;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    align-content: center;
 }
+
+#user_username {
+    display: grid;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+
+#passwordLabel {
+    display: grid;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    align-content: center;
+}
+
+#user_passward {
+    display: grid;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+
