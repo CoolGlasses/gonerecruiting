@@ -38,8 +38,6 @@ class PlayersController < ApplicationController
             @filters = filters
         end
 
-        
-
         if !@filters[:height].nil?
             converted_height = convert_height(height)
             if @players.nil?
@@ -139,13 +137,12 @@ class PlayersController < ApplicationController
 
     def get_recruits(current_user)
         recruits = Recruit.where("user_id = ?", current_user.id)
-
-        players = recruits.uniq.map do |recruit|
-            Player.where("id = ?", recruit.player_id)
+        id_array = []
+        recruits.each do |recruit|
+            id_array << recruit.player_id
         end
-
-        players = players.flatten
-        return players
+        
+        return id_array
     end
 
     def get_recruit(current_user)
