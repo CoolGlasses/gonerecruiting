@@ -35,7 +35,7 @@
 
 #userRecruitsContainer {
     display: grid;
-    background-color: darkgray;
+    background: #36454F;
     border-radius: 8px;
     color: black;
     grid-column: 2 / 4;
@@ -46,6 +46,7 @@
     display: grid;
     grid-column: 2 / 3;
     justify-self: center;
+    margin-bottom: 23px;
 }
 
 #userRecommendedRecruitsCard {

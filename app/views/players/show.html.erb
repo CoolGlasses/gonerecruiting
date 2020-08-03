@@ -1,8 +1,6 @@
-
 <form id="toDatabase" action="/players" method="get">
-    <button type="submit">Database</button>
+    <button type="submit">Go To Database</button>
 </form>
-
 
 <div id="playerNameHeader"><%= @player.name %></div>
 <div id="dashSpacer">---------------</div>
@@ -85,21 +83,26 @@
         <div id="scheduleBody">
             <table id="scheduleTable">
                 <tr id="scheduleHeaderBar">
-                    <th>Date</th>
-                    <th>Home</th>
-                    <th>Score</th>
-                    <th>Away</th>
-                    <th>Score</th>
-                    <th>Result</th>
+                    <th id="scheduleDateHeader">Date</th>
+                    <th id="scheduleHomeHeader">Home</th>
+                    <th id="scheduleHomeScoreHeader">Score</th>
+                    <th id="scheduleAwayHeader">Away</th>
+                    <th id="scheduleAwayScoreHeader">Score</th>
+                    <th id="scheduleResultHeader">Result</th>
+                    <th id="scheduleTargetGameHeader">Target Game?</th>
                 </tr>
-                <% @schedule.each do |contest| %>
-                    <tr> 
-                        <td><%= DateTime.parse(contest["start_at"]).to_s(:contest_start_at) %></td>
-                        <td><%= contest["home_name"] %></td>
-                        <td><%= contest["home_score"] %></td>
-                        <td><%= contest["away_name"] %></td>
-                        <td><%= contest["away_score"] %></td>
-                        <td>
+                <% @schedule.each_with_index do |contest, i| %>
+                    <% if i % 2 == 0 %>
+                     <tr id="scheduleRow2">
+                    <% else %>
+                     <tr id="scheduleRow1">
+                    <% end %>
+                        <td id="scheduleDateColumn"><%= DateTime.parse(contest["start_at"]).to_s(:contest_start_at) %></td>
+                        <td id="scheduleHomeColumn"><%= contest["home_name"] %></td>
+                        <td id="scheduleHomeScoreColumn"><%= contest["home_score"] %></td>
+                        <td id="scheduleAwayColumn"><%= contest["away_name"] %></td>
+                        <td id="scheduleAwayScoreColumn"><%= contest["away_score"] %></td>
+                        <td id="scheduleResultColumn">
                           <% if DateTime.parse(contest["start_at"]).to_date < Date.today%>
                             <% if contest["home_id"] == @player.team_id %>
                                 <% if contest["home_win"] == true  %>
@@ -118,6 +121,7 @@
                             TBD
                           <% end%>
                         </td>
+                        <td id="scheduleTargetGame">Target</td>
                     </tr>
                 <% end %>
             </table>
@@ -132,6 +136,3 @@
         </div>
     </div>
 </div>
-
-  
-
