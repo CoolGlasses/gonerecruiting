@@ -1,0 +1,3 @@
+class Targetgame < ApplicationRecord
+
+end

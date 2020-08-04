@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_28_011714) do
+ActiveRecord::Schema.define(version: 2020_08_04_234039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -196,6 +196,15 @@ ActiveRecord::Schema.define(version: 2020_07_28_011714) do
     t.integer "classification"
     t.string "state"
     t.index ["osaa_school_id"], name: "index_schools_on_osaa_school_id", unique: true
+  end
+
+  create_table "targetgames", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "contest_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["contest_id"], name: "index_targetgames_on_contest_id"
+    t.index ["user_id"], name: "index_targetgames_on_user_id"
   end
 
   create_table "teams", force: :cascade do |t|
