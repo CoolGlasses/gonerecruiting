@@ -57,7 +57,6 @@
                 <th id="scheduleHomeScoreHeader">Score</th>
                 <th id="scheduleAwayHeader">Away</th>
                 <th id="scheduleAwayScoreHeader">Score</th>
-                <th id="scheduleTargetGameHeader">Target Game?</th>
             </tr>
         <% @targetgames.each_with_index do |targetgame, i| %>
         <% if i % 2 == 0 %>
@@ -188,9 +187,9 @@
                     <td id="playerState"><%= player["state"] %></td>
                     <td id="playerRemove">
                         <% @recruits.each do |recruit|          %>
-                        <%    if recruit.player_id == player.id %>
+                        <%    if recruit == player.id %>
                         <%           this_recruit = recruit     %>
-                        <%= button_to "Remove", recruit_path(this_recruit.id), 
+                        <%= button_to "Remove", recruit_path(this_recruit), 
                       params: {:recruit => { :user_id => current_user.id, :player_id => player.id }}, 
                       method: :delete, data: { confirm: "Are you sure? You will lose all data you've entered for this recruit!" } %>
                         <%           break                      %>

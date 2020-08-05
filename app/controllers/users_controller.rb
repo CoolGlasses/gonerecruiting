@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     @targetgames = get_targetgames(current_user)
     @todos = get_todos(current_user)
     @recruits = get_recruits(current_user)
-    @players = get_players(@recruits).flatten.uniq
+    @players = get_players(@recruits)
     @user = current_user
     render :show
   end
@@ -80,16 +80,27 @@ class UsersController < ApplicationController
 
   def get_recruits(current_user)
     recruits = Recruit.where("user_id = ?", current_user.id)
-
-    return recruits
+    id_array = []
+    recruits.each do |recruit|
+      id_array << recruit.player_id
+    end
+        
+    return id_array
   end
 
   def get_players(recruits)
-    players = recruits.map do |recruit|
-      Player.where("id = ?", recruit.player_id)
+    recruits = recruits.flatten.uniq
+
+
+    recruits.each_with_index do |recruit, i|
+      if i == 0
+        @list = Player.where("id = ?", recruit)
+      else
+        @list = @list.or(Player.where("id = ?", recruit))
+      end
     end
 
-    return players
+    return @list
   end
 
   def get_targetgames(user)
