@@ -49,9 +49,50 @@
             </form>
         </div>
     </div>
-    <div id="userRecommendedRecruitsCard">
-        Games To Watch
-        --Coming Soon--
+    <div id="userTargetGamesCard">
+        <table id="scheduleTable">
+            <tr id="scheduleHeaderBar">
+                <th id="scheduleDateHeader">Date</th>
+                <th id="scheduleHomeHeader">Home</th>
+                <th id="scheduleHomeScoreHeader">Score</th>
+                <th id="scheduleAwayHeader">Away</th>
+                <th id="scheduleAwayScoreHeader">Score</th>
+                <th id="scheduleResultHeader">Result</th>
+                <th id="scheduleTargetGameHeader">Target Game?</th>
+            </tr>
+        <% @targetgames.each_with_index do |targetgame, i| %>
+        <% if i % 2 == 0 %>
+            <tr id="scheduleRow2">
+        <% else %>
+            <tr id="scheduleRow1">
+        <% end %>
+                <td id="scheduleDateColumn"><%= DateTime.parse(targetgame["start_at"]).to_s(:contest_start_at) %></td>
+                <td id="scheduleHomeColumn"><%= targetgame["home_name"] %></td>
+                <td id="scheduleHomeScoreColumn"><%= targetgame["home_score"] %></td>
+                <td id="scheduleAwayColumn"><%= targetgame["away_name"] %></td>
+                <td id="scheduleAwayScoreColumn"><%= targetgame["away_score"] %></td>
+                <td id="scheduleResultColumn">
+                    <% if DateTime.parse(targetgame["start_at"]).to_date < Date.today%>
+                        <% if targetgame["home_id"] == @player.team_id %>
+                            <% if targetgame["home_win"] == true  %>
+                                W
+                            <% else %>
+                                L
+                            <% end %>
+                        <% else %>
+                            <% if targetgame["away_win"] == true %>
+                                W
+                            <% else %>
+                                L
+                            <% end %>
+                        <% end %>
+                    <% else %>
+                        TBD
+                    <% end%>
+                </td>
+            </tr>
+        <% end %>
+        </table>        
     </div>
     <div id="userRecruitsContainer">
         <div id="userTableContainer">

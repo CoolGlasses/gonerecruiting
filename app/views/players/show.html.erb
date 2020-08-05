@@ -121,7 +121,9 @@
                             TBD
                           <% end%>
                         </td>
-                        <td id="scheduleTargetGame">Target</td>
+                        <td id="scheduleTargetGame">
+                          <%= button_to "Target Game", targetgames_url, params: {:targetgame => { :user_id => current_user.id, :contest_id => contest.id } %>
+                        </td>
                     </tr>
                 <% end %>
             </table>

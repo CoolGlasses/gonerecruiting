@@ -45,6 +45,7 @@ class UsersController < ApplicationController
       return
     end
 
+    @targetgames = get_targetgames(current_user)
     @todos = get_todos(current_user)
     @recruits = get_recruits(current_user)
     @players = get_players(@recruits).flatten.uniq
@@ -89,6 +90,13 @@ class UsersController < ApplicationController
     end
 
     return players
+  end
+
+  def get_targetgames(user)
+    targetgames = Targetgame.where("user_id = ?", user.id)
+    targetgames = targetgames.to_a
+
+    return targetgames
   end
 
   def filter_without_rendering
