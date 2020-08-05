@@ -308,4 +308,21 @@
     color: antiquewhite;
 }
 
+#userTargetGamesCard {
+    display: grid;
+}
 
+#userTargetGamesCard th,
+#userTargetGamesCard td {
+    text-align: center;
+    padding: 2px;
+    border-radius: 8px;
+}
+
+#userTargetGamesCard tr {
+    border-radius: 8px;
+}
+
+#userTargetGamesCard tr:hover {
+    background-color: darkgray;
+}
