@@ -95,12 +95,11 @@ class UsersController < ApplicationController
   def get_targetgames(user)
     targetgames = Targetgame.where("user_id = ?", user.id)
     finally = []
-
-    targetgames.each do |targetgame|
-      finally << Contest.where("id = ?", targetgame.contest_id)
+    targetgames.each do |game|
+      finally << Contest.where("id = ?", game.contest_id)
     end
-    
-    return finally
+
+    return finally.flatten
   end
 
   def filter_without_rendering

@@ -21,7 +21,7 @@
     <h1 id="headerTitle"><a href="<%= root_url %>">Gone Recruiting</a></h1>
     <div id="headerLinksBox">
     <% if current_user.nil? %>
-      <a href="<%= new_session_url %>" id="signin1">Sign in</a>
+      <a href="<%= new_session_url %>" id="signin1">Login</a>
       <!-- <a href="<%= new_user_url %>" id="signup1">Sign up</a> -->
     <% else %>
       <a href="/user.<%= current_user.id %>" id="headerUsername">Hello, <%= current_user.username %></a>

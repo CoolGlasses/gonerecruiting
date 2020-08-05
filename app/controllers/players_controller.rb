@@ -131,7 +131,7 @@ class PlayersController < ApplicationController
         schedule = Contest.where("home_id = ?", team_id[0].osaa_team_id).or(Contest.where("away_id = ?", team_id[0].osaa_team_id))
         schedule = schedule.to_a
         schedule = bubble_sort(schedule)
-
+        
         return schedule
     end
 

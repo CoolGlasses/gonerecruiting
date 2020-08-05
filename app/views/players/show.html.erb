@@ -103,7 +103,7 @@
                         <td id="scheduleAwayColumn"><%= contest["away_name"] %></td>
                         <td id="scheduleAwayScoreColumn"><%= contest["away_score"] %></td>
                         <td id="scheduleResultColumn">
-                          <% if DateTime.parse(contest["start_at"]).to_date < Date.today%>
+                          <% if DateTime.parse(contest["start_at"]).to_date < Date.today %>
                             <% if contest["home_id"] == @player.team_id %>
                                 <% if contest["home_win"] == true  %>
                                     W
@@ -122,7 +122,7 @@
                           <% end%>
                         </td>
                         <td id="scheduleTargetGame">
-                          <%= button_to "Target Game", targetgames_url, params: {:targetgame => { :user_id => current_user.id, :contest_id => contest.id } %>
+                          <%= button_to "Target Game", targetgames_url, params: {:targetgame => { :user_id => current_user.id, :contest_id => contest.id }} %>
                         </td>
                     </tr>
                 <% end %>

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :recruits
   resources :notes
   resources :todos
+  resources :targetgames
   resources :contact_cards
   resources :contests
   resources :password_resets

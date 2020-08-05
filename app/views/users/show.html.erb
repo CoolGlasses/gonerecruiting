@@ -57,7 +57,6 @@
                 <th id="scheduleHomeScoreHeader">Score</th>
                 <th id="scheduleAwayHeader">Away</th>
                 <th id="scheduleAwayScoreHeader">Score</th>
-                <th id="scheduleResultHeader">Result</th>
                 <th id="scheduleTargetGameHeader">Target Game?</th>
             </tr>
         <% @targetgames.each_with_index do |targetgame, i| %>
@@ -71,25 +70,6 @@
                 <td id="scheduleHomeScoreColumn"><%= targetgame["home_score"] %></td>
                 <td id="scheduleAwayColumn"><%= targetgame["away_name"] %></td>
                 <td id="scheduleAwayScoreColumn"><%= targetgame["away_score"] %></td>
-                <td id="scheduleResultColumn">
-                    <% if DateTime.parse(targetgame["start_at"]).to_date < Date.today%>
-                        <% if targetgame["home_id"] == @player.team_id %>
-                            <% if targetgame["home_win"] == true  %>
-                                W
-                            <% else %>
-                                L
-                            <% end %>
-                        <% else %>
-                            <% if targetgame["away_win"] == true %>
-                                W
-                            <% else %>
-                                L
-                            <% end %>
-                        <% end %>
-                    <% else %>
-                        TBD
-                    <% end%>
-                </td>
             </tr>
         <% end %>
         </table>        
