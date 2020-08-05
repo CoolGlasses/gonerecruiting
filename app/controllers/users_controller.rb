@@ -94,9 +94,13 @@ class UsersController < ApplicationController
 
   def get_targetgames(user)
     targetgames = Targetgame.where("user_id = ?", user.id)
-    targetgames = targetgames.to_a
+    finally = []
 
-    return targetgames
+    targetgames.each do |targetgame|
+      finally << Contest.where("id = ?", targetgame.contest_id)
+    end
+    
+    return finally
   end
 
   def filter_without_rendering
@@ -154,5 +158,22 @@ class UsersController < ApplicationController
         end
 
         return players.flatten.uniq
+  end
+
+  def bubble_sort(schedule)
+    length = schedule.length
+    loop do
+      swapped = false
+      (length - 1).times do |i|
+        if schedule[i]["start_at"] > schedule[i + 1]["start_at"]
+          schedule[i], schedule[i + 1] = schedule[i + 1], schedule[i]
+          swapped = true
+        end
+      end
+
+      break if swapped == false
+    end
+    
+    return schedul
   end
 end
