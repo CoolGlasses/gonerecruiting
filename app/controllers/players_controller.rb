@@ -96,10 +96,11 @@ class PlayersController < ApplicationController
     
     def show
         @player = Player.find(params[:id])
+
         if !current_user.nil?
             @notes = get_notes(current_user, @player)
             @contact_card = get_contact_card(current_user, @player)
-            @recruits= get_recruit(current_user)
+            @recruits = get_recruits(current_user)
         else
             @notes = false 
             @contact_card = false
@@ -141,17 +142,8 @@ class PlayersController < ApplicationController
         recruits.each do |recruit|
             id_array << recruit.player_id
         end
-        
+
         return id_array
-    end
-
-    def get_recruit(current_user)
-        recruit = Recruit.where("user_id = ?", current_user.id)
-        recruit = recruit.to_a
-
-        player = Player.where("id = ?", recruit[0]["player_id"])
-
-        return player
     end
 
     def bubble_sort(schedule)
