@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
     def index
         @news_items = get_news()
+
         render :home  
     end
 

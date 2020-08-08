@@ -7,12 +7,10 @@
 
 #homePageCardsContainer {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 20vw 20vw 20vw 20vw;
+    grid-template-rows: 200px 350px 350px 200px auto;
     grid-gap: 25px;
     padding: 50px;
-    width: 75%;
-    margin-top: 25px;
     justify-self: center;
 }
 
@@ -22,34 +20,6 @@
     border-radius: 6px;
     min-height: 35px;
     font-size: large;
-}
-
-#productPreviewContainer {
-    display: grid;
-    grid-row: 1 / 4;
-    grid-column: 2 / 4;
-    background: #36454F;
-    border-radius: 6px;
-    grid-template-rows: 1fr 9fr;
-    box-shadow:
-        0 -2.8px 2.2px gray,
-        0 -6.7px 6.3px gray,
-        0 -12.5px 12px gray,
-        0 2.8px 2.2px gray,
-        0 6.7px 6.3px gray;
-}
-
-#productPreviewMainHeader {
-    display: grid;
-    text-align: center;
-}
-
-#productPreviewContent {
-    display: grid;
-    grid-row: 2 / 3;
-    grid-template-rows: 1fr 3fr 1fr 3fr 1fr 3fr 1fr 3fr;
-    justify-content: center;
-    text-align: center;
 }
 
 #aboutCardContainer {
@@ -71,8 +41,11 @@
 
 #aboutCardHeader {
     text-align: center;
+    justify-content: center;
     font-size: 36px;
     color: white;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 #aboutCardContent {
@@ -87,6 +60,9 @@
     margin: 8px;
     width: 90%;
     justify-self: center;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: scroll;
 }
 
 #productsCardContainer {
@@ -110,7 +86,7 @@
     display: grid;
     font-size: 36px;
     padding: 6px;
-    justify-content: center;
+    justify-items: center;
     grid-row: 1 / 2;
 }
 
@@ -120,8 +96,8 @@
     padding: 6px;
     justify-content: center;
     grid-row: 2 / 3;
-    grid-template-rows: 3fr 3fr 1fr ;
-
+    grid-template-rows: 3fr 3fr 1fr;
+    text-align: center;
 }
 
 #focusProduct {
@@ -159,7 +135,6 @@
     border-radius: 6px;
     color: black;
     background: #36454F;
-    justify-content: center;
     align-items: center;
     grid-row: 2 / 3;
     grid-column: 1 / 2;
@@ -169,17 +144,26 @@
         0 -8.5px 12px gray,
         0 2.8px 2.2px gray,
         0 6.7px 6.3px gray;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto;
 }
 
 #newsReleasesHeader {
     text-align: center;
     font-size: 36px;
+    display: grid;
+    grid-row: 1 / 2;
+    grid-column: 1 / 4;
+    color: white;
 }
 
 #newsReleasesList {
     display: grid;
     overflow: scroll;
     grid-gap: 8px;
+    min-width: 90%;
+    grid-row: 2 / 3;
+    grid-column: 1 / 4;
 }
 
 #newsItem1 {
@@ -191,8 +175,9 @@
     border-width: 3px;
     border-radius: 8px;
     padding: 8px;
-    width: 90%;
     justify-self: center;
+    margin-left: 13px;
+    overflow: hidden;
 }
 
 #newsItem2 {
@@ -205,6 +190,8 @@
     padding: 8px;
     width: 90%;
     justify-self: center;
+    margin-left: 13px;
+    overflow: hidden;
 }
 
 #aboutCardHeader {
@@ -255,4 +242,108 @@
 #loginCardHeader {
     display: grid;
     grid-row: 1 / 2;
+}
+
+#productPreviewContainer {
+    display: grid;
+    grid-row: 1 / 6;
+    grid-column: 2 / 4;
+    background: #36454F;
+    border-radius: 6px;
+    grid-template-rows: 100px auto;
+    box-shadow:
+        0 -2.8px 2.2px gray,
+        0 -6.7px 6.3px gray,
+        0 -12.5px 12px gray,
+        0 2.8px 2.2px gray,
+        0 6.7px 6.3px gray;
+}
+
+#productPreviewMainHeader {
+    display: grid;
+    text-align: center;
+    font-size: xx-large;
+    align-content: center;
+}
+
+#productPreviewContent {
+    display: grid;
+    grid-row: 2 / 3;
+    grid-template-rows: 50px 310px 50px 310px 50px 310px 50px 310px;
+    justify-content: center;
+    text-align: center;
+}
+
+#productPreviewSubHeader1 {
+    display: grid;
+    grid-row: 1 / 2;
+    font-size: large;
+    text-decoration: underline;
+    align-content: center;
+}
+
+#productPreviewFilterBar {
+    display: grid;
+    grid-row: 2 / 3;
+    justify-self: center;
+    justify-items: center;
+    align-content: center;
+}
+
+#productPreviewSubHeader2 {
+    display: grid;
+    grid-row: 3 / 4;
+    font-size: large;
+    text-decoration: underline;
+    align-content: center;
+}
+
+#productPreviewPlayerShowPage {
+    display: grid;
+    grid-row: 4 / 5;
+    justify-self: center;
+    justify-items: center;
+    align-content: center;
+}
+
+#productPreviewSubHeader3 {
+    display: grid;
+    grid-row: 5 / 6;
+    font-size: large;
+    text-decoration: underline;
+    align-content: center;
+}
+
+#productPreviewTargetGames {
+    display: grid;
+    grid-row: 6 / 7;
+    justify-self: center;
+    justify-items: center;
+    align-content: center;
+}
+
+#productPreviewSubHeader4 {
+    display: grid;
+    grid-row: 7 / 8;
+    font-size: large;
+    text-decoration: underline;
+    align-content: center;
+}
+
+#productPreviewToDoList {
+    display: grid;
+    grid-row: 8 / 9;
+    justify-self: center;
+    justify-items: center;
+    align-content: center;
+    margin-bottom: 12px;
+}
+
+#productPreviewContainer img {
+    max-height: 100%;
+    max-width: 100%;
+    justify-self: center;
+    border-style: solid;
+    border-width: 8px;
+    border-color: antiquewhite;
 }

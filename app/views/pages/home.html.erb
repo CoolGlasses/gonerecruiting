@@ -11,13 +11,21 @@
         <div id="productPreviewMainHeader">One Place, All the Recruits</div>
         <div id="productPreviewContent">
             <div id="productPreviewSubHeader1">Search by Height, Grade, Position, School or Name</div>
-            <div id="productPreviewFilterBar"></div>
+            <div id="productPreviewFilterBar">
+                <%= image_tag("pages/homepage/player_index_grab.png", width: "90%") %>
+            </div>
             <div id="productPreviewSubHeader2">Keep track of your recruits, take notes, store contact information</div>
-            <div id="productPreviewPlayerShowPage"></div>
+            <div id="productPreviewPlayerShowPage">
+                <%= image_tag("pages/homepage/player_show_grab.png", width: "90%") %>
+            </div>
             <div id="productPreviewSubHeader3">Identify important games to evaluate, send emails to your staff with a list of this weeks recruiting games</div>
-            <div id="productPreviewImportantGames"></div>
+            <div id="productPreviewTargetGames">
+                <%= image_tag("pages/homepage/targetgames_grab.png", width: "90%") %>
+            </div>
             <div id="productPreviewSubHeader4">Manage your time with a To-Do list so you never miss another step in the recruitment process again</div>
-            <div id="productPreviewToDoList"></div>
+            <div id="productPreviewToDoList">
+                <%= image_tag("pages/homepage/todo_grab.png", width: "90%") %>
+            </div>
         </div>
     </div>
     <div id="aboutCardContainer">
@@ -46,8 +54,8 @@
             News
         </div>
         <div id="newsReleasesList">
-            <% if @news_items.nil? %>
-                No news!
+            <% if @news_items.empty? %>
+                <div id="newsItem1">No news!</div>
             <% else %>
                 <% @news_items.each_with_index do |news_item, i|  %>
                     <% if i % 2 == 0 %>
