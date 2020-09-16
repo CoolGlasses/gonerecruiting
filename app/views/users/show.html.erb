@@ -183,27 +183,29 @@
                     <th id="playerState">ST</th>
                     <th id="playerRemove"></th>
                 </tr>
-                <% @players.each do |player| %>
-                <tr>
-                    <td id="playerNumber"><%= player["home_number"] %></td>
-                    <td id="playerName"><%=link_to player["name"], player_path(player.id) %></td>
-                    <td id="playerHeight"><%= player["height"] %></td>
-                    <td id="playerPosition"><%= player["position"] %></td>
-                    <td id="playerGrade"><%= player["grade"] %></td>
-                    <td id="playerSchool"><%= player["school_name"] %></td>
-                    <td id="playerState"><%= player["state"] %></td>
-                    <td id="playerRemove">
-                        <% @recruits.each do |recruit|          %>
-                        <%    if recruit == player.id %>
-                        <%           this_recruit = recruit     %>
-                        <%= button_to "Remove", recruit_path(this_recruit), 
-                      params: {:recruit => { :user_id => current_user.id, :player_id => player.id }}, 
-                      method: :delete, data: { confirm: "Are you sure? You will lose all data you've entered for this recruit!" } %>
-                        <%           break                      %>
-                        <%    end                               %>
-                        <% end                                  %>
-                    </td>
-                </tr>
+                <% if !@players.nil? %>
+                    <% @players.each do |player| %>
+                    <tr>
+                        <td id="playerNumber"><%= player["home_number"] %></td>
+                        <td id="playerName"><%=link_to player["name"], player_path(player.id) %></td>
+                        <td id="playerHeight"><%= player["height"] %></td>
+                        <td id="playerPosition"><%= player["position"] %></td>
+                        <td id="playerGrade"><%= player["grade"] %></td>
+                        <td id="playerSchool"><%= player["school_name"] %></td>
+                        <td id="playerState"><%= player["state"] %></td>
+                        <td id="playerRemove">
+                            <% @recruits.each do |recruit|          %>
+                            <%    if recruit == player.id %>
+                            <%           this_recruit = recruit     %>
+                            <%= button_to "Remove", recruit_path(this_recruit), 
+                        params: {:recruit => { :user_id => current_user.id, :player_id => player.id }}, 
+                        method: :delete, data: { confirm: "Are you sure? You will lose all data you've entered for this recruit!" } %>
+                            <%           break                      %>
+                            <%    end                               %>
+                            <% end                                  %>
+                        </td>
+                    </tr>
+                <% end %>
                 <% end %>
             </table>
             <h3>---------------</h3>
