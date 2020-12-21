@@ -31,7 +31,7 @@ end
 
 def get_school_table #not currently returning staff as part of the school hash
     school_conn = Faraday.new(
-        url: 'http://www.osaa.org/api/schools?year=2019',
+        url: 'https://www.osaa.org/api/schools?year=2019',
         headers: {'x-api-key' => 'DG8rhd7LDJ6MqwTvw8OUQQWWpjc75Tqe',
                   'x-api-user' => '$2y$08$N4KDuEkBdzi8J0VlF9vWqeJSPkQCCbZ9v2YWnGv1BCSY5h44DjwTq'
                  })
@@ -46,7 +46,7 @@ end
 
 def get_varsity_schedules
     schedule_conn = Faraday.new(
-        url: 'http://www.osaa.org/api/contests/gbx?year=2019',
+        url: 'https://www.osaa.org/api/contests/gbx?year=2019',
         headers: {'x-api-key' => 'DG8rhd7LDJ6MqwTvw8OUQQWWpjc75Tqe',
                 'x-api-user' => '$2y$08$N4KDuEkBdzi8J0VlF9vWqeJSPkQCCbZ9v2YWnGv1BCSY5h44DjwTq'
                 })        
