@@ -30,6 +30,11 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
+gem 'capistrano', '~> 3.11'
+gem 'capistrano-rails', '~> 1.4'
+gem 'capistrano-passenger'
+gem 'capistrano-rbenv'
+
 gem 'jquery-rails'
 gem 'normalize-rails'
 gem 'letter_opener', group: :development
