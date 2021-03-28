@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_04_234039) do
+ActiveRecord::Schema.define(version: 2020_12_23_022026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 2020_08_04_234039) do
   enable_extension "pgrowlocks"
   enable_extension "pgstattuple"
   enable_extension "plpgsql"
-  enable_extension "plv8"
   enable_extension "tablefunc"
   enable_extension "unaccent"
   enable_extension "uuid-ossp"
