@@ -80,6 +80,22 @@
         </table>
       </div>     
     </div>
+    <div id="recruitingDepthChartContainer">
+        <h2 id="recruitingDepthChartHeader">Recruiting Depth Chart</h2>
+        <table id="recruitingDepthChartTable">
+            <tr id="recruitingDepthChartHeaderRow">
+                <!-- put headers here, what should we use for Positions?  Numbers or Letters?-->
+                <th id="pointGuardColumn">PG</th>
+                <th id="shootingGuardColumn">SG</th>
+                <th id="smallForwardColumn">SF</th>
+                <th id="powerForwardColumn">PF</th>
+                <th id="centerColumn">C</th>
+            </tr>
+            <% if !@players.nil? %>
+                <!-- how do we iterate through the players array adding each player to the correct column by position? -->
+            <% end %>
+        </table>
+    </div>
     <div id="userRecruitsContainer">
         <div id="userTableContainer">
             <h2 id="recruitsCardHeader">Recruits</h2>
@@ -225,7 +241,7 @@
 
 Some thoughts:
 
-Need to show the information that they entere for their user:
+Need to show the information that they entered for their user:
 email, phone, username, first, last, etc -- OR is this an account page type thing?
 
 Do we want to add recurrence to Todos?
